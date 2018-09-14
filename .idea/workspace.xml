@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a99dab47-1005-4d49-b6d4-299fc0227ad1" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>请</find>
+      <find>logo</find>
+      <find>Keywords</find>
+      <find>search-field</find>
+      <find>your</find>
+      <find>key</find>
+      <find>键入</find>
+      <find>border-radius</find>
+      <find>article</find>
+      <find>ul</find>
+      <find>active</find>
+      <find>阡陌</find>
+      <find>article2</find>
+      <find>headerPic</find>
+      <find>form</find>
+      <find>header</find>
+      <find>opacity: 0.7;</find>
+      <find>img</find>
+      <find>h3</find>
+      <find>h2</find>
+      <find>headerweb</find>
+      <find>100</find>
+      <find>transition</find>
+      <find>h1</find>
+      <find>transition: 1s;</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/2.php" />
+        <option value="$PROJECT_DIR$/admin/login.php" />
+        <option value="$PROJECT_DIR$/A.html" />
+        <option value="$PROJECT_DIR$/admin/header.php" />
+        <option value="$PROJECT_DIR$/admin/index.php" />
+        <option value="$PROJECT_DIR$/HTML5.php" />
+        <option value="$PROJECT_DIR$/HTML5.html" />
+        <option value="$PROJECT_DIR$/class/DH.html" />
+        <option value="$PROJECT_DIR$/class/index.php" />
+        <option value="$PROJECT_DIR$/class/HTML5.html" />
+        <option value="$PROJECT_DIR$/class/styles.css" />
+        <option value="$PROJECT_DIR$/class/Shopping Cart.html" />
+        <option value="$PROJECT_DIR$/class/ShaDow.HTML" />
+        <option value="$PROJECT_DIR$/class/Response.html" />
+        <option value="$PROJECT_DIR$/class/myweb/Myabout.html" />
+        <option value="$PROJECT_DIR$/class/Qm/Index.html" />
+        <option value="$PROJECT_DIR$/class/myweb/aritcle1.html" />
+        <option value="$PROJECT_DIR$/class/myweb/aritcle2.html" />
+        <option value="$PROJECT_DIR$/class/myweb/aritcle3.html" />
+        <option value="$PROJECT_DIR$/class/myweb/css/keyframes.css" />
+        <option value="$PROJECT_DIR$/class/myweb/about.html" />
+        <option value="$PROJECT_DIR$/class/myweb/My_about.html" />
+        <option value="$PROJECT_DIR$/class/myweb/message.html" />
+        <option value="$PROJECT_DIR$/class/myweb/index.html" />
+        <option value="$PROJECT_DIR$/class/myweb/js/script.js" />
+        <option value="$PROJECT_DIR$/class/myweb/images/cd-top-arrow.svg" />
+        <option value="$PROJECT_DIR$/class/myweb/css/styles.css" />
+        <option value="$PROJECT_DIR$/class/Qm/Styles.css" />
+        <option value="$PROJECT_DIR$/class/Qm/My_about.html" />
+        <option value="$PROJECT_DIR$/class/Qm/Photo.html" />
+        <option value="$PROJECT_DIR$/class/Qm/Message.html" />
+        <option value="$PROJECT_DIR$/class/Qm/index.html" />
+        <option value="$PROJECT_DIR$/class/Qm/about.html" />
+        <option value="$PROJECT_DIR$/class/Qm/css/Styles.css" />
+        <option value="$PROJECT_DIR$/class/陈晶/css/Styles.css" />
+        <option value="$PROJECT_DIR$/class/陈晶/My_about.html" />
+        <option value="$PROJECT_DIR$/class/陈晶/Message.html" />
+        <option value="$PROJECT_DIR$/class/陈晶/Photo.html" />
+        <option value="$PROJECT_DIR$/class/陈晶/about.html" />
+        <option value="$PROJECT_DIR$/class/陈晶/index.html" />
+        <option value="$PROJECT_DIR$/class/1706040119 Myweb/Photo.html" />
+        <option value="$PROJECT_DIR$/class/1706040119 Myweb/index.html" />
+        <option value="$PROJECT_DIR$/class/1706040119 Myweb/My_about.html" />
+        <option value="$PROJECT_DIR$/class/1706040119 Myweb/about.html" />
+        <option value="$PROJECT_DIR$/class/1706040119 Myweb/Message.html" />
+        <option value="$PROJECT_DIR$/class/LOVE/index.html" />
+        <option value="$PROJECT_DIR$/1.php" />
+        <option value="$PROJECT_DIR$/class/1706060203 陈清 myweb/css/styles.css" />
+        <option value="$PROJECT_DIR$/class/大二上 课堂作业/css/styles.css" />
+        <option value="$PROJECT_DIR$/class/大二上 课堂作业/Login.html" />
+        <option value="$PROJECT_DIR$/class/大二上 课堂作业/3.html" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="953" />
+    <option name="y" value="2" />
+    <option name="width" value="974" />
+    <option name="height" value="1055" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>AngularJS</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="htdocs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htdocs" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="htdocs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htdocs" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="大二上 课堂作业" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/xampp/htdocs/class/1706060203 陈清 myweb/images/subing.jpg&#10;echo&#9;null&#9;null" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\class\大二上 课堂作业\img" />
+      <recent name="C:\xampp\htdocs\class\大二上 课堂作业" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.Response.html">
+    <configuration name="Jasyae.html" type="JavascriptDebugType" factoryName="JavaScript Debug" nameIsGenerated="true" uri="http://localhost:63342/htdocs/Jasyae.html" />
+    <configuration name="Response.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/htdocs/class/Response.html" />
+    <configuration name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/htdocs/index.html" />
+    <configuration name="2.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/class/2.php" />
+    <list size="4">
+      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.Jasyae.html" />
+      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
+      <item index="2" class="java.lang.String" itemvalue="PHP Script.2.php" />
+      <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.Response.html" />
+    </list>
+    <recent_temporary>
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.Response.html" />
+        <item index="1" class="java.lang.String" itemvalue="PHP Script.2.php" />
+        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a99dab47-1005-4d49-b6d4-299fc0227ad1" name="Default" comment="" />
+      <created>1521964582641</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1521964582641</updated>
+      <workItem from="1521964584764" duration="596000" />
+      <workItem from="1521965193179" duration="95000" />
+      <workItem from="1521965299391" duration="113000" />
+      <workItem from="1521965425868" duration="37000" />
+      <workItem from="1521965474470" duration="6582000" />
+      <workItem from="1522051523581" duration="8000" />
+      <workItem from="1522051896177" duration="32000" />
+      <workItem from="1522058021071" duration="12958000" />
+      <workItem from="1522073960822" duration="1763000" />
+      <workItem from="1522137669901" duration="1499000" />
+      <workItem from="1522154868243" duration="2116000" />
+      <workItem from="1522163296672" duration="2524000" />
+      <workItem from="1522205494693" duration="2297000" />
+      <workItem from="1522227103744" duration="822000" />
+      <workItem from="1522232204657" duration="5208000" />
+      <workItem from="1522301271179" duration="485000" />
+      <workItem from="1522420806631" duration="188000" />
+      <workItem from="1522480991372" duration="1275000" />
+      <workItem from="1522486083140" duration="502000" />
+      <workItem from="1522812358177" duration="178000" />
+      <workItem from="1522812623765" duration="172000" />
+      <workItem from="1522825697902" duration="159000" />
+      <workItem from="1523167679991" duration="10705000" />
+      <workItem from="1523447465420" duration="603000" />
+      <workItem from="1523448411443" duration="2000" />
+      <workItem from="1523492535047" duration="6371000" />
+      <workItem from="1523499443289" duration="2654000" />
+      <workItem from="1523502199012" duration="14000" />
+      <workItem from="1523502323188" duration="42000" />
+      <workItem from="1523502425334" duration="1577000" />
+      <workItem from="1523697979456" duration="100000" />
+      <workItem from="1524129650117" duration="1142000" />
+      <workItem from="1524204352296" duration="156000" />
+      <workItem from="1524204591191" duration="48000" />
+      <workItem from="1524205590899" duration="501000" />
+      <workItem from="1524487951686" duration="65000" />
+      <workItem from="1524577669527" duration="44000" />
+      <workItem from="1524702490639" duration="929000" />
+      <workItem from="1524703438139" duration="9062000" />
+      <workItem from="1524712963752" duration="1041000" />
+      <workItem from="1524874808661" duration="4636000" />
+      <workItem from="1524879472659" duration="1000000" />
+      <workItem from="1524927937309" duration="520000" />
+      <workItem from="1526199431573" duration="203000" />
+      <workItem from="1526258080460" duration="3242000" />
+      <workItem from="1526261488113" duration="1129000" />
+      <workItem from="1526540834646" duration="3029000" />
+      <workItem from="1527123211937" duration="6316000" />
+      <workItem from="1527386370252" duration="4785000" />
+      <workItem from="1527484684329" duration="63000" />
+      <workItem from="1527756465905" duration="2000" />
+      <workItem from="1527833163212" duration="102000" />
+      <workItem from="1527833326977" duration="1825000" />
+      <workItem from="1527836286366" duration="342000" />
+      <workItem from="1527836696208" duration="2921000" />
+      <workItem from="1528028897785" duration="3690000" />
+      <workItem from="1528032759794" duration="3088000" />
+      <workItem from="1528107019422" duration="15815000" />
+      <workItem from="1528336045793" duration="539000" />
+      <workItem from="1528341019132" duration="159000" />
+      <workItem from="1528790934178" duration="52000" />
+      <workItem from="1529042718118" duration="13000" />
+      <workItem from="1529389076874" duration="5721000" />
+      <workItem from="1529493121388" duration="12826000" />
+      <workItem from="1529540316282" duration="3689000" />
+      <workItem from="1529545093650" duration="28000" />
+      <workItem from="1529589655465" duration="528000" />
+      <workItem from="1529590225644" duration="7062000" />
+      <workItem from="1529631862099" duration="410000" />
+      <workItem from="1529632454607" duration="63000" />
+      <workItem from="1529632589985" duration="167000" />
+      <workItem from="1530270888430" duration="443000" />
+      <workItem from="1531632435941" duration="7634000" />
+      <workItem from="1532405939263" duration="615000" />
+      <workItem from="1535979870265" duration="602000" />
+      <workItem from="1536127465946" duration="3695000" />
+      <workItem from="1536131682928" duration="2892000" />
+      <workItem from="1536410957168" duration="138000" />
+      <workItem from="1536411138061" duration="58000" />
+      <workItem from="1536411224814" duration="2000" />
+      <workItem from="1536411256735" duration="117000" />
+      <workItem from="1536411394399" duration="62000" />
+      <workItem from="1536652722557" duration="70000" />
+      <workItem from="1536766456149" duration="31000" />
+      <workItem from="1536906848466" duration="693000" />
+      <workItem from="1536909566503" duration="37000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="175719000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <layout>
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08958333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912722" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277311" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="缩略图" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948583" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="找到" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912722" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912722" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32842106" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="缩略图" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948583" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08958333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="找到" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912722" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="WordPressConfiguration" enabled="true">
+    <wordpressPath>C:\xampp\htdocs\wordpress</wordpressPath>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="12" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/class/大二上 课堂作业/Login.html" />
+    <entry file="file://$PROJECT_DIR$/class/大二上 课堂作业/Login.html" />
+    <entry file="file://$PROJECT_DIR$/class/大二上 课堂作业/Login.html" />
+    <entry file="file://$PROJECT_DIR$/class/大二上 课堂作业/Login.html" />
+    <entry file="file://$PROJECT_DIR$/class/大二上 课堂作业/Login.html" />
+    <entry file="file://$PROJECT_DIR$/class/大二上 课堂作业/Login.html" />
+    <entry file="file://$PROJECT_DIR$/class/大二上 课堂作业/Login.html" />
+    <entry file="file://$PROJECT_DIR$/class/大二上 课堂作业/Login.html" />
+    <entry file="file://$PROJECT_DIR$/class/大二上 课堂作业/css/styles.css" />
+    <entry file="file://$PROJECT_DIR$/class/myweb/css/keyframes.css" />
+    <entry file="file://$PROJECT_DIR$/class/myweb/message.html" />
+    <entry file="file://$PROJECT_DIR$/class/myweb/js/script.js" />
+    <entry file="file://$PROJECT_DIR$/class/myweb/aritcle1.html" />
+    <entry file="file://$PROJECT_DIR$/class/myweb/My_about.html" />
+    <entry file="file://$PROJECT_DIR$/class/myweb/index.html" />
+    <entry file="file://$PROJECT_DIR$/class/myweb/home.html" />
+    <entry file="file://$PROJECT_DIR$/class/myweb/css/styles.css" />
+    <entry file="file://$PROJECT_DIR$/class/1706060203 陈清 myweb/about.html" />
+    <entry file="file://$PROJECT_DIR$/class/Qm/Styles.css" />
+    <entry file="file://$PROJECT_DIR$/class/1706060203 陈清 myweb/css/keyframes.css" />
+    <entry file="file://$PROJECT_DIR$/class/1706060203 陈清 myweb/message.html" />
+    <entry file="file://$PROJECT_DIR$/class/Qm/Photo.html" />
+    <entry file="file://$PROJECT_DIR$/class/Qm/My_about.html" />
+    <entry file="file://$PROJECT_DIR$/class/Qm/about.html" />
+    <entry file="file://$PROJECT_DIR$/class/Qm/css/Styles.css" />
+    <entry file="file://$PROJECT_DIR$/class/Qm/Message.html" />
+    <entry file="file://$PROJECT_DIR$/class/Qm/index.html" />
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/phpstorm.jar!/resources/html5-schema/html5/web-forms2.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="604" column="16" lean-forward="false" selection-start-line="604" selection-start-column="16" selection-end-line="604" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/class/陈晶/css/Styles.css" />
+    <entry file="file://$PROJECT_DIR$/class/陈晶/index.html" />
+    <entry file="file://$PROJECT_DIR$/class/陈晶/about.html" />
+    <entry file="file://$PROJECT_DIR$/class/陈晶/Photo.html" />
+    <entry file="file://$PROJECT_DIR$/class/陈晶/Message.html" />
+    <entry file="file://$PROJECT_DIR$/class/陈晶/My_about.html" />
+    <entry file="file://$PROJECT_DIR$/class/1706040119 Myweb/My_about.html" />
+    <entry file="file://$PROJECT_DIR$/class/1706040119 Myweb/Message.html" />
+    <entry file="file://$PROJECT_DIR$/class/1706040119 Myweb/Photo.html" />
+    <entry file="file://$PROJECT_DIR$/class/1706040119 Myweb/about.html" />
+    <entry file="file://$PROJECT_DIR$/class/1706040119 Myweb/index.html" />
+    <entry file="file://$PROJECT_DIR$/class/LOVE/index.html" />
+    <entry file="file://$PROJECT_DIR$/class/2.php" />
+    <entry file="file://$PROJECT_DIR$/1.php" />
+    <entry file="file://$PROJECT_DIR$/K/index.html" />
+    <entry file="file://$PROJECT_DIR$/class/HTML5.html" />
+    <entry file="file://$PROJECT_DIR$/class/DH.html" />
+    <entry file="file://$PROJECT_DIR$/class/1706060203 陈清 myweb/home.html" />
+    <entry file="file://$PROJECT_DIR$/class/1706060203 陈清 myweb/css/styles.css" />
+    <entry file="file://$PROJECT_DIR$/class/大二上 课堂作业/css/styles.css" />
+    <entry file="file://$PROJECT_DIR$/class/大二上 课堂作业/3.html" />
+    <entry file="file://$PROJECT_DIR$/class/大二上 课堂作业/Login.html" />
+    <entry file="file://$PROJECT_DIR$/大二上 课堂作业/Login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-90">
+          <caret line="18" column="48" lean-forward="true" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
