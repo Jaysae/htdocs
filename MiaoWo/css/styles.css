@@ -1,0 +1,200 @@
+@charset "utf-8";
+/* CSS Document */
+* {margin: 0;padding: 0}
+span{color: #d34e16;}
+a {color: #d34e16;text-decoration: none;transition: 1s;}
+a:hover, a:active, a:focus {color: #d34e16;}
+img{max-width: 100%;width: auto;height: auto;transition: 1s;}
+footer {margin-top:15px;}
+p {line-height: 140%;text-indent:30px}
+
+.clearfloat {clear: both;height: 0;line-height: 0px;}/*这是一个用于清除浮动的样式代码，使用一个空的Div来调用*/
+.more {padding-top:5px;}
+.headerPic {background-color: #f5f5f5;}
+.headerweb {padding:20px;}
+
+#article2{bottom: -15px;}
+#article3{bottom: -30px;}
+body {
+	font-family: 微软雅黑, serif;
+	font-size: 100%;
+	color: #858585;
+	text-shadow: 0 0px, 1px 1px #ffffff;
+	background: #e4e4e4;
+	background-size:100% 100%;
+}
+
+@media screen And (min-width: 1800px){
+    article {
+        width: 62.5%;
+        margin: 0 auto
+    }
+}
+@media screen And (max-width: 1800px){
+    article {
+        width: 1120px;
+        margin: 0 auto
+    }
+}
+
+h1 {
+	color: #363636;
+	font-size: 54px;
+	font-family: "华文新魏", cursive;
+}
+h2{
+    color: #363636;
+    font-size: 28px;
+    font-family: "微软雅黑", serif;
+    font-weight: normal;
+}
+h1 a {
+	color:#363636;
+	float:left;
+	padding:20px 0;
+}
+hr {
+	margin:5px 0 15px 0;
+	background: #777777;
+	height:1px;
+	border:0;
+}
+footer ul {
+	padding: 20px 0;
+	text-align:center;
+}
+footer li {
+	display: inline;
+	padding: 0 1%;
+}
+footer li span {
+	color: #363636;
+}
+nav {
+	float:right;
+	padding-top:40px;
+}
+nav li {
+	display: inline;
+	list-style: none;
+	padding:1px;
+}
+nav li a {
+	font-size:20px;
+	display:inline;
+	color:#ffffff;
+	text-shadow: none;
+	background:#363636;
+	padding:4px 7px;
+	transition: 0.6s;
+}
+nav li a:hover {
+	background:#d34e16;
+    transition: 0.6s;
+	color:#ffffff;
+}
+nav #active a {
+	background: #d34e16;
+	color:#ffffff;
+}
+img:hover,h1:hover{
+    opacity: 0.8;
+    transition: .8s;
+}
+form{
+	font-size: 24px;
+	height: 36px;
+	position:relative;
+}
+textarea{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    font-size: 24px;
+    height: 320px;
+    border-radius: 4px;
+    width: 640px;
+    border: 1px solid #d34e16;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.text{
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	font-size: 24px;
+	height: 36px;
+	border-radius: 4px;
+	border: 1px solid #d34e16;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.BTN{
+	margin-left: 72px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    font-size: 14px;
+    padding: 6px;
+    border-radius: 4px;
+    border: 1px solid #d34e16;
+}
+#ourPark li {
+    padding-bottom:20px;
+    list-style:none;
+}
+.cd-top {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    position: fixed;
+    bottom: 40px;
+    right: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+    background: rgba(98, 98, 98, 0.7) url(../images/cd-top-arrow.svg) no-repeat center 50%;
+    visibility: hidden;
+    opacity: 0;
+    transition: 1s;
+}
+.cd-top.cd-is-visible {
+    visibility: visible;
+    opacity: 1;
+}
+.cd-top.cd-fade-out {
+    opacity: .5;
+}
+.My_About_Web{
+	float: left;
+	margin-left: 15px;
+	background-color: #f5f5f5;
+	border:1.5px solid #d34e16;
+	border-radius: 15px;
+	padding: 15px;
+	box-shadow: 5px 4px 5px #d34e16;
+}
+.My_About_Img{
+	float: left;
+	border-radius: 50%;
+	height: 262px;
+	width: 262px;
+	margin: 10px;
+	opacity: 0.65;
+	box-shadow: 5px 4px 5px #d34e16;
+}
+.My_About_Img:hover{
+		opacity: 1;
+}
+@media only screen and (min-width: 768px) {
+    .cd-top {
+        right: 20px;
+        bottom: 20px;
+    }
+}
+@media only screen and (min-width: 1024px) {
+    .cd-top {
+        height: 60px;
+        width: 60px;
+        right: 30px;
+        bottom: 30px;
+    }
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>喵窝 | 正在读取 | 吸猫地带</title>
+  <link href="css/styles.css" rel="stylesheet" type="text/css">
+  <link href="css/keyframes.css" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/script.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/loader.css">
+  <script type="text/javascript">
+    var percent = 0;
+    setInterval(function() {
+      if (percent >= 30) {
+        location.href = "Home.html";
+      }
+      percent++;
+    }, 50);
+  </script>
+  <div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+    <div class="load_title">正在前往-喵窝</div>
+  </div>
+</head>
