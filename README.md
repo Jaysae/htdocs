@@ -1,18 +1,10 @@
-# CLass
-    This folder is used to store my homework (Html).
+# 个人备份
+    * 此仓库，是个人用于备份和共享自己学习网页开发而编写的各种文件。
 
-    这个目录是用来保存我的HTML课程的课堂作业(HTML+CSS课程)。
-
-# MiaoWo
-    This folder is used to store my project(Web skills competition).
-    This is a blog.
-
-    这个目录是我曾经参加比赛留下来的一个很小的博客网站模板(未包含后端)。
-
-# JavaScript
-    This folder is used to store my homework（JavaScript）
-    这个目录是用来放我在JavaScript学习课程上的课堂作业（作为初学者）
-
-# Jaysae
-    9.18/2018
-        ----于2018年9月18日更新
+# 文件目录
+    1.  <.idea>文件夹、<.vs>文件夹、<.vscode>文件夹，这三个文件夹是使用编译器后留下的。
+    2.  <Class>文件夹，保存的是我在<html>课程上和CSS课程上的课程作业。
+        >（虽然我也不知道为什么html+css不是同一个课程）
+    3.  <JavaScript>文件夹，保存的是我在<JavaScript>课程上的课堂作业。
+    4.  <MiaoWo>文件夹，保存的是我在参加网页设计比赛时制作的一个博客站点模板（无后端）。
+        >网站名字为<喵窝>，目前它拥有独立展示网址：<http://blog.scmanga.cn>。
