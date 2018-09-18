@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>三角形</title>
+    <script>
+        function Triangle(sideA,sideB,sideC){
+            this.sideA = sideA;
+            this.sideB = sideB;
+            this.sideC = sideC;
+            this.isTriangle = function(){
+                if (this.sideA+this.sideB>this.sideC && this.sideA+this.sideC>this.sideB && this.sideB+this.sideC>this.sideA) {
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+            this.Length = function (){
+                return this.sideA + this.sideB + this.sideC;
+            }
+        }
+    </script>
+</head>
+<body>
+    <script>
+        var tom = new Triangle(3,4,5); 
+        document.write("判断tom是否为三角形：" + tom.isTriangle() + "<br>");
+        if (tom.isTriangle() == true){
+            document.write("tom为三角形，周长为：" + tom.Length());
+        }else{
+            document.write("tom不为三角形，无周长");
+        }
+    </script>
+</body>
+</html>
