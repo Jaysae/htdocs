@@ -20,7 +20,7 @@ article{
 
 header{
     width: 800px;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 
 .logo{
@@ -48,10 +48,21 @@ nav li a {
 	transition: 0.6s;
 }
 
+.Top_nav{
+    background-color: #ffef96;
+    height: 50px;
+    margin: 0 auto;
+}
+
+.Top_Main{
+    margin: 0 auto;
+    width: 1200px;
+    padding-top: 14px;
+}
+
 .Main{
     background-color: #ffef96;
-    height: 600px;
-    padding-top: 100px;
+    padding-bottom: 100px;
 }
 
 .form{
@@ -61,6 +72,11 @@ nav li a {
     height: 470px;
     margin: 0 auto;
     padding-top: 30px;
+}
+
+h3{
+    color: #0000ff;
+    border-bottom: 1px solid #0000ff;
 }
 
 .web_font{
