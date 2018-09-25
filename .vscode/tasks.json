@@ -11,11 +11,11 @@
                 "-g",
                 "${file}",
                 "-o",
-                "${fileBasenameNoExtension}.exe"
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
             "problemMatcher":{
                 "owner": "cpp",
-                "fileLocation": ["relative","${workspaceRoot}"],
+                "fileLocation": ["relative","${fileDirname}"],
                 "pattern":{
                     "regexp": "^(.*):(\\d+):(\\d+)\\s+(warning|error):\\s+(.*)$",
                     "file": 1,
