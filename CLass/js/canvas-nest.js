@@ -4,7 +4,7 @@
  * Version: %%GULP_INJECT_VERSION%%
  * GitHub: https://github.com/hustcc/canvas-nest.js
 **/
-! function() {
+! function () {
   //封装方法，压缩之后减少文件大小
   function get_attribute(node, attr, default_value) {
     return node.getAttribute(attr) || default_value;
@@ -20,7 +20,7 @@
       script = scripts[script_len - 1]; //当前加载的script
     return {
       l: script_len, //长度，用于生成id用
-      z: get_attribute(script, "zIndex", -1), //z-index
+      z: get_attribute(script, "zindex", -1), //z-index
       o: get_attribute(script, "opacity", 0.5), //opacity
       c: get_attribute(script, "color", "0,0,0"), //color
       n: get_attribute(script, "count", 99) //count
@@ -28,8 +28,8 @@
   }
   //设置canvas的高宽
   function set_canvas_size() {
-    canvas_width = the_canvas.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth, 
-    canvas_height = the_canvas.height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    canvas_width = the_canvas.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
+      canvas_height = the_canvas.height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
   }
 
   //绘制过程
@@ -38,12 +38,12 @@
     //随机的线条和当前位置联合数组
     var e, i, d, x_dist, y_dist, dist; //临时节点
     //遍历处理每一个点
-    random_points.forEach(function(r, idx) {
-      r.x += r.xa, 
-      r.y += r.ya, //移动
-      r.xa *= r.x > canvas_width || r.x < 0 ? -1 : 1, 
-      r.ya *= r.y > canvas_height || r.y < 0 ? -1 : 1, //碰到边界，反向反弹
-      context.fillRect(r.x - 0.5, r.y - 0.5, 1, 1); //绘制一个宽高为1的点
+    random_points.forEach(function (r, idx) {
+      r.x += r.xa,
+        r.y += r.ya, //移动
+        r.xa *= r.x > canvas_width || r.x < 0 ? -1 : 1,
+        r.ya *= r.y > canvas_height || r.y < 0 ? -1 : 1, //碰到边界，反向反弹
+        context.fillRect(r.x - 0.5, r.y - 0.5, 1, 1); //绘制一个宽高为1的点
       //从下一个点开始
       for (i = idx + 1; i < all_array.length; i++) {
         e = all_array[i];
@@ -69,10 +69,10 @@
   var the_canvas = document.createElement("canvas"), //画布
     config = get_config_option(), //配置
     canvas_id = "c_n" + config.l, //canvas id
-    context = the_canvas.getContext("2d"), canvas_width, canvas_height, 
-    frame_func = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(func) {
+    context = the_canvas.getContext("2d"), canvas_width, canvas_height,
+    frame_func = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (func) {
       window.setTimeout(func, 1000 / 60);
-    }, random = Math.random, 
+    }, random = Math.random,
     current_point = {
       x: null, //当前鼠标x
       y: null, //当前鼠标y
@@ -87,11 +87,11 @@
   set_canvas_size();
   window.onresize = set_canvas_size;
   //当时鼠标位置存储，离开的时候，释放当前位置信息
-  window.onmousemove = function(e) {
+  window.onmousemove = function (e) {
     e = e || window.event;
     current_point.x = e.clientX;
     current_point.y = e.clientY;
-  }, window.onmouseout = function() {
+  }, window.onmouseout = function () {
     current_point.x = null;
     current_point.y = null;
   };
@@ -112,7 +112,7 @@
   }
   all_array = random_points.concat([current_point]);
   //0.1秒后绘制
-  setTimeout(function() {
+  setTimeout(function () {
     frame_func(draw_canvas);
   }, 100);
 }();

@@ -74,9 +74,23 @@ nav li a {
     padding-top: 30px;
 }
 
+h2{
+    color: #696969;
+    text-shadow: 0px 0px 1px #0000da,10px -8px 40px #0000da79,-10px 8px 40px #0000da79;
+    font-style: italic;
+}
+
 h3{
     color: #0000ff;
     border-bottom: 1px solid #0000ff;
+}
+
+.p_web{
+    color:#000000;
+    text-indent: 2.3em;
+    letter-spacing:3px;
+    font-family: '微软雅黑';
+    line-height: 24px;
 }
 
 .web_font{
@@ -107,20 +121,20 @@ input[type="submit"]{
     width: 316px;
     height: 36px;
     font-size: 18px;
-    border: 2px solid #FF9900;
     border-radius: 8px;
-    background-image: url("../img/Sin.jpg");
+    background-color: #ffffff;
+    /*background-image: url("../img/Sin.jpg");*/
     color: #666666;
     font-family: 微软雅黑, serif;
     font-weight: bold;
-    box-shadow: 0 0 15px 1px #d17d00;
+    animation: Input_shadow 4s ease-out infinite alternate;
 }
 input[type="submit"]:hover,
 input[type="text"]:focus,
 input[type="password"]:focus{
     color: #ff5e00;
     /*box-shadow: 0 0 30px 1px #ff5e00;*/
-    animation: Input_shadow 4s ease-out infinite alternate;
+    background-color: #cecece;
 }
 
 footer{
@@ -144,4 +158,14 @@ footer{
     25%       {box-shadow: 0 0 20px 2px #00ff00;border: 2px solid #00ff00;}
     50%       {box-shadow: 0 0 35px 2px #0000ff;border: 2px solid #0000ff;}
     100%      {box-shadow: 0 0 15px 1px #ff0000;border: 2px solid #ff0000;}
+}
+
+textarea{
+    resize:none;
+    font-size: 16px;
+    color: #353535;
+    padding: 10px;
+    width: 580px;
+    height: 169px;
+    letter-spacing:2px;
 }
