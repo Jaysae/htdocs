@@ -33,16 +33,16 @@
             x = 35 - x * 5;
             var y = document.getElementById("dx").value;
             if (document.getElementById("begbtn").innerHTML == "开始") {
-                document.getElementById("main").setAttribute("style", "animation:logo " + x + "s infinite;width: "+ y +"px;height: "+ y +"px;");
+                document.getElementById("main").setAttribute("style", "animation:logo " + x + "s infinite;width: " + y + "px;height: " + y + "px;");
                 document.getElementById("begbtn").innerHTML = "停止";
             } else {
-                document.getElementById("main").setAttribute("style", "animation:none;width: "+ y +"px;height: "+ y +"px;");
+                document.getElementById("main").setAttribute("style", "animation:none;width: " + y + "px;height: " + y + "px;");
                 document.getElementById("begbtn").innerHTML = "开始";
             }
         }
 
-        function end(){
-            document.getElementById("main").setAttribute("style", "animation:none;width: "+ y +"px;height: "+ y +"px;");
+        function end() {
+            document.getElementById("main").setAttribute("style", "animation:none;width: " + y + "px;height: " + y + "px;");
             document.getElementById("begbtn").innerHTML = "开始";
             alert("游戏结束");
         }
@@ -54,7 +54,7 @@
                 x++;
                 document.getElementById("sd").value = x;
             }
-            document.getElementById("main").setAttribute("style", "animation:none;width: "+ y +"px;height: "+ y +"px;");
+            document.getElementById("main").setAttribute("style", "animation:none;width: " + y + "px;height: " + y + "px;");
             document.getElementById("begbtn").innerHTML = "开始";
         }
 
@@ -65,7 +65,7 @@
                 x--;
                 document.getElementById("sd").value = x;
             }
-            document.getElementById("main").setAttribute("style", "animation:none;width: "+ y +"px;height: "+ y +"px;");
+            document.getElementById("main").setAttribute("style", "animation:none;width: " + y + "px;height: " + y + "px;");
             document.getElementById("begbtn").innerHTML = "开始";
         }
 
@@ -77,7 +77,7 @@
                 y--;
                 document.getElementById("dx").value = y;
             }
-            document.getElementById("main").setAttribute("style", "animation:none;width: "+ y +"px;height: "+ y +"px;");
+            document.getElementById("main").setAttribute("style", "animation:none;width: " + y + "px;height: " + y + "px;");
             document.getElementById("begbtn").innerHTML = "开始";
         }
 
@@ -87,11 +87,11 @@
                 y -= 20;
                 document.getElementById("dx").value = y;
             }
-            document.getElementById("main").setAttribute("style", "animation:none;width: "+ y +"px;height: "+ y +"px;");
+            document.getElementById("main").setAttribute("style", "animation:none;width: " + y + "px;height: " + y + "px;");
             document.getElementById("begbtn").innerHTML = "开始";
         }
 
-        function jf(){
+        function jf() {
             var y = document.getElementById("df").value
             y++;
             document.getElementById("df").value = y;
@@ -103,7 +103,7 @@
     <div class="A" id="main" style="animation:none;width: 100px;height: 100px;" onmouseout="jf()"></div>
     <div style="text-align: right">
         <p>
-            <button onclick="beg()" id="begbtn">开始 </button> 
+            <button onclick="beg()" id="begbtn">开始 </button>
         </p>
         <p>差错：
             <input readonly="readonly" type="text" id="df" value="0" style="text-align: center;width: 30px;">
