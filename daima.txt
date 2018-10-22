@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         ���Ƕ���ˢ��_�ǻ�������_��У������ѡ�޿δ�������ح�����ǿ�
+// @name         超星尔雅刷课_智慧树代看_高校邦网络选修课代看服务丨动漫星空
 // @namespace    wyn665817@163.com
-// @version      ������ϵQQ��2857327087
-// @description  �Զ��һ�������MOOC��֧�ֺ�̨���л����ڲ���ͣ����Ƶ�Զ��л���������Ƶ�ڵ���Ŀ�����ٲ��š��������϶����������
+// @version      代看联系QQ：2857327087
+// @description  自动挂机看尔雅MOOC，支持后台、切换窗口不暂停，视频自动切换，屏蔽视频内的题目，倍速播放、进度条拖动、快进快退
 // @author       wyn665817
 // @match        *://*.chaoxing.com/*
 // @connect      forestpolice.org
@@ -13,32 +13,32 @@
 // @license      MIT
 // ==/UserScript==
 
-// �����޸ĺ���Ҫˢ�»����´�����ҳ��Ż���Ч
+// 设置修改后，需要刷新或重新打开网课页面才会生效
 var setting = {
-    // 5E3 == 5000����ʾ������
-    time: 5E3 // Ĭ����Ӧ�ٶ�Ϊ5�룬������С��3��
+    // 5E3 == 5000，表示毫秒数
+    time: 5E3 // 默认响应速度为5秒，不建议小于3秒
 
-    // 1����������0�����ر�
-    ,video: 1 // ��Ƶ֧�ֺ�̨���л����ڲ���ͣ��֧�ֶ���Ƶ��Ĭ�Ͽ���
-    ,work: 1 // �Զ����⹦��(�½ڲ���)����׼ȷ�ʣ�Ĭ�Ͽ���
-    ,jump: 1 // �Զ��л�����㡢�½ڣ�Ĭ�Ͽ���
+    // 1代表开启，0代表关闭
+    ,video: 1 // 视频支持后台、切换窗口不暂停，支持多视频，默认开启
+    ,work: 1 // 自动答题功能(章节测验)，高准确率，默认开启
+    ,jump: 1 // 自动切换任务点、章节，默认开启
 
-    // ������videoʱ���޸Ĵ˴��Ż���Ч
-    ,line: '����1' // ��Ƶ���ŵ�Ĭ����Դ��·���˹���������ϵͳĬ����·����Դ��Ĭ��'����1'
-    ,http: '' // ��Ƶ���ŵ�Ĭ�������ȣ���������'����'�ȣ��޲�����ʹ��ϵͳĬ�������ȣ�Ĭ��''
-    ,muted: 0 // ��Ƶ�������ţ��˹�������Ƶ��ʼ����ʱ����������������Ĭ�Ϲر�
-    ,drag: 0 // ���ٲ��š��������϶���������ˣ�ʹ�ô˹��ܻ���ֲ�����¼(����)��Ĭ�Ϲر�
-    ,player: '' // ָ�������������ͣ�֧��'html5'��'flash'���ֲ�����������������ϵͳĬ�ϲ�������Ĭ��''
+    // 仅开启video时，修改此处才会生效
+    ,line: '公网1' // 视频播放的默认资源线路，此功能适用于系统默认线路无资源，默认'公网1'
+    ,http: '' // 视频播放的默认清晰度，可以设置'标清'等，无参数则使用系统默认清晰度，默认''
+    ,muted: 0 // 视频静音播放，此功能在视频开始播放时调整音量至静音，默认关闭
+    ,drag: 0 // 倍速播放、进度条拖动、快进快退，使用此功能会出现不良记录(慎用)，默认关闭
+    ,player: '' // 指定播放器的类型，支持'html5'和'flash'两种参数，其他参数代表系统默认播放器，默认''
 
-    // ������workʱ���޸Ĵ˴��Ż���Ч
-    ,auto: 1 // ������ɺ��Զ��ύ��Ĭ�Ͽ���
-    ,none: 1 // δ�ҵ���ʱѡ��Ĭ��ѡ��رպ���Զ�����auto���ܣ�Ĭ�Ͽ���
-    ,wait: 5E3 // �Զ��ύǰ�ĵȴ�ʱ�䣬���ڸ����Զ�������ύ�����Ĭ��5��
-    ,copy: 1 // �ı��༭������ճ�������ڽ���������Ŀ��ճ�����ƣ�Ĭ�Ͽ���
-    ,scale: 0 // ���ı��༭���߶��Զ����죬���ڼ������Ŀ���������������Զ�������С��Ĭ�Ϲر�
+    // 仅开启work时，修改此处才会生效
+    ,auto: 1 // 答题完成后自动提交，默认开启
+    ,none: 1 // 未找到答案时选择默认选项，关闭后会自动屏蔽auto功能，默认开启
+    ,wait: 5E3 // 自动提交前的等待时间，用于更改自动答题的提交间隔，默认5秒
+    ,copy: 1 // 文本编辑器允许粘贴，用于解除简答题题目的粘贴限制，默认开启
+    ,scale: 0 // 富文本编辑器高度自动拉伸，用于简答题题目，答题框根据内容自动调整大小，默认关闭
 
-    // ������jumpʱ���޸Ĵ˴��Ż���Ч
-    ,check: 1 // ������޷��Զ����ʱ��ͣ�л������������ȫ�������Ľ���رգ�Ĭ�Ͽ���
+    // 仅开启jump时，修改此处才会生效
+    ,check: 1 // 任务点无法自动完成时暂停切换，如果网课已全部解锁的建议关闭，默认开启
 },
 _self = unsafeWindow,
 $ = _self.$ || top.$,
@@ -242,15 +242,15 @@ function relieveLimit() {
 function beforeFind() {
     setting.div = $(
         '<div style="border: 2px dashed rgb(0, 85, 68); width: 320px; position: fixed; top: 0; right: 0; z-index: 9999; background-color: rgba(70, 196, 38, 0.6); overflow: auto;">' +
-            '<div style="font-size: medium;">����������...</div>' +
-            '<button style="margin-right: 10px;">��ͣ����</button>' +
-            '<button style="margin-right: 10px;">' + (setting.auto ? 'ȡ�������Զ��ύ' : '���������Զ��ύ') + '</button>' +
-            '<button style="margin-right: 10px;">���²�ѯ</button>' +
-            '<button>�۵����</button>' +
+            '<div style="font-size: medium;">正在搜索答案...</div>' +
+            '<button style="margin-right: 10px;">暂停答题</button>' +
+            '<button style="margin-right: 10px;">' + (setting.auto ? '取消本次自动提交' : '开启本次自动提交') + '</button>' +
+            '<button style="margin-right: 10px;">重新查询</button>' +
+            '<button>折叠面板</button>' +
             '<table border="1" style="font-size: 12px;">' +
                 '<tr>' +
-                    '<td width="60%">��Ŀ</td>' +
-                    '<td width="40%">��</td>' +
+                    '<td width="60%">题目</td>' +
+                    '<td width="40%">答案</td>' +
                 '</tr>' +
             '</table>' +
         '</div>'
@@ -261,16 +261,16 @@ function beforeFind() {
             if (setting.loop) {
                 clearInterval(setting.loop);
                 delete setting.loop;
-                setting.div.children('div').text('����ͣ����');
-                $(this).text('��������');
+                setting.div.children('div').text('已暂停搜索');
+                $(this).text('继续答题');
             } else {
                 setting.loop = setInterval(findAnswer, setting.time);
-                setting.div.children('div').text('����������...');
-                $(this).text('��ͣ����');
+                setting.div.children('div').text('正在搜索答案...');
+                $(this).text('暂停答题');
             }
         } else if (len == 1) {
             setting.auto = 1 ^ setting.auto;
-            $(this).text(setting.auto ? 'ȡ�������Զ��ύ' : '���������Զ��ύ');
+            $(this).text(setting.auto ? '取消本次自动提交' : '开启本次自动提交');
         } else if (len == 2) {
             location.reload();
         } else if (len == 3) {
@@ -284,10 +284,10 @@ function beforeFind() {
 function findAnswer() {
     if (setting.num >= $('.TiMu').length) {
         clearInterval(setting.loop);
-        var text = '���������';
+        var text = '答题已完成';
         if (setting.lose) {
             setting.div.children('button').eq(1).hide();
-            text = '���� <font color="red">' + setting.lose + '</font> ����Ŀ������';
+            text = '共有 <font color="red">' + setting.lose + '</font> 道题目待完善';
         } else {
             setTimeout(submitThis, setting.wait);
         }
@@ -310,7 +310,7 @@ function findAnswer() {
             } else if (xhr.status == 200) {
                 var obj = JSON.parse(xhr.responseText);
                 if (obj.code) {
-                    setting.div.children('div').text('����������...');
+                    setting.div.children('div').text('正在搜索答案...');
                     setting.div.children('table').append(
                         '<tr>' +
                             '<td>' + question + '</td>' +
@@ -320,14 +320,14 @@ function findAnswer() {
                     fillAnswer($TiMu, obj);
                     setting.num++;
                 } else {
-                    setting.div.children('div').text(obj.data + '��������...');
+                    setting.div.children('div').text(obj.data + '，重试中...');
                 }
             } else {
-                setting.div.children('div').text('�������쳣����������...');
+                setting.div.children('div').text('服务器异常，正在重试...');
             }
         },
         ontimeout: function() {
-            setting.loop && setting.div.children('div').text('��������ʱ����������...');
+            setting.loop && setting.div.children('div').text('服务器超时，正在重试...');
         }
     });
 }
@@ -340,9 +340,9 @@ function fillAnswer($TiMu, obj) {
         var $input = $(this).find('input')[0];
         if (!$input) {
         } else if ($input.value == 'true') {
-            (data == '��ȷ' || data == '��') && $input.click();
+            (data == '正确' || data == '是') && $input.click();
         } else if ($input.value == 'false') {
-            (data == '����' || data == '��') && $input.click();
+            (data == '错误' || data == '否') && $input.click();
         } else {
             var tip = $.inArray($(this).find('a').text().trim(), arr) >= 0;
             $input.checked == tip || $input.click();
