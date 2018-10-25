@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <Windows.h>
 #define N 4
+//初始化
 
 void fun(int (*t)[N], int m)
 {
@@ -24,11 +25,11 @@ int main()
             printf("%2d  ", t[i][j]);
         printf("\n");
     }
-    printf("请输入右移位数m<=%d：",N);
-    scanf("%d",&m);
-    fun(t,m);
+    printf("请输入右移位数m<=%d：", N);
+    scanf("%d", &m);
+    fun(t, m);
     printf("右移后的矩阵\n");
-        for (i = 0; i < N; i++)
+    for (i = 0; i < N; i++)
     {
         for (j = 0; j < N; j++)
             printf("%2d  ", t[i][j]);
