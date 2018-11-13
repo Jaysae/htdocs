@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var List = prompt("请输入一个数组，/隔开：", "");
+        var AList = List.split("/"); //1 2 3 4 5
+        var BList = new Array;
+        var len = AList.length - 1;
+        for (i = len; i >= 0; i--) {
+            BList.push(AList[i]);
+        }
+        document.write("倒序输出后的数组为：" + BList + "<br>");
+        //BList = new Array;
+        //while (AList.length > 0) {
+        //    BList.push(AList[AList.length - 1]);
+        //    AList.pop();
+        //}
+        //document.write(BList);
+
+        for (i = 1; i <= 7; i++) {
+            BList.unshift(prompt("请输入右移的第" + i + "位", ""));
+        }
+        document.write("循环右移7次后的数组为：" + BList + "<br>");
+    </script>
+</body>
+
+</html>
