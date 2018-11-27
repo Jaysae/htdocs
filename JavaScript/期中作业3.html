@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3.统计考试科目的成绩</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        function A() {
+            var num = prompt("请输入考试科目数");
+            result = 0;
+            if (num <= 0) {
+                alert("科目数不能是负数！");
+                return;
+            } else if (isNaN(num)) {
+                alert("输入的不是数字！");
+            } else {
+                for (var i = 0; i < num; i++) {
+                    var num1 = prompt("请输入第" + (i + 1) + "门成绩");
+                    if (num1 <= 0) {
+                        alert("成绩不能是负数！");
+                        return;
+                    } else if (isNaN(num1)) {
+                        alert("输入的不是数字！");
+                    } else {
+                        num1 = parseFloat(num1);
+                        result += num1;
+                    }
+                }
+
+            }
+            alert(num + "门科目的总成绩是：" + result);
+        }
+        A();
+    </script>
+</body>
+
+</html>
