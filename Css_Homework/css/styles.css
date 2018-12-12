@@ -1,0 +1,311 @@
+/*
+ * @Author: Siner 
+ * @Date: 2018-12-10 10:16:32 
+ * @Last Modified by: Siner
+ * @Last Modified time: 2018-12-12 14:17:52
+ */
+*{
+    margin: 0;padding: 0;
+    transition: .7s;
+}
+
+#My_About{
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.clear_float {
+	clear: both;
+	height: 0;
+	line-height: 0;
+}
+
+body{
+    border-top: 2px solid #0066ff;
+}
+
+article {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+header{
+    width: 1000px;
+    margin: 0 auto;
+    font-size: 14px;
+    position: relative;
+    z-index: 7;
+}
+
+.BlockA,.BlockB{
+    margin: 10px 0;
+}
+
+.BlockA_Left{
+    width: 77%;
+    box-sizing: border-box;
+    float: left;
+}
+a:hover{
+    color: #0066FF;
+}
+.BlockA_Right{
+    width: 23%;
+    box-sizing: border-box;
+    float: left;
+}
+
+.BlockA_Right input[type=text]{
+    border: 1px solid #0066FF;
+    height: 24px;
+    box-sizing: border-box;
+    float: left;
+    padding: 0 5px;
+}
+
+.BlockA_Right input[type=text]:focus{
+    border: 1px solid #0066FF10;
+}
+
+.BlockA_Right a{
+    display: block;
+    float: left;
+    background-color: #0066FF;
+    color: #FFFFFF;
+    box-sizing: border-box;
+    text-align: center;
+    width: 46px;
+    height: 24px;
+    padding: 2px 0;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+.BlockB_Logo{
+    font-size: 36px;
+    font-weight: bold;
+    font-family: '楷体'
+}
+.BlockB_Logo span{
+    color: #0066FF;
+    font-size: 48px;
+}
+
+.BlockB_Nav ul{
+    list-style: none;
+}
+
+.BlockB_Nav ul li{
+    float: left;
+    width: 20%;
+    text-align: center;
+    font-size: 18px;
+    padding: 6px 0 0 0;
+    height: 30px;
+    background-color: #8db9e2;
+}
+.BlockB_Nav ul li:hover{
+    background-color: #0066FF;
+}
+.BlockB_Nav ul ul{
+    background-color: none;
+    margin: 6px 0 0 0;
+}
+.BlockB_Nav ul ul li{
+    width: 100%;
+    height: 0;
+    opacity: 0;
+    float: left;
+    background-color: #8db9e2;
+    padding: 0;
+}
+.BlockB_Nav ul li:hover ul li{
+    height: 30px;
+    opacity: 1;
+    background-color: #0066FF;
+}
+
+.BlockB_Nav ul ul li a{
+    display: block;
+    height: 0;
+}
+
+.BlockB_Nav ul li:hover ul li a{
+    height: 24px;
+}
+
+.BlockB_Nav ul li:hover ul li:hover{
+    background-color: #8db9e2;
+}
+
+.BlockC{
+    width: 1000px;
+    margin: 30px auto 0 auto;
+}
+
+.BlockC_Nav{
+    width: 30%;
+    float: left;
+}
+
+.BlockC_Nav ul{
+    list-style: none;
+}
+
+.BlockC_Nav ul li{
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    font-size: 18px;
+    padding: 16.25px 5px 0 5px;
+    background-color: #8db9e2;
+    box-sizing: border-box;
+    border-bottom: 2px solid #0066FF;
+    border-left: 2px solid #0066FF;
+    border-right: 2px solid #0066FF;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.BlockC_Nav_Top{
+    border-top: 2px solid #0066FF;
+}
+
+.BlockC_Img{
+    width: 70%;
+    height: 360px;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-top: 2px solid #0066FF;
+    border-bottom: 2px solid #0066FF;
+    border-right: 2px solid #0066FF;
+    border-top-right-radius: 14px;
+    border-bottom-right-radius: 14px;
+}
+
+.BlockC_Img_Show{
+    width: 4200px;
+    height: 360px;
+    position: relative;
+}
+
+.BlockC_Img img{
+    width: 700px;
+    height: 360px;
+    float: left;
+}
+
+.BlockC_Img img:hover{
+    transform: scale(1.08) rotate(2deg);
+}
+
+.BlockC_Button_Left,.BlockC_Button_Right{
+    width: 150px;
+    height: 360px;
+    position: relative;
+    box-sizing: border-box;
+    border: none;
+    font-size: 42px;
+    float: left;
+    top: -360px;
+    opacity: 0.1;
+    color: #bbbbbb;
+    outline: none;
+}
+
+.BlockC_Button_Left{
+    background: linear-gradient(to right, #ffffffbd , #ffffff01);
+    padding-left: 15px;
+    text-align: left;
+}
+
+.BlockC_Button_Right{
+    background: linear-gradient(to right, #ffffff01 , #ffffffbd);
+    left: 400px;
+    padding-right: 15px;
+    text-align: right;
+}
+
+.BlockC_Button_Left:hover,.BlockC_Button_Right:hover{
+    opacity: .65;
+}
+
+.BlockC_Button_Left:active,.BlockC_Button_Right:active{
+    opacity: 1;
+}
+
+.BlockC_Left{
+    width: 24%;
+    border-top: 2px solid #0066FF;
+    margin: 10px 1% 0 0;
+}
+
+.BlockC_Left_Title , #BlockC_Left_Month{
+    text-align: center;
+    font-size: 20px;
+}
+
+.BlockC_Left span{
+    margin: 0 5px 0 5px;
+    color: #0066FF;
+    font-weight: bold;
+}
+
+.BlockC_Left_New{
+    margin: 20px 0;
+}
+
+.BlockC_Left_Num{
+    font-style: italic;
+    font-weight: bold;
+    color: #0066FF;
+    font-size: 18px;
+    float: left;
+    width: 10%;
+    text-align: center;
+    margin-right: 5%
+}
+
+.BlockC_Left_Web{
+    float: left;
+    width: 85%;
+}
+
+#BlockC_Left_Data {
+    width: 100%;
+    margin: 0 auto;
+    border-top: 2px solid #0066FF;
+    padding: 5px 0 0 0;
+    height: 350px;
+}
+
+.BlockC_Left_Everyday {
+    width: 32px;
+    height: 32px;
+    float: left;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-align: center;
+    padding-top: 4px;
+    box-sizing: border-box;
+}
+
+footer{
+    width: 1000px;
+    text-align: center;
+    font-size: 12px;
+    color: #646464;
+    margin: 50px auto; 
+}
+footer a{
+    color: #919191;
+}
+footer span{
+    border-bottom: 1px solid #646464;
+}

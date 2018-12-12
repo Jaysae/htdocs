@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+<meta http-equiv="Content-Type" content="text/html" />
+
+<head>
+    <title>https://blog.csdn.net/qq_41647999</title>
+    <style type="text/css">
+        #firstLayer {
+            width: 240px;
+            /*让整个日历在页面中间显示*/
+            margin: 0 auto;
+        }
+
+        button {
+            width: 25%;
+            float: left;
+        }
+
+        #yearMonth {
+            width: 50%;
+            float: left;
+            text-align: center;
+        }
+
+        .everyday {
+            width: 14%;
+            float: left;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+
+<body onload="Day()">
+    <div id="firstLayer">
+        <div id="secondLayer">
+            <button onclick="last()">上个月</button>
+            <div id="yearMonth"></div>
+            <button onclick="next()">下个月</button>
+        </div>
+        <div id="day">
+            <div class="everyday">日</div>
+            <div class="everyday">一</div>
+            <div class="everyday">二</div>
+            <div class="everyday">三</div>
+            <div class="everyday">四</div>
+            <div class="everyday">五</div>
+            <div class="everyday">六</div>
+        </div>
+
+    </div>
+</body>
+<script>
+    var ss = new Date();
+    var year = ss.getFullYear();
+    var month = ss.getMonth() + 1;
+    var day = ss.getDate();
+    var allday = 0;
+    function last() {
+        if (month > 1) {
+            month = month - 1;
+        }
+        if (month === 1) {
+            month = 12;
+            year = year - 1;
+        }
+        clearAll();
+        Day();
+        Month_Day();
+    }
+    function next() {
+        if (month < 12) {
+            month = month + 1;
+        }
+        if (month === 12) {
+            month = 1;
+            year = year + 1;
+        }
+        clearAll();
+        Day();
+        Month_Day();
+    }
+    function clearAll() {
+        var daterow = document.getElementById("day");
+        var child = document.getElementsByClassName("everyday");
+        var length = child.length;
+        for (var i = 7; i < length; i++) {
+            daterow.removeChild(child[7]);
+        }
+    }
+    function Month_Day() {
+        document.getElementById("yearMonth").innerHTML = year + "年" + month + "月";
+    }
+    //Month() 获取每个月里面有多少天
+    function Month() {
+        //判断月分是大月还是小月 
+        //就可以得出这个月除了2月外是30天还是31天
+        if (month !== 2) {
+            if (month === 4 || month === 6 || month === 9 || month === 11)
+                allday = 30;
+            else
+                allday = 31;
+        }
+        else {
+            //判断是否是闰年
+            if (year % 4 === 0 && year % 100 !== 0 || year % 400 === 0)
+                allday = 29;
+            else
+                allday = 28;
+        }
+    }
+    function Day() {
+        //得到界面上上一个月和下一月按钮之间的时间更新显示
+        Month_Day();
+        //得到月的天数
+        Month();
+        var firstday = new Date(year, month - 1, 1);
+        var xinqi = firstday.getDay();
+
+        var daterow = document.getElementById("day");
+
+        //显示星期
+        if (xinqi !== 0) {
+            for (var i = 0; i < xinqi; i++) {
+                var dayelement = document.createElement("div");
+                dayelement.className = "everyday";
+                dayelement.innerHTML = "";
+                daterow.appendChild(dayelement);
+            }
+        }
+        //显示每一天的号数
+        for (var j = 1; j <= allday; j++) {
+            var dayelement = document.createElement("div");
+            dayelement.className = "everyday";
+            dayelement.innerHTML = j;
+            if (day === j)
+                dayelement.style.color = "red";
+            daterow.appendChild(dayelement);
+        }
+    }
+</script>
+
+</html>
