@@ -2,7 +2,7 @@
  * @Author: Siner
  * @Date: 2018-12-10 10:16:32
  * @Last Modified by: Siner
- * @Last Modified time: 2018-12-12 16:55:40
+ * @Last Modified time: 2018-12-13 10:52:36
  */
 
  @font-face {
@@ -18,6 +18,16 @@
 #My_About{
     border-top-right-radius: 7px;
     border-bottom-right-radius: 7px;
+}
+
+body{
+    animation: Load 2s;
+} 
+
+
+@keyframes Load{
+    0%   {opacity: 0;}
+    100% {opacity: 1;}
 }
 
 a{
@@ -217,6 +227,10 @@ header{
     float: left;
 }
 
+.BlockC_Img img:hover{
+    transform: scale(1);
+}
+
 .BlockC_Button_Left,.BlockC_Button_Right{
     width: 150px;
     height: 360px;
@@ -232,13 +246,13 @@ header{
 }
 
 .BlockC_Button_Left{
-    background: linear-gradient(to right, #ffffffbd , #ffffff01);
+    background: linear-gradient(to right, #ffffffbd , #ffffff00);
     padding-left: 15px;
     text-align: left;
 }
 
 .BlockC_Button_Right{
-    background: linear-gradient(to right, #ffffff01 , #ffffffbd);
+    background: linear-gradient(to right, #ffffff00 , #ffffffbd);
     left: 400px;
     padding-right: 15px;
     text-align: right;
@@ -265,7 +279,7 @@ header{
     font-family: WY_HXD;
 }
 
-.BlockC_Left span{
+.BlockC span{
     margin: 0 5px 0 5px;
     color: #0066FF;
     font-weight: bold;
@@ -398,6 +412,29 @@ header{
     color: #646464;
 }
 
+.BlockC_GIF{
+    width: 100%;
+    border-top: 2px solid #0066FF;
+    margin-top: 25px;
+}
+
+.BlockC_GIF_BOX{
+    overflow: hidden;
+    margin: 10px;
+    height: 180px;
+    width: 180px;
+}
+
+.BlockC_GIF p{
+    font-weight: 700;
+    margin: 0 10px 0 10px;
+    color: #343434;
+}
+
+#V_QR:hover{
+    transform: scale(1);
+    opacity: 1;
+}
 footer{
     width: 1000px;
     text-align: center;

@@ -2,7 +2,7 @@
  * @Author: Siner
  * @Date: 2018-12-10 10:16:44
  * @Last Modified by: Siner
- * @Last Modified time: 2018-12-12 14:49:33
+ * @Last Modified time: 2018-12-13 10:48:07
  */
 var V_left_num = 0;
 var V_Loop = 0;
@@ -114,6 +114,12 @@ function Day() {
             V_DayElement.style.cssText = "background: #0066FF;border-radius: 50%;"
         V_Date_Row.appendChild(V_DayElement);
     }
+    var R = 4
+    var V_Text = ["哼！给老娘滚", "喔唷宝宝的小心脏哟", "狗子都是人类最好的朋友", "狗：算了算了，消消气"];
+    var R = Math.floor(Math.random() * R);
+    document.getElementById("V_Gif_Font").innerText = V_Text[R];
+    R++;
+    document.getElementById("V_Gif").src = "./img/gif" + R + ".gif";
 }
 
 /**
