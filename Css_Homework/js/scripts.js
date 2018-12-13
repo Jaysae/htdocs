@@ -1,8 +1,8 @@
 /*
- * @Author: Siner 
- * @Date: 2018-12-10 10:16:32 
+ * @Author: Siner
+ * @Date: 2018-12-10 10:16:44
  * @Last Modified by: Siner
- * @Last Modified time: 2018-12-12 14:17:49
+ * @Last Modified time: 2018-12-12 14:49:33
  */
 var V_left_num = 0;
 var V_Loop = 0;
@@ -74,7 +74,8 @@ function clearAll() {
     }
 }
 function Month_Day() {
-    document.getElementById("BlockC_Left_Month").innerHTML = "<span>·</span>" + V_Year + "年" + V_Month + "月" + "<span>·</span>";
+    document.getElementById("BlockC_Left_Month").innerHTML =
+        "<span>·</span>" + V_YearToChinese(V_Year.toString()) + "年&nbsp;" + V_MonthToChinese(V_Month.toString()) + "月" + "<span>·</span>";
 }
 
 function Month() {
@@ -113,4 +114,38 @@ function Day() {
             V_DayElement.style.cssText = "background: #0066FF;border-radius: 50%;"
         V_Date_Row.appendChild(V_DayElement);
     }
+}
+
+/**
+ * 将阿拉伯数字年转为汉字
+ * @param {*} Num 数字字符串
+ * @returns 汉字字符串
+ */
+function V_YearToChinese(Num) {
+    var Re = "";
+    var Chinese = ["〇", "一", "二", "三", "四", "五", "六", "七", "八", "九"]
+    for (var i = 0; i < Num.length; i++) {
+        for (var j = 0; j <= 9; j++) {
+            if (Num[i] == j) {
+                Re = Re + Chinese[j];
+            }
+        }
+    }
+    return Re;
+}
+
+/**
+ * 将阿拉伯数字月转为汉字
+ * @param {*} Num 数字字符串
+ * @returns 汉字字符串
+ */
+function V_MonthToChinese(Num) {
+    if (Num.length == 1)
+        return V_YearToChinese(Num);
+    else if (Num == "10")
+        return "十";
+    else if (Num == "11")
+        return "十一";
+    else
+        return "十二";
 }

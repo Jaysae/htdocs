@@ -1,12 +1,18 @@
 /*
- * @Author: Siner 
- * @Date: 2018-12-10 10:16:32 
+ * @Author: Siner
+ * @Date: 2018-12-10 10:16:32
  * @Last Modified by: Siner
- * @Last Modified time: 2018-12-12 14:17:52
+ * @Last Modified time: 2018-12-12 16:55:40
  */
+
+ @font-face {
+    font-family: WY_HXD; 
+    src: url("../font/WY.otf"); 
+    }
+
 *{
     margin: 0;padding: 0;
-    transition: .7s;
+    transition: .5s;
 }
 
 #My_About{
@@ -17,6 +23,15 @@
 a{
     text-decoration: none;
     color: black;
+}
+
+a:hover{
+    color: #0066FF;
+}
+
+img:hover{
+    transform: scale(1.08);
+    opacity: .9;
 }
 
 .clear_float {
@@ -50,9 +65,6 @@ header{
     width: 77%;
     box-sizing: border-box;
     float: left;
-}
-a:hover{
-    color: #0066FF;
 }
 .BlockA_Right{
     width: 23%;
@@ -109,6 +121,10 @@ a:hover{
     height: 30px;
     background-color: #8db9e2;
 }
+.BlockB_Nav ul li a{
+    color: black;
+}
+
 .BlockB_Nav ul li:hover{
     background-color: #0066FF;
 }
@@ -201,10 +217,6 @@ a:hover{
     float: left;
 }
 
-.BlockC_Img img:hover{
-    transform: scale(1.08) rotate(2deg);
-}
-
 .BlockC_Button_Left,.BlockC_Button_Right{
     width: 150px;
     height: 360px;
@@ -244,21 +256,24 @@ a:hover{
     width: 24%;
     border-top: 2px solid #0066FF;
     margin: 10px 1% 0 0;
+    float: left;
 }
 
-.BlockC_Left_Title , #BlockC_Left_Month{
+.BlockC_Title , #BlockC_Left_Month{
     text-align: center;
     font-size: 20px;
+    font-family: WY_HXD;
 }
 
 .BlockC_Left span{
     margin: 0 5px 0 5px;
     color: #0066FF;
     font-weight: bold;
+    font-family: "微软雅黑";
 }
 
 .BlockC_Left_New{
-    margin: 20px 0;
+    margin: 25px 0;
 }
 
 .BlockC_Left_Num{
@@ -294,6 +309,93 @@ a:hover{
     text-align: center;
     padding-top: 4px;
     box-sizing: border-box;
+}
+
+.BlockC_Center{
+    width: 54%;
+    border-top: 2px solid #0066FF;
+    margin: 10px 1% 0 0;
+    float: left;
+}
+
+.BlockC_Center_Img{
+    width: 150px;
+    height: 130px;
+    float: left;
+    margin: 10px;
+    overflow: hidden;
+    border-radius: 7px;
+}
+
+.BlockC_Center_Img img{
+    width: 150px;
+    height: 130px;
+}
+
+.BlockC_Center ul{
+    list-style: none;
+}
+
+.BlockC_Center li{
+    height: 150px;  
+}
+
+.BlockC_Center p{
+    padding: 10px;
+    text-indent: 32px;
+}
+
+.BlockC_Move{
+    color: #919191;
+    position: relative;
+    float: right;
+    font-size: 14px;
+}
+.BlockC_Move:hover{
+    color: #0066FF;
+}
+
+.BlockC_Right{
+    width: 20%;
+    border-top: 2px solid #0066FF;
+    margin: 10px 0 0 0;
+    float: left;
+    border-top-right-radius: 14px;
+}
+
+.BlockC_Sub{
+    margin-top: 5px;
+}
+
+.BlockC_Sub div {
+    width: 90px;
+    height: 60px;
+    float: left;
+    overflow: hidden;
+    margin: 0 5px 0 0;
+}
+.BlockC_Sub p{
+    font-size: 15px;
+    color: #646464;
+}
+
+.BlockC_Sub ul{
+    margin: 5px 0 0 15px;
+    font-size: 10px;
+    color: #646464;
+}
+
+.BlockC_Sub li{
+    margin: 5px 0 0 0;
+}
+
+.BlockC_Sub li a:hover{
+    color: #0066FF
+}
+
+.BlockC_Sub li a{
+    font-size: 10px;
+    color: #646464;
 }
 
 footer{
