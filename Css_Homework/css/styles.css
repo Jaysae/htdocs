@@ -2,7 +2,7 @@
  * @Author: Siner
  * @Date: 2018-12-10 10:16:32
  * @Last Modified by: Siner
- * @Last Modified time: 2018-12-13 10:52:36
+ * @Last Modified time: 2018-12-18 16:25:52
  */
 
  @font-face {
@@ -60,7 +60,7 @@ article {
 }
 
 header{
-    width: 1000px;
+    width: 100%;
     margin: 0 auto;
     font-size: 14px;
     position: relative;
@@ -170,8 +170,10 @@ header{
 }
 
 .BlockC{
-    width: 1000px;
+    width: 100%;
     margin: 30px auto 0 auto;
+    border-bottom: 2px solid #0066FF;
+    border-bottom-right-radius: 14px;
 }
 
 .BlockC_Nav{
@@ -431,16 +433,45 @@ header{
     color: #343434;
 }
 
-#V_QR:hover{
-    transform: scale(1);
+.BlockD{
+    width: 100%;
+    column-gap: 10px;
+    column-count: 3;
+}
+
+.BlockD_item{
+    padding: 10px;
+    margin-bottom: 10px;
+    break-inside: avoid;
+    border: 1px solid #bdbdbd;
+    box-shadow: 1px 2px 3px #c5c5c5;
+    border-radius: 12px;
+}
+
+.BlockD_item:hover{
+    box-shadow: 1px 2px 3px #777777;
+}
+
+.BlockD_item img{
+    width: 100%;
+}
+
+.BlockD_item p{
+    text-indent: 32px;
+    line-height: 30px;
+}
+
+.BlockD_item img:hover,#V_QR:hover{
+    transform: none;
     opacity: 1;
 }
+
 footer{
-    width: 1000px;
+    width: 100%;
     text-align: center;
     font-size: 12px;
     color: #646464;
-    margin: 50px auto; 
+    margin: 15px auto; 
 }
 footer a{
     color: #919191;
