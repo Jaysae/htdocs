@@ -2,7 +2,7 @@
  * @Author: Siner
  * @Date: 2018-12-10 10:16:44
  * @Last Modified by: Siner
- * @Last Modified time: 2018-12-18 16:36:02
+ * @Last Modified time: 2018-12-19 15:21:40
  */
 var V_left_num = 0;
 var V_Loop = 0;
@@ -55,7 +55,9 @@ function B_S_Loop() {
         }
     }
 }
-var V_Loop_Task = window.setInterval(B_S_Loop, 3000);
+function B_Load() {
+    window.setInterval(B_S_Loop, 3000);
+}
 function B_S_Out() {
     V_Loop = 0;
 }
@@ -120,6 +122,7 @@ function Day() {
     document.getElementById("V_Gif_Font").innerText = V_Text[R];
     R++;
     document.getElementById("V_Gif").src = "./img/gif" + R + ".gif";
+    B_Load();
 }
 
 /**
@@ -155,7 +158,7 @@ function V_MonthToChinese(Num) {
     else
         return "十二";
 }
-var V_Box_Num = 16;
+var V_Box_Num = 13;
 var V_Box_text = [
     "我没有双手，但是我还有嘴巴，我可以用嘴写字，用嘴唱歌……”说这些话的是被称为“独臂哥”的赵亚全。",
     "韩国华川举行华川鳟鱼庆典盛大开幕，游客凿冰捞鱼。一个小男孩下水抓到鱼后难掩兴奋，一口咬住大鱼，高举双臂，以示胜利。",
@@ -165,15 +168,14 @@ var V_Box_text = [
     "俄罗斯克拉斯诺亚尔斯克，一只英国蓝猫被一间公寓的水族箱折射的光线照亮，秒变“彩虹猫”。",
     "英国伍德布里奇公园，首席试飞员兼科技创业公司“重力工业”（Gravity Industries）首席执行官理查德·布朗宁身着喷气服，进行演示飞行，如空中走“凌波微步”。",
     "西班牙格索举办的国际摄影展，印有美国总统特朗普脑袋的充气装置深受看展观众的青睐，民众光着脚在上面跳跃玩耍。",
-    "美国纽约的挑战者阿什丽塔·福尔曼用肚子当菜板，挑战一分钟内在肚子上切西瓜，以数量取胜，最终拿下属于他的吉尼斯世界纪录。",
+    "在山东省青岛市西部的海岸线上，有一座白色的半球形建筑，名叫“海上皇宫”，它毗邻青岛火车站和著名的栈桥景区，是青岛最著名的的标志性景观之一。这里曾是青岛的高级娱乐场所，是一座海面上的餐饮娱乐总汇，曾盛极一时，前去消费的多是高收入者。然而，就是这座青岛的地标建筑，却已经“荒废”了16年。日前，青岛市城乡建设委员会透露，海上皇宫文旅综合体项目装修工程于近日办理了施工许可手续。",
     "在英国格拉斯哥举办的2018年欧洲游泳锦标赛上，德国选手珍妮·曼辛（Jenny Mensing）热身时将咖啡杯稳稳地顶在额头上。",
     "俄罗斯克拉斯诺雅茨克的斑马线，在左边画上了斑马的尾部，又在右边画上了斑马的头部，这才是名副其实的“斑马”线。",
     "英国古德伍德老式赛车会举行，孩子们参加脚踏汽车比赛。",
     "沙特阿拉伯的养蜂人 Zuhair Fatani挑战用身体吸引100公斤蜜蜂，希望打破身体上最重的蜜蜂“外套”纪录。最后，因蜂王的飞走导致大量雄峰无法被吸引过来而以失败告终。",
     "法国兰斯，退役短跑运动员博尔特在一架经过特殊改装的飞机上体验零重力空间，他还俏皮地摆了个“奔跑”的pose。",
-    "英国彭布罗克郡，一只大西洋海豹幼崽躺在海边礁石上，将爪子遮脸，上演“没脸看”。",
-    "瑞士埃斯塔瓦耶，瑞士一家名为青蛙博物馆举行奇特的展览，108只青蛙标本惟妙惟肖地模仿人们日常生活场景。",
-    "在山东省青岛市西部的海岸线上，有一座白色的半球形建筑，名叫“海上皇宫”，它毗邻青岛火车站和著名的栈桥景区，是青岛最著名的的标志性景观之一。这里曾是青岛的高级娱乐场所，是一座海面上的餐饮娱乐总汇，曾盛极一时，前去消费的多是高收入者。然而，就是这座青岛的地标建筑，却已经“荒废”了16年。日前，青岛市城乡建设委员会透露，海上皇宫文旅综合体项目装修工程于近日办理了施工许可手续。"
+    "英国彭布罗克郡，一只大西洋海豹幼崽躺在海边礁石上。海豹幼崽出生时都有毛茸茸的白色非防水皮毛，它们会在第四周蜕皮。在镜头前将爪子遮脸，上演“没脸看”。",
+    "瑞士一家名为青蛙博物馆的奇特展览将在5月30日与观众见面，108只青蛙标本惟妙惟肖地模仿人们日常生活场景展出，让人过目难忘。 此次展出的作品中，有的是青蛙在长桌旁聚会，有的是几只围坐在圆桌旁打牌，还有的在教室中上课。"
 ]
 
 function V_Box_img() {
@@ -186,4 +188,41 @@ function V_Box_img() {
             V_Box_text[i]
             + "</p></div>"
     }
+}
+
+function V_Box_New() {
+    var R = 15
+    var R = Math.floor(Math.random() * R);
+    var Num = R + 1;
+    document.getElementById("BlockD").innerHTML += "<div class=\"BlockD_item\" title=\"刷新页面获取随机新闻\"> <img src=\"./img/box/" + Num + ".jpg\" /><p>" + V_Box_text[R] + "</p></div>"
+}
+
+function V_SmoothScroll() {
+    var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    if (currentScroll > 0) {
+        window.requestAnimationFrame(V_SmoothScroll);
+        window.scrollTo(0, currentScroll - (currentScroll / 15));
+    }
+}
+
+function V_Reload() {
+    location.reload();
+}
+
+$(document).scroll(function () {
+    var distance = $(document).scrollTop();
+    var A = V_pageName();
+    if (A != "image") {
+        if (distance <= 200)
+            document.getElementById("BlockZ").style.cssText = "opacity: 0;"
+        else
+            document.getElementById("BlockZ").style.cssText = "opacity: .7;"
+    }
+})
+
+function V_pageName() {
+    var a = location.href;
+    var b = a.split("/");
+    var c = b.slice(b.length - 1, b.length).toString(String).split(".");
+    return c.slice(0, 1);
 }

@@ -5,15 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>喵窝新闻网 | 网络新闻 | Powered By Siner | 1706060203 | 陈清 </title>
+    <title>喵窝新闻网 | 趣图新闻 | Powered By Siner | 1706060203 | 陈清 </title>
     <link rel="stylesheet" href="./css/styles.css">
     <script src="./js/jquery.min.js"></script>
     <script src="./js/scripts.js"></script>
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
 </head>
 
-<body onload="V_Box_New()">
-    <div id="BlockZ" style="opacity: .7;height: 50px;" title="刷新页面获取随机新闻">
+<body onload="V_Box_img()">
+    <div id="BlockZ" style="opacity: 0">
+        <img src="./img/UI/go_top.png" alt="回顶部" onclick="V_SmoothScroll()">
+        <hr>
         <img src="./img/UI/reload.png" alt="刷新" onclick="V_Reload()">
     </div>
     <article>
@@ -63,7 +65,7 @@
                 </div>
             </div>
         </header>
-        <div class="BlockD" id="BlockD" style="column-count: 1;"></div>
+        <div class="BlockD" id="BlockD"></div>
         <footer>
             <span>Powered By Siner(陈清&copy;) 学号：1706060203 17软件二班</span>
             <br />

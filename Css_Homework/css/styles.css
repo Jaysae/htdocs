@@ -2,61 +2,48 @@
  * @Author: Siner
  * @Date: 2018-12-10 10:16:32
  * @Last Modified by: Siner
- * @Last Modified time: 2018-12-18 16:25:52
+ * @Last Modified time: 2018-12-19 16:18:40
  */
 
- @font-face {
-    font-family: WY_HXD; 
-    src: url("../font/WY.otf"); 
-    }
+ @font-face {font-family: WY_HXD; src: url("../font/WY.otf"); }
+*{margin: 0;padding: 0;transition: .5s;}
+body{border-top: 2px solid #0066ff; animation: Load 2s;} @keyframes Load{0%{opacity: 0;}100% {opacity: 1;}}
+article {width: 1000px;margin: 0 auto;}
+a{text-decoration: none;color: black;} a:hover{color: #0066FF;}
+img:hover{transform: scaleX(1.013) scaleY(1.021);opacity: .9;}
+#V_QR:hover{transform: none;opacity: 1;}
+.clear_float {clear: both;height: 0;line-height: 0;}
 
-*{
-    margin: 0;padding: 0;
-    transition: .5s;
+.My_About{border-top-right-radius: 7px;border-bottom-right-radius: 7px;}
+
+.My_About_Web{
+	margin-bottom: 15px;
+	background-color: #f5f5f5;
+	border:1.5px solid #8db9e2;
+	border-top-right-radius: 15px;border-bottom-right-radius: 15px;
+	padding: 15px;
+	box-shadow: 5px 4px 5px #8db9e2;
+}
+.My_About_Web Img{
+	float: left;
+	border-radius: 50%;
+	height: 262px;
+	width: 262px;
+	margin: 10px 15px 0 0;
+	box-shadow: 5px 4px 5px #8db9e2;
+}
+.My_About_Web:hover{
+    border:1.5px solid #0066ff;
+    box-shadow: 5px 4px 5px #0066ff;
+}
+.My_About_Web Img:hover{
+    opacity: 1;
+    transform: none;
+    box-shadow: 5px 4px 5px #0066ff;
 }
 
-#My_About{
-    border-top-right-radius: 7px;
-    border-bottom-right-radius: 7px;
-}
-
-body{
-    animation: Load 2s;
-} 
-
-
-@keyframes Load{
-    0%   {opacity: 0;}
-    100% {opacity: 1;}
-}
-
-a{
-    text-decoration: none;
-    color: black;
-}
-
-a:hover{
+.My_About_Web span,.My_About_Web a{
     color: #0066FF;
-}
-
-img:hover{
-    transform: scale(1.08);
-    opacity: .9;
-}
-
-.clear_float {
-	clear: both;
-	height: 0;
-	line-height: 0;
-}
-
-body{
-    border-top: 2px solid #0066ff;
-}
-
-article {
-    width: 1000px;
-    margin: 0 auto;
 }
 
 header{
@@ -135,7 +122,7 @@ header{
     color: black;
 }
 
-.BlockB_Nav ul li:hover{
+.BlockB_Nav ul li:hover,#BlockB_active{
     background-color: #0066FF;
 }
 .BlockB_Nav ul ul{
@@ -229,9 +216,6 @@ header{
     float: left;
 }
 
-.BlockC_Img img:hover{
-    transform: scale(1);
-}
 
 .BlockC_Button_Left,.BlockC_Button_Right{
     width: 150px;
@@ -454,16 +438,12 @@ header{
 
 .BlockD_item img{
     width: 100%;
+    border-radius: 12px;
 }
 
 .BlockD_item p{
     text-indent: 32px;
     line-height: 30px;
-}
-
-.BlockD_item img:hover,#V_QR:hover{
-    transform: none;
-    opacity: 1;
 }
 
 footer{
@@ -478,4 +458,24 @@ footer a{
 }
 footer span{
     border-bottom: 1px solid #646464;
+}
+
+#BlockZ{
+    position:fixed;
+    width: 50px;
+    height: 101px;
+    top: 770px;
+    left: 1600px;
+    border: 2px solid #bebebe;
+    border-radius: 5px;
+}
+
+#BlockZ img{
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+}
+
+#BlockZ hr{
+    color: #bebebe;
 }
