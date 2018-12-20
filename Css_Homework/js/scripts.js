@@ -2,7 +2,7 @@
  * @Author: Siner (陈清/1706060203)
  * @Date: 2018-12-20 11:42:03 
  * @Last Modified by: Siner
- * @Last Modified time: 2018-12-20 11:42:47
+ * @Last Modified time: 2018-12-20 18:28:47
  */
 var V_left_num = 0, V_Loop = 0; function B_S(a) { document.getElementById("BlockC_Show").style.cssText = 0 == a ? "left: 0;" : "left: " + a + "px;"; V_left_num = a; V_Loop = 2 } function B_S_Q(a) { var b = document.getElementById("BlockC_Show"); if (1 == a) { if (0 == V_left_num) { b.style.cssText = "left: 0;"; return } V_left_num += 700 } else { if (-3500 == V_left_num) { b.style.cssText = "left: -3500px;"; return } V_left_num -= 700 } V_Loop = 2; b.style.cssText = "left: " + V_left_num + "px;" }
 function B_S_Loop() { var a = document.getElementById("BlockC_Show"); 2 != V_Loop && (-3500 == V_left_num ? (V_Loop = 1, V_left_num += 700, a.style.cssText = "left: " + V_left_num + "px;") : 0 == V_left_num ? (V_Loop = 0, V_left_num -= 700, a.style.cssText = "left: " + V_left_num + "px;") : 1 == V_Loop ? (V_left_num += 700, a.style.cssText = "left: " + V_left_num + "px;") : 0 == V_Loop && (V_left_num -= 700, a.style.cssText = "left: " + V_left_num + "px;")) } function B_Load() { window.setInterval(B_S_Loop, 3E3) } function B_S_Out() { V_Loop = 0 }
