@@ -14,13 +14,16 @@
 </head>
 
 <body onload="Day()">
+    <!--返回顶部 + 刷新-->
     <div id="BlockZ" style="opacity: 0">
-        <img src="./img/UI/go_top.png" alt="回顶部" onclick="V_SmoothScroll()">
+        <img src="./img/UI/go_top.png" alt="回顶部">
         <hr>
-        <img src="./img/UI/reload.png" alt="刷新" onclick="V_Reload()">
+        <img src="./img/UI/reload.png" alt="刷新">
     </div>
     <article>
+        <!--页头-->
         <header>
+            <!--顶部资讯 + 搜索栏-->
             <div class="BlockA">
                 <div class="BlockA_Left">
                     <a href="#">庆祝改革开放40周年</a>
@@ -33,9 +36,12 @@
                     <input type="text" placeholder="请输入要搜索的新闻内容">
                     <a href="#">搜索</a>
                     <div class="clear_float"></div>
+                    <!--清除浮动-->
                 </div>
                 <div class="clear_float"></div>
+                <!--清除浮动-->
             </div>
+            <!--Logo + 导航栏-->
             <div class="BlockB">
                 <div class="BlockB_Logo">
                     <a href="index.html">喵窝新闻<span>.</span></a>
@@ -63,35 +69,39 @@
                             </li>
                             <li class="My_About" title="自我介绍页"><a href="./about.html">个人简介</a></li>
                             <div class="clear_float"></div>
+                            <!--清除浮动-->
                         </ul>
                     </nav>
                 </div>
             </div>
         </header>
 
+        <!--主内容--->
         <div class="BlockC">
+            <!--模块一 左侧内容导航-->
             <div class="BlockC_Nav">
-                <ul onmouseout="B_S_Out()">
-                    <li class="BlockC_Nav_Top" onmousemove="B_S(0)">
+                <ul>
+                    <li class="BlockC_Nav_Top">
                         <a href="#" title="林郑月娥：孟晚舟任何时候只同时持有一本有效特区护照">林郑月娥：孟晚舟任何时候只同时持有一本有效特区护照</a>
                     </li>
-                    <li onmousemove="B_S(-700)">
+                    <li>
                         <a href="#" title="三正部“坐镇”指挥 东北这个重要系统面临大变局">三正部“坐镇”指挥 东北这个重要系统面临大变局</a>
                     </li>
-                    <li onmousemove="B_S(-1400)">
+                    <li>
                         <a href="#" title="民生调查局：带薪年假 休起来为啥这么难">民生调查局：带薪年假 休起来为啥这么难</a></li>
-                    <li onmousemove="B_S(-2100)">
+                    <li>
                         <a href="#" title="企业家垫付上亿工程款修路 却因一神秘文件变穷人">企业家垫付上亿工程款修路 却因一神秘文件变穷人</a>
                     </li>
-                    <li onmousemove="B_S(-2800)">
+                    <li>
                         <a href="#" title="链家称收购盈科中心与其无关，系左晖个人投资">链家称收购盈科中心与其无关，系左晖个人投资</a>
                     </li>
-                    <li onmousemove="B_S(-3500)">
+                    <li>
                         <a href="#" title="菏泽将取消楼市限售:去年卖地收入增幅全国第二">菏泽将取消楼市限售:去年卖地收入增幅全国第二</a>
                     </li>
                 </ul>
             </div>
-            <div class="BlockC_Img" onmousemove="V_Loop=2" onmouseout="B_S_Out()">
+            <!--模块一 右侧图片轮播-->
+            <div class="BlockC_Img">
                 <div class="BlockC_Img_Show" style="left: 0;" id="BlockC_Show">
                     <a href="#"><img src="./img/China/pic1.jpg" alt="焦点图"></a>
                     <a href="#"><img src="./img/China/pic2.jpg" alt="焦点图"></a>
@@ -100,9 +110,10 @@
                     <a href="#"><img src="./img/China/pic5.jpg" alt="焦点图"></a>
                     <a href="#"><img src="./img/China/pic6.jpg" alt="焦点图"></a>
                 </div>
-                <button class="BlockC_Button_Left" onclick="B_S_Q(1)">&lsaquo;</button>
-                <button class="BlockC_Button_Right" onclick="B_S_Q(0)">&rsaquo;</button>
+                <button class="BlockC_Button_Left">&lsaquo;</button>
+                <button class="BlockC_Button_Right">&rsaquo;</button>
             </div>
+            <!--模块二 新闻排行榜-->
             <div class="BlockC_Left">
                 <div class="BlockC_Title">
                     <span>·</span>
@@ -129,6 +140,7 @@
                     <div class="BlockC_Left_Num">05</div>
                     <div class="BlockC_Left_Font"><a href="#">一条北方裤子火遍全国 网友笑喷：寒冷教会他独立</a></div>
                 </div>
+                <!--模块三 实时日历-->
                 <div id="BlockC_Left_Data">
                     <div id="secondLayer">
                         <div id="BlockC_Left_Month"></div>
@@ -144,6 +156,7 @@
                     </div>
                 </div>
             </div>
+            <!--模块四 热点新闻-->
             <div class="BlockC_Center">
                 <ul>
                     <li>
@@ -183,6 +196,7 @@
                     </li>
                 </ul>
             </div>
+            <!--模块五 今日话题-->
             <div class="BlockC_Right">
                 <div class="BlockC_Title">
                     <span>·</span>
@@ -199,6 +213,7 @@
                         <li><a href="#">万豪被集体诉讼，酒店行业当警醒</a></li>
                     </ul>
                 </div>
+                <!--模块六 GIF趣图-->
                 <div class="BlockC_GIF">
                     <div class="BlockC_Title">
                         <span>·</span>
@@ -212,6 +227,7 @@
                         <p id="V_Gif_Font">哼！给老娘滚</p>
                     </div>
                 </div>
+                <!--模块七 公众号二维码-->
                 <div class="BlockC_GIF">
                     <div class="BlockC_Title">
                         <span>·</span>
@@ -224,8 +240,10 @@
                 </div>
             </div>
             <div class="clear_float"></div>
+            <!--清除浮动-->
         </div>
 
+        <!--页脚-->
         <footer>
             <span>Powered By Siner(陈清&copy;) 学号：1706060203 17软件二班</span>
             <br />

@@ -4,12 +4,11 @@
  * @Last Modified by: Siner
  * @Last Modified time: 2018-12-20 11:42:35
  */
-@font-face{font-family:WY_HXD;src:url(../font/WY.otf)}
+@font-face{font-family:WY_HXD;src:url(../font/WY.otf)} /* 载入外部字体 */
+
 *{margin:0;padding:0;transition:.5s}
 body{border-top:2px solid #06f;animation:Load 2s}
-@keyframes Load{0%{opacity:0}
-100%{opacity:1}
-}
+@keyframes Load{ 0%{opacity:0} 100%{opacity:1} }
 article{margin:0 auto;width:1000px}
 a{color:#000;text-decoration:none}
 a:hover{color:#06F}
@@ -92,3 +91,8 @@ footer span{border-bottom:1px solid #646464}
 #BlockZ{position:fixed;top:770px;left:1600px;width:50px;height:101px;border:2px solid #bebebe;border-radius:5px}
 #BlockZ img{margin:5px;width:40px;height:40px}
 #BlockZ hr{color:#bebebe}
+/*
+ * @代码压缩
+ * @作者: Siner (陈清/1706060203)
+ * @压缩日期: 2018-12-20 11:42:35
+ */

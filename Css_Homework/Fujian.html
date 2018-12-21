@@ -7,19 +7,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>喵窝新闻网 | 福建新闻 | | Powered By Siner | 1706060203 | 陈清 </title>
     <link rel="stylesheet" href="./css/styles.css">
-    <script src="./js/scripts.js"></script>
     <script src="./js/jquery.min.js"></script>
+    <script src="./js/scripts.js"></script>
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
 </head>
 
 <body onload="Day()">
+    <!--返回顶部 + 刷新-->
     <div id="BlockZ" style="opacity: 0">
-        <img src="./img/UI/go_top.png" alt="回顶部" onclick="V_SmoothScroll()">
+        <img src="./img/UI/go_top.png" alt="回顶部">
         <hr>
-        <img src="./img/UI/reload.png" alt="刷新" onclick="V_Reload()">
+        <img src="./img/UI/reload.png" alt="刷新">
     </div>
     <article>
+        <!--页头-->
         <header>
+            <!--顶部资讯 + 搜索栏-->
             <div class="BlockA">
                 <div class="BlockA_Left">
                     <a href="#">庆祝改革开放40周年</a>
@@ -32,9 +35,12 @@
                     <input type="text" placeholder="请输入要搜索的新闻内容">
                     <a href="#">搜索</a>
                     <div class="clear_float"></div>
+                    <!--清除浮动-->
                 </div>
                 <div class="clear_float"></div>
+                <!--清除浮动-->
             </div>
+            <!--Logo + 导航栏-->
             <div class="BlockB">
                 <div class="BlockB_Logo">
                     <a href="index.html">喵窝新闻<span>.</span></a>
@@ -62,34 +68,38 @@
                             </li>
                             <li class="My_About" title="自我介绍页"><a href="./about.html">个人简介</a></li>
                             <div class="clear_float"></div>
+                            <!--清除浮动-->
                         </ul>
                     </nav>
                 </div>
             </div>
         </header>
 
+        <!--主内容--->
         <div class="BlockC">
+            <!--模块一 左侧内容导航-->
             <div class="BlockC_Nav">
-                <ul onmouseout="B_S_Out()">
-                    <li class="BlockC_Nav_Top" onmousemove="B_S(0)">
+                <ul>
+                    <li class="BlockC_Nav_Top">
                         <a href="#" title="第五届(2018)福建文创奖获奖作品榜单揭晓">第五届(2018)福建文创奖获奖作品榜单揭晓</a>
                     </li>
-                    <li onmousemove="B_S(-700)">
+                    <li>
                         <a href="#" title="福州举行“改革开放40年·福建故事”展">福州举行“改革开放40年·福建故事”展</a></li>
-                    <li onmousemove="B_S(-1400)">
+                    <li>
                         <a href="#" title="建设美丽乡村 漳州平和这座中国传统村落再现了新活力">建设美丽乡村 漳州平和这座中国传统村落再现了新活力</a></li>
-                    <li onmousemove="B_S(-2100)">
+                    <li>
                         <a href="#" title="“晋江慈善之夜”捐资超5.8亿 “世中运”670天倒计时启动">“晋江慈善之夜”捐资超5.8亿 “世中运”670天倒计时启动</a>
                     </li>
-                    <li onmousemove="B_S(-2800)">
+                    <li>
                         <a href="#" title="福州38处内河围挡将于春节前拆除33处">福州38处内河围挡将于春节前拆除33处</a>
                     </li>
-                    <li onmousemove="B_S(-3500)">
+                    <li>
                         <a href="#" title="莆田冬至习俗体验活动：巧手做花样汤圆">莆田冬至习俗体验活动：巧手做花样汤圆</a>
                     </li>
                 </ul>
             </div>
-            <div class="BlockC_Img" onmousemove="V_Loop=2" onmouseout="B_S_Out()">
+            <!--模块一 右侧图片轮播-->
+            <div class="BlockC_Img">
                 <div class="BlockC_Img_Show" style="left: 0;" id="BlockC_Show">
                     <a href="#"><img src="./img/FuJian/pic1.jpg" alt="焦点图"></a>
                     <a href="#"><img src="./img/FuJian/pic2.jpg" alt="焦点图"></a>
@@ -98,9 +108,10 @@
                     <a href="#"><img src="./img/FuJian/pic5.jpg" alt="焦点图"></a>
                     <a href="#"><img src="./img/FuJian/pic6.jpg" alt="焦点图"></a>
                 </div>
-                <button class="BlockC_Button_Left" onclick="B_S_Q(1)">&lsaquo;</button>
-                <button class="BlockC_Button_Right" onclick="B_S_Q(0)">&rsaquo;</button>
+                <button class="BlockC_Button_Left">&lsaquo;</button>
+                <button class="BlockC_Button_Right">&rsaquo;</button>
             </div>
+            <!--模块二 新闻排行榜-->
             <div class="BlockC_Left">
                 <div class="BlockC_Title">
                     <span>·</span>
@@ -127,6 +138,7 @@
                     <div class="BlockC_Left_Num">05</div>
                     <div class="BlockC_Left_Font"><a href="#">改革开放40年40位福建最有影响力企业家候选名单公示</a></div>
                 </div>
+                <!--模块三 实时日历-->
                 <div id="BlockC_Left_Data">
                     <div id="secondLayer">
                         <div id="BlockC_Left_Month"></div>
@@ -142,6 +154,7 @@
                     </div>
                 </div>
             </div>
+            <!--模块四 热点新闻-->
             <div class="BlockC_Center">
                 <ul>
                     <li>
@@ -181,6 +194,7 @@
                     </li>
                 </ul>
             </div>
+            <!--模块五 今日话题-->
             <div class="BlockC_Right">
                 <div class="BlockC_Title">
                     <span>·</span>
@@ -197,6 +211,7 @@
                         <li><a href="#">万豪被集体诉讼，酒店行业当警醒</a></li>
                     </ul>
                 </div>
+                <!--模块六 GIF趣图-->
                 <div class="BlockC_GIF">
                     <div class="BlockC_Title">
                         <span>·</span>
@@ -210,6 +225,7 @@
                         <p id="V_Gif_Font">哼！给老娘滚</p>
                     </div>
                 </div>
+                <!--模块七 公众号二维码-->
                 <div class="BlockC_GIF">
                     <div class="BlockC_Title">
                         <span>·</span>
@@ -222,8 +238,10 @@
                 </div>
             </div>
             <div class="clear_float"></div>
+            <!--清除浮动-->
         </div>
 
+        <!--页脚-->
         <footer>
             <span>Powered By Siner(陈清&copy;) 学号：1706060203 17软件二班</span>
             <br />

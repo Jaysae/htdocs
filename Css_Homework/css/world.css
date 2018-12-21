@@ -4,11 +4,12 @@
  * @Last Modified by: Siner
  * @Last Modified time: 2018-12-20 11:42:39
  */
-#BlockC_Left_Data,.BlockC_Center,.BlockC_GIF,.BlockC_Img,.BlockC_Left,.BlockC_Nav_Top,.BlockC_Right,body{border-top:2px solid #492}
-.BlockB_Logo span,.BlockC span,.BlockC_Left_Num,.BlockC_Move:hover,.BlockC_Sub li a:hover,a:hover{color:#492}
-.BlockA_Right input[type=text]{border:1px solid #492}
-#BlockB_active,.BlockA_Right a,.BlockB_Nav ul li:hover,.BlockB_Nav ul li:hover ul li{background-color:#492}
+#BlockC_Left_Data,.BlockC_Center,.BlockC_GIF,.BlockC_Img,.BlockC_Left,.BlockC_Nav_Top,.BlockC_Right,body{border-top:2px solid #4A2}
+.BlockB_Logo span,.BlockC span,.BlockC_Left_Num,.BlockC_Move:hover,.BlockC_Sub li a:hover,a:hover{color:#4A2}
+.BlockA_Right input[type=text]{border:1px solid #4A2}
+#BlockB_active,.BlockA_Right a,.BlockB_Nav ul li:hover,.BlockB_Nav ul li:hover ul li{background-color:#4A2}
 .BlockB_Nav ul li,.BlockC_Nav ul li,.BlockB_Nav ul li:hover ul li:hover,.BlockB_Nav ul ul li{background-color:#7c5}
-.BlockC{border-bottom:2px solid #492}
-.BlockC_Nav ul li{border-left:2px solid #492}
-.BlockC_Img,.BlockC_Nav ul li{border-right:2px solid #492;border-bottom:2px solid #492}
+.BlockC{border-bottom:2px solid #4A2}
+.BlockC_Nav ul li{border-left:2px solid #4A2}
+.BlockC_Img,.BlockC_Nav ul li{border-right:2px solid #4A2;border-bottom:2px solid #4A2}
+ /* 世界新闻页，重设所有颜色 */
