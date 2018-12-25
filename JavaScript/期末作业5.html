@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        var enjoy = 0;
+        function getFormInfo() {
+            var a = document.getElementsByClassName("A");
+            alert("欢迎来自 " + a[3].value + " " + a[2].value + " 的 " + a[0].value + " 同学，您的学号为：" + a[1].value);
+            for (var i = 1; i < 6; i++)
+                alert("您对项目" + i + getRadioValue("item" + i));
+            var print = "综合来看，您对全部项目";
+            if (enjoy == 20)
+                print += "都很满意";
+            else if (enjoy < 20 && enjoy >= 12)
+                print += "还比较满意";
+            else if (enjoy < 12 && enjoy > 4)
+                print += "比较不满意";
+            else if (enjoy <= 4)
+                print += "很不满意";
+            console.log(enjoy);
+            alert(print);
+            enjoy = 0;
+        }
+
+        function getRadioValue(radio_name) {
+            var radios = document.getElementsByName(radio_name);
+            var value, re;
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    value = radios[i].value;
+                    break;
+                }
+            }
+            switch (value) {
+                case "A": re = "很满意"; enjoy += 4; break;
+                case "B": re = "比较满意"; enjoy += 3; break;
+                case "C": re = "比较不满意"; enjoy += 2; break;
+                case "D": re = "不满意"; enjoy += 1; break;
+            }
+            return re;
+        }
+    </script>
+</head>
+
+<body>
+    <li>姓名：<input class="A" type="text" name="name" value="陈清" id="A"></li>
+    <li>学号：<input class="A" type="text" name="s_id" value="1706060203"></li>
+    <li>班级：<input class="A" type="text" name="s_class" value="17软件二班"></li>
+    <li>学院：<input class="A" type="text" name="college" value="传媒与信息学院"></li>
+    <li>
+        项目1
+        <input type="radio" name="item1" value="A" checked>很满意
+        <input type="radio" name="item1" value="B">比较满意
+        <input type="radio" name="item1" value="C">比较不满意
+        <input type="radio" name="item1" value="D">不满意
+    </li>
+    <li>
+        项目2
+        <input type="radio" name="item2" value="A" checked>很满意
+        <input type="radio" name="item2" value="B">比较满意
+        <input type="radio" name="item2" value="C">比较不满意
+        <input type="radio" name="item2" value="D">不满意
+    </li>
+    <li>
+        项目3
+        <input type="radio" name="item3" value="A" checked>很满意
+        <input type="radio" name="item3" value="B">比较满意
+        <input type="radio" name="item3" value="C">比较不满意
+        <input type="radio" name="item3" value="D">不满意
+    </li>
+    <li>
+        项目4
+        <input type="radio" name="item4" value="A" checked>很满意
+        <input type="radio" name="item4" value="B">比较满意
+        <input type="radio" name="item4" value="C">比较不满意
+        <input type="radio" name="item4" value="D">不满意
+    </li>
+    <li>
+        项目5
+        <input type="radio" name="item5" value="A" checked>很满意
+        <input type="radio" name="item5" value="B">比较满意
+        <input type="radio" name="item5" value="C">比较不满意
+        <input type="radio" name="item5" value="D">不满意
+    </li>
+    <li><input type="submit" value="提交" onclick="getFormInfo()"></li>
+
+</body>
+
+</html>

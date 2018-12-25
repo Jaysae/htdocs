@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>期末作业1</title>
+    <script>
+        while (1) {
+            var Max = 99;
+            var x = Math.floor((Math.random() * Max) + 1),
+                y = Math.floor((Math.random() * Max) + 1),
+                result, answer, go_on;
+            result = x + y;
+            answer = window.prompt("请输入 " + x + "+" + y + " 的答案：");
+            result == answer ? go_on = "正确" : go_on = "错误";
+            if (confirm("正确答案为：" + result + " | 您的答案为：" + answer + " | " + go_on + " | 是否继续答题")) {
+                continue;
+            }
+            else {
+                break;
+            }
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

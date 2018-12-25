@@ -2,7 +2,7 @@
  * @Author: Siner (陈清/1706060203)
  * @Date: 2018-12-20 11:42:03 
  * @Last Modified by: Siner
- * @Last Modified time: 2018-12-21 19:58:26
+ * @Last Modified time: 2018-12-23 16:15:38
  */
 $(document).ready(function () {
     $(".BlockC_Nav ul").mouseout(function () { B_S_Out() }); $(".BlockC_Nav ul li:eq(0) a").mousemove(function () { B_S(0) }); $(".BlockC_Nav ul li:eq(1) a").mousemove(function () { B_S(-700) }); $(".BlockC_Nav ul li:eq(2) a").mousemove(function () { B_S(-1400) }); $(".BlockC_Nav ul li:eq(3) a").mousemove(function () { B_S(-2100) }); $(".BlockC_Nav ul li:eq(4) a").mousemove(function () { B_S(-2800) }); $(".BlockC_Nav ul li:eq(5) a").mousemove(function () { B_S(-3500) }); $(".BlockC_Img").mousemove(function () {
@@ -22,3 +22,8 @@ function V_YearToChinese(a) { for (var b = "", d = "\u3007\u4e00\u4e8c\u4e09\u56
 function V_Box_img() { for (var a, b = 0; b <= V_Box_Num; b++)a = b + 1, document.getElementById("BlockD").innerHTML += '<div class="BlockD_item"> <img src="./img/box/' + a + '.jpg" /><p>' + V_Box_text[b] + "</p></div>" } function V_Box_New() { var a = Math.floor(15 * Math.random()), b = a + 1; document.getElementById("BlockD").innerHTML += '<div class="BlockD_item" title="\u5237\u65b0\u9875\u9762\u83b7\u53d6\u968f\u673a\u65b0\u95fb"> <img src="./img/box/' + b + '.jpg" /><p>' + V_Box_text[a] + "</p></div>" }
 function V_SmoothScroll() { var a = document.documentElement.scrollTop || document.body.scrollTop; 0 < a && (window.requestAnimationFrame(V_SmoothScroll), window.scrollTo(0, a - a / 15)) } function V_Reload() { location.reload() } $(document).scroll(function () { var a = $(document).scrollTop(); "image" != V_pageName() && (200 >= a ? document.getElementById("BlockZ").style.cssText = "opacity: 0;" : document.getElementById("BlockZ").style.cssText = "opacity: .7;") });
 function V_pageName() { var a = location.href.split("/"); return a.slice(a.length - 1, a.length).toString(String).split(".").slice(0, 1) };
+/*
+ * @代码混淆：
+ * @Author: Siner (陈清/1706060203)
+ * @Last Modified time: 2018-12-23 16:15:02
+ */

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>期末作业4</title>
+    <script>
+        var h = 0;
+        function New() {
+            location.hash = "#section" + ++h;
+        }
+        function bark() {
+            history.back();
+        }
+        function forward() {
+            history.forward();
+        }
+        function index() {
+            for (var i = 0; i < h; i++)
+                history.go(-1);
+        }
+    </script>
+</head>
+
+<body>
+    <button onclick="New()">新页</button>
+    <button onclick="bark()">后退</button>
+    <button onclick="forward()">前进</button>
+    <button onmousedown="index()">主页</button>
+</body>
+
+</html>
+<script>
+    var h = 0;
+    function New() {
+        location.hash = "#section" + ++h;
+    }
+    function bark() {
+        history.back();
+    }
+    function forward() {
+        history.forward();
+    }
+    function index() {
+        for (var i = 0; i < h; i++)
+            history.go(-1);
+    }
+</script>
