@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("input").each(function () {
+                var text = $(this);
+                var oldText = $.trim(text.val());
+                text.css("color", "#888");
+                text.focus(function () {
+                    if (text.val() != oldText) {
+                        text.css("color", "#000");
+                    }
+                    else {
+                        text.val("").css("color", "#888");
+                    }
+                });
+                text.blur(function () {
+                    if (text.val() == "") {
+                        text.val(oldText).css("color", "#888");
+                    }
+                });
+                text.keydown(function () {
+                    text.css("color", "#000");
+                });
+            });
+        });
+    </script>
+    <style>
+        div {
+            background-image: url("./images/bg.jpg");
+            width: 494px;
+            height: 282px;
+            padding-left: 180px;
+            padding-top: 100px;
+            box-sizing: border-box;
+        }
+
+        input {
+            width: 209px;
+            height: 23px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div>
+        <input type="text" value="通行证账号/邮箱">
+        <p><input type="text" value="密码"></p>
+        <img src="./images/btn.jpg">
+    </div>
+</body>
+
+</html>

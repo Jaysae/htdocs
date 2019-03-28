@@ -32,19 +32,3 @@
 </body>
 
 </html>
-<script>
-    var h = 0;
-    function New() {
-        location.hash = "#section" + ++h;
-    }
-    function bark() {
-        history.back();
-    }
-    function forward() {
-        history.forward();
-    }
-    function index() {
-        for (var i = 0; i < h; i++)
-            history.go(-1);
-    }
-</script>

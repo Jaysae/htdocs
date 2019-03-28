@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./jquery.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <table class="add">
+        <tr>
+            <th>姓名</th>
+            <th>性别</th>
+        </tr>
+        <tr class="del">
+            <td><a>张三</a></td>
+            <td><a>男</a></td>
+            <td><a>622202110203675</a></td>
+            <td><a>短工</a></td>
+            <td><a>8008208820</a></td>
+            <td><a>1000</a></td>
+            <td><img src="./images/add.jpg"></td>
+            <td><span class="del"><img src="images/del.jpg"></span></td>
+        </tr>
+
+    </table>
+    <a href="#" style="text-decoration:none">新增</a>
+    <script>
+        $(document).ready(function () {
+            $(document).on("click", "a", function () {
+                $(".add").append("<tr class='del'> <td><a>张三</a></td> <td><a>男</a></td> <td><a>622202110203675</a></td> <td><a>短工</a></td> <td><a>8008208820</a></td> <td><a>1000</a></td> <td><img src='./images/add.jpg'></td> <td><span class='del'><img src='images/del.jpg'></span></td> </tr>")
+            });
+            $(document).on("click", ".del", function () {
+                $(this).remove();
+            });
+        });
+    </script>
+</body>
+
+</html>
