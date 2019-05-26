@@ -25,9 +25,7 @@
 </head>
 
 <body class="user-select">
-  <?php
-  include 'header.php'
-  ?>
+  <?php include 'header.php' ?>
   <section class="container container-page">
     <div class="pageside">
       <div class="pagemenus">

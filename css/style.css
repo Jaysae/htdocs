@@ -1360,6 +1360,11 @@ color:#FFF;
 	font-size: 12px;
 	color: #AAA;
 }
+.widget-sentence-content p span{
+	font-size: 14px;
+	color: #31B2F3;
+	font-weight: bolder;
+}
 /*侧边栏热门文章*/
 .widget_hot li a {
 	padding: 10px 15px 10px 150px;

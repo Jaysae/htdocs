@@ -25,14 +25,12 @@
 </head>
 
 <body class="user-select">
-    <?php
-    include 'header.php'
-    ?>
+    <?php include 'header.php' ?>
     <section class="container">
         <div class="content-wrap">
             <div class="content">
                 <div class="jumbotron">
-                    <h1>欢迎访问异清轩博客</h1>
+                    <h1>欢迎访问喵窝博客</h1>
                     <p>在这里可以看到前端技术，后端程序，网站内容管理系统等文章，还有我的程序人生！</p>
                 </div>
                 <div id="focusslide" class="carousel slide" data-ride="carousel">
@@ -60,7 +58,7 @@
                 </article>
                 <div class="title">
                     <h3>最新发布</h3>
-                    <div class="more"><a href="">PHP</a><a href="">JavaScript</a><a href="">EmpireCMS</a><a href="">Apache</a><a href="">MySQL</a></div>
+                    <div class="more"><a href="">PHP</a><a href="">JavaScript</a><a href="">Unity</a><a href="">C Sharp</a><a href="">MySQL</a></div>
                 </div>
 
                 <?php
@@ -83,8 +81,8 @@
                     <ul>
                         <li class="prev-page"></li>
                         <li class="active"><span>1</span></li>
-                        <li><a href="page.php">2</a></li>
-                        <li class="next-page"><a href="page.php">下一页</a></li>
+                        <li><a href="index.php">2</a></li>
+                        <li class="next-page"><a href="index.php">下一页</a></li>
                         <li><span>共 2 页</span></li>
                     </ul>
                 </nav>
@@ -122,42 +120,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="widget widget_search">
-                    <form class="navbar-form" action="/Search" method="post">
-                        <div class="input-group">
-                            <input type="text" name="keyword" class="form-control" size="35" placeholder="请输入关键字" maxlength="15" autocomplete="off">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
-                            </span> </div>
-                    </form>
-                </div>
             </div>
-            <div class="widget widget_sentence">
-                <h3>每日一句</h3>
-                <div class="widget-sentence-content">
-                    <h4>2016年01月05日星期二</h4>
-                    <p>Do not let what you cannot do interfere with what you can do.<br />
-                        别让你不能做的事妨碍到你能做的事。（John Wooden）</p>
-                </div>
-            </div>
-            <div class="widget widget_hot">
-                <h3>热门文章</h3>
-                <ul>
-                    <?php
-                    for ($i = 0; $i < 10; $i++) {
-                        ?>
-                        <li><a href=""><span class="thumbnail"><img class="thumb" data-original="images/excerpt.jpg" src="images/excerpt.jpg" alt=""></span><span class="text">php如何判断一个日期的格式是否正确</span><span class="muted"><i class="glyphicon glyphicon-time"></i> 2016-1-4 </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i> <?php echo $i; ?></span></a></li>
-                    <?php
-                }
-                ?>
-                </ul>
-            </div>
+            <?php include 'RightMenu.php' ?>
         </aside>
     </section>
-    <?php
-    include 'footer.php';
-    include 'modal.php';
-    ?>
+    <?php include 'footer.php';
+    include 'modal.php' ?>
 </body>
 
 </html>
