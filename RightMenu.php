@@ -1,7 +1,7 @@
 <div class="widget widget_search">
     <form class="navbar-form" action="search.php" method="post">
         <div class="input-group">
-            <input type="text" name="keyword" class="form-control" size="35" placeholder="请输入关键字" maxlength="15" autocomplete="off">
+            <input type="text" name="keyword" class="form-control" size="35" placeholder="请输入关键字" maxlength="15" autocomplete="off" required oninvalid="setCustomValidity('请输入搜索内容')" oninput="setCustomValidity('')">
             <span class="input-group-btn">
                 <button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
             </span> </div>
@@ -10,7 +10,7 @@
 <div class="widget widget_sentence">
     <h3>「ONE · 一个」</h3>
     <div class="widget-sentence-content">
-        <h4 id="Today">2016年01月05日星期二</h4>
+        <h4 id="Today">2019年</h4>
         <p id="ONE_word"></p>
     </div>
 </div>
@@ -18,10 +18,14 @@
     <h3>热门文章</h3>
     <ul>
         <?php
-        for ($i = 0; $i < 10; $i++) {
-            ?>
-            <li><a href=""><span class="thumbnail"><img class="thumb" data-original="images/excerpt.jpg" src="images/excerpt.jpg" alt=""></span><span class="text">php如何判断一个日期的格式是否正确</span><span class="muted"><i class="glyphicon glyphicon-time"></i> 2016-1-4 </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i> <?php echo $i; ?></span></a></li>
-        <?php
+        $sql = "SELECT * FROM `article` ORDER BY `article`.`view` DESC LIMIT 0,5";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                ?>
+                <li><a href=""><span class="thumbnail"><img class="thumb" data-original="<?php echo $row['image'] ?>" src="<?php echo $row['image'] ?>" alt=""></span><span class="text"><?php echo $row['title'] ?></span><span class="muted"><i class="glyphicon glyphicon-time"></i><?php echo $row['date'] ?></span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i><?php echo $row['view'] ?></span></a></li>
+            <?php
+        }
     }
     ?>
     </ul>
@@ -46,6 +50,7 @@
             },
             success: function(result) {
                 $("#ONE_word").html(result.Body.word);
+                $("#ONE_word").attr("title", result.Body.word_from);
                 $("#ONE_word").autotype();
                 return false;
             }

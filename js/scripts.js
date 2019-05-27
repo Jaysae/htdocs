@@ -127,6 +127,13 @@ jQuery.ias({
     trigger: '查看更多',
     loader: '<div class="pagination-loading"><img src="/images/loading.gif" /></div>',
     triggerPageThreshold: 5,
+    beforePageChange: function (scrollOffset, nextPageUrl) {
+        var pageNum = nextPageUrl.substr(-1, 1);
+        if (pageNum > page_num) {
+            $(".ias_end").show();
+            return false;
+        }
+    },
     onRenderComplete: function () {
         $('.excerpt .thumb').lazyload({
             placeholder: '/images/occupying.png',

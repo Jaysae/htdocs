@@ -1,3 +1,14 @@
+<?php
+include 'tool.php';
+function Active($var, $id)
+{
+    $a = $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+    if ($id) {
+        $a = $a . '?' . $_SERVER['QUERY_STRING'];
+    }
+    echo basename($a) == $var ? "class=\"active\"" : "";
+}
+?>
 <header class="header">
     <nav class="navbar navbar-default" id="navbar">
         <div class="container">
@@ -24,12 +35,19 @@
             </div>
             <div class="collapse navbar-collapse" id="header-navbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden-index active"><a data-cont="首页" href="index.php">首页</a></li>
-                    <li><a href="category.php">前端技术</a></li>
-                    <li><a href="category.php">后端程序</a></li>
-                    <li><a href="category.php">管理系统</a></li>
-                    <li><a href="category.php">授人以渔</a></li>
-                    <li><a href="category.php">程序人生</a></li>
+                    <li <?php Active("index.php", false); ?>><a data-cont="首页" href="index.php">首页</a></li>
+                    <?php
+                    $sql = "SELECT * FROM classify";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            ?>
+                            <li <?php Active("category.php?id=" . $row['id'], true); ?>><a href="category.php?id=<?php echo $row['id']; ?>"><?php echo $row['name']; ?></a></li>
+                        <?php
+                    }
+                }
+                ?>
+                    <li><a href="/Admin">管理系统</a></li>
                 </ul>
                 <form class="navbar-form visible-xs" action="/Search" method="post">
                     <div class="input-group">
