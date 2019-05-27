@@ -130,17 +130,59 @@ $page = isset($_GET['page']) ? $_GET['page'] : 1;
                                         ?>
                                         <li>
                                             <time datetime="<?php echo $row['date'] ?>" title="该公告于 <?php echo $row['date'] ?> 发布。"><?php echo substr($row['date'], 6) ?></time>
-                                            <a href="#" title="<?php echo $row['content'] ?>"><?php echo $row['content'] ?></a></li>
+                                            <a data-toggle="modal" data-target="#noticePopups" rel="nofollow" title="<?php echo $row['content'] ?>" class="<?php echo $row['date'] ?>"><?php echo $row['content'] ?></a></li>
                                     <?php
                                 }
                             }
                             ?>
                             </ul>
                         </div>
-                        <div role="tabpanel" class="tab-pane centre" id="centre">
-                            <h4>需要登录才能进入会员中心</h4>
-                            <p> <a data-toggle="modal" data-target="#loginModal" class="btn btn-primary">立即登录</a> <a href="javascript:;" class="btn btn-default">现在注册</a> </p>
-                        </div>
+                        <?php
+                        if (isset($username)) {
+                            $username = $_SESSION['username'];
+                            $sql = "SELECT * FROM user_center WHERE username_t LIKE '$username'";
+                            $result = $conn->query($sql);
+                            $result->num_rows > 0;
+                            $row = $result->fetch_assoc();
+                            ?>
+                            <div role="tabpanel" class="tab-pane centre" id="centre">
+                                <img src="<?php echo $row['avatar'] ?>">
+                                <div>
+                                    <a href="#"><span>用户名</span>：<i class="glyphicon glyphicon-user"></i>
+                                        <?php echo $username ?></a>
+                                    <a href="#">
+                                        <span>浏览器</span>：<i class="glyphicon glyphicon-leaf"></i>
+                                        <?php echo $row['login_browse'] ?></a>
+                                    <a href="#">
+                                        <span>评论数</span>：<i class="glyphicon glyphicon-comment"></i>
+                                        <?php echo "10" ?>个自知之明</a>
+                                    <a href="#"><span>等级</span>：<i class="glyphicon glyphicon-<?php echo $row['id'] == "1" ? "king" : "pawn" ?>"></i>
+                                        </i> <?php echo $row['id'] == "1" ? "管理员" : "普通读者" ?></a>
+                                    <?php
+                                    if (isset($glyphicon)) {
+                                        ?>
+                                        <i class="glyphicon glyphicon-king"></i>管理员
+                                        <i class="glyphicon glyphicon-queen"></i>金牌读者
+                                        <i class="glyphicon glyphicon-bishop"></i>银牌读者
+                                        <i class="glyphicon glyphicon-knight"></i>铜牌读者
+                                        <i class="glyphicon glyphicon-pawn"></i>普通读者
+                                    <?php
+                                }
+                                ?>
+
+                                </div>
+                            </div>
+                        <?php
+                    } else {
+                        ?>
+                            <div role="tabpanel" class="tab-pane centre" id="centre">
+                                <h4>需要登录才能进入会员中心</h4>
+                                <p> <a data-toggle="modal" data-target="#loginModal" class="btn btn-primary">立即登录</a> <a href="javascript:;" class="btn btn-default">现在注册</a> </p>
+                            </div>
+                        <?php
+                    }
+                    ?>
+
                         <div role="tabpanel" class="tab-pane contact" id="contact">
                             <h2>Email:<br />
                                 <a href="mailto:2512624184@qq.com" data-toggle="tooltip" data-placement="bottom" title="2512624184@qq.com">2512624184@qq.com</a></h2>
@@ -153,6 +195,12 @@ $page = isset($_GET['page']) ? $_GET['page'] : 1;
     </section>
     <script type="text/javascript">
         var page_num = <?php echo $page_num ?>;
+        $(function() {
+            $("a[data-target=#noticePopups]").click(function() {
+                $('#noticePopupsModalLabel').text("该公告于" + $(this).attr('class') + "发布。");
+                $('#noticePopupsModalContent').text($(this).text());
+            });
+        });
     </script>
     <?php include 'footer.php';
     include 'modal.php' ?>

@@ -1,5 +1,13 @@
 <?php
 include 'tool.php';
+session_start();
+if (isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+    $sql = "SELECT * FROM user_center WHERE username_t LIKE '$username'";
+    $result = $conn->query($sql);
+    $result->num_rows > 0;
+    $row = $result->fetch_assoc();
+}
 function Active($var, $id)
 {
     $a = $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
@@ -25,17 +33,26 @@ function Active($var, $id)
                         </ul>
                     </li>
                 </ul>
-                <a data-toggle="modal" data-target="#loginModal" class="login" rel="nofollow">Hi,请登录</a>&nbsp;&nbsp;
-                <a href="javascript:;" class="register" rel="nofollow">我要注册</a>&nbsp;&nbsp;
+                <?php
+                if (isset($username)) { ?>
+                    <a href="#"><?php echo $username ?>，欢迎回来喵窝！</a>
+                <?php
+            } else {
+                ?>
+                    <a data-toggle="modal" data-target="#loginModal" class="login" rel="nofollow">Hi,请登录</a>&nbsp;&nbsp;
+                    <a href="javascript:;" class="register" rel="nofollow">我要注册</a>&nbsp;&nbsp;
+                <?php
+            }
+            ?>
                 <!-- <a href="" rel="nofollow">找回密码</a> -->
             </div>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar" aria-expanded="false"> <span class="sr-only"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                <h1 class="logo hvr-bounce-in"><a href="index.php" title=""><img src="images/MiaoWo.png" alt=""></a></h1>
+                <h1 class="logo hvr-bounce-in"><a href="/" title=""><img src="images/MiaoWo.png" alt=""></a></h1>
             </div>
             <div class="collapse navbar-collapse" id="header-navbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li <?php Active("index.php", false); ?>><a data-cont="首页" href="index.php">首页</a></li>
+                    <li <?php Active("index.php", false); ?>><a data-cont="首页" href="/">首页</a></li>
                     <?php
                     $sql = "SELECT * FROM classify";
                     $result = $conn->query($sql);

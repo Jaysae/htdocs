@@ -255,6 +255,28 @@ function replace_em(str) {
     return str;
 }
 
+function check() {
+    console.log("data");
+    return false;
+}
+
+$("#login_btn").click(function () {
+    var username = $("#loginModalUserName").val();
+    var password = $("#loginModalUserPwd").val();
+    $.ajax({
+        type: "POST",
+        url: "ajax.php",
+        data: "function=Login&age=" + username + "," + password,
+        cache: false, //不缓存此页面  
+        success: function (data) {
+            if (data == "true") {
+
+            } else {
+
+            }
+        }
+    });
+})
 // //Console
 // try {
 //     if (window.console && window.console.log) {

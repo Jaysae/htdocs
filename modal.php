@@ -27,28 +27,46 @@
     </div>
   </div>
 </div>
+<!--公告模态框-->
+<div class="modal fade user-select" id="noticePopups" tabindex="-1" role="dialog" aria-labelledby="noticePopupsModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="noticePopupsModalLabel" style="cursor:default;">该公告于2019年5月27日发布。</h4>
+      </div>
+      <div class="modal-body">
+        <p style="padding:15px; cursor:default;" id="noticePopupsModalContent">欢迎访问喵窝博客</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="noticePopupsOff">朕已阅</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!--登录注册模态框-->
 <div class="modal fade user-select" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <form action="/Admin/Index/login" method="post">
+      <!-- <form action="/" method="post" onsubmit="return check();"> -->
+      <form action="/" method="post">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="loginModalLabel">登录</h4>
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <label for="loginModalUserNmae">用户名</label>
-            <input type="text" class="form-control" id="loginModalUserNmae" placeholder="请输入用户名" autofocus maxlength="15" autocomplete="off" required>
+            <label for="loginModalUserName">用户名</label>
+            <input type="text" class="form-control" id="loginModalUserName" placeholder="请输入用户名" autofocus maxlength="15" autocomplete="off" required oninvalid="setCustomValidity('请输入用户名')" oninput="setCustomValidity('')">
           </div>
           <div class="form-group">
             <label for="loginModalUserPwd">密码</label>
-            <input type="password" class="form-control" id="loginModalUserPwd" placeholder="请输入密码" maxlength="18" autocomplete="off" required>
+            <input type="password" class="form-control" id="loginModalUserPwd" placeholder="请输入密码" maxlength="18" autocomplete="off" required oninvalid="setCustomValidity('请输入密码')" oninput="setCustomValidity('')">
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-          <button type="submit" class="btn btn-primary">登录</button>
+          <button type="submit" class="btn btn-primary" id="login_btn">登录</button>
         </div>
       </form>
     </div>
@@ -57,7 +75,7 @@
 <!--右键菜单列表-->
 <div id="rightClickMenu">
   <ul class="list-group rightClickMenuList">
-    <li class="list-group-item disabled">欢迎访问异清轩博客</li>
+    <li class="list-group-item disabled">欢迎访问喵窝博客</li>
     <li class="list-group-item"><span>IP：</span>172.16.10.129</li>
     <li class="list-group-item"><span>地址：</span>河南省郑州市</li>
     <li class="list-group-item"><span>系统：</span>Windows10 </li>

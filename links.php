@@ -1,3 +1,4 @@
+<?php include 'tool.php'; ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -41,15 +42,22 @@
                 <h1 class="article-title">友情链接</h1>
             </header>
             <ul class="plinks">
-                <li><a href="" title="" target="_blank" rel="nofollow"><img src="images/icon/favicon.ico" alt="">异清轩</a></li>
-                <li><a href="" title="" target="_blank" rel="nofollow"><img src="images/icon/favicon.ico" alt="">异清轩</a></li>
-                <li><a href="" title="" target="_blank" rel="nofollow"><img src="images/icon/favicon.ico" alt="">异清轩</a></li>
-                <li><a href="" title="" target="_blank" rel="nofollow"><img src="images/icon/favicon.ico" alt="">异清轩</a></li>
-                <li><a href="" title="" target="_blank" rel="nofollow"><img src="images/icon/favicon.ico" alt="">异清轩</a></li>
-                <li><a href="" title="" target="_blank" rel="nofollow"><img src="images/icon/favicon.ico" alt="">异清轩</a></li>
-                <li><a href="" title="" target="_blank" rel="nofollow"><img src="images/icon/favicon.ico" alt="">异清轩</a></li>
-                <li><a href="" title="" target="_blank" rel="nofollow"><img src="images/icon/favicon.ico" alt="">异清轩</a></li>
-                <li><a href="" title="" target="_blank" rel="nofollow"><img src="images/icon/favicon.ico" alt="">异清轩</a></li>
+                <?php
+                $sql = "SELECT * FROM links";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        ?>
+                        <li>
+                            <a href="<?php echo $row['link'] ?>" title="" target="_blank" rel="nofollow">
+                                <img src="<?php echo $row['icon'] ?>" alt="">
+                                <?php echo $row['title'] ?>
+                            </a>
+                        </li>
+                    <?php
+                }
+            }
+            ?>
             </ul>
         </div>
     </section>
@@ -58,5 +66,27 @@
     include 'modal.php';
     ?>
 </body>
+<?php
+function InputImage($url)
+{
+    $temp = parse_url($url)['host'];
+    echo "//www." . substr($temp, strpos($temp, '.') + 1) . "/favicon.ico";
+}
+function InputTitle($url)
+{
+    $c = curl_init();
+    $arr = file($url);
+    if ($arr) {
+        foreach ($arr as $a) {
+            if (strchr($a, "<title>")) {
+                $a = str_ireplace("<title>", "", $a);
+                $a = str_ireplace("</title>", "", $a);
+                echo $a;
+                break;
+            }
+        }
+    }
+}
+?>
 
 </html>

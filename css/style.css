@@ -1304,6 +1304,33 @@ color:#FFF;
 .widget-tabs .tab-content .centre p {
 	text-align: center;
 }
+.widget-tabs .tab-content .centre img {
+	float: left;
+	width: 120px;
+	height: 120px;
+}
+.widget-tabs .tab-content .centre div {
+	float: left;
+	width: 190px;
+	height: 120px;
+	margin-left:15px; 
+}
+.widget-tabs .tab-content .centre div a{
+	max-width: 280px;
+	display: block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: #999;
+	margin-bottom: 14px;
+}
+.widget-tabs .tab-content .centre div a span{
+	width: 42px;
+
+	float: left;
+	text-align: justify;
+	text-align-last: justify;
+}
 /*侧边栏标签页联系站长内容*/
 .widget-tabs .tab-content .contact h2 {
 	text-align: center;
