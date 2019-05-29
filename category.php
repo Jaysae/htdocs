@@ -24,6 +24,7 @@
     $page_num = (int)$page_num / 5;
   $page = isset($_GET['page']) ? $_GET['page'] : 1;
   ?>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
   <title><?php echo $name ?> - | 喵窝 | 我的个人博客 | Powered By Siner</title>
 </head>
 
@@ -84,8 +85,7 @@
   <script type="text/javascript">
     var page_num = <?php echo $page_num ?>;
   </script>
-  <?php include 'footer.php';
-  include 'modal.php' ?>
+  <?php include 'footer.php' ?>
 </body>
 
 </html>

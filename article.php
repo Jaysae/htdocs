@@ -17,6 +17,7 @@
   if ($result->num_rows > 0)
     $row_A = $result->fetch_assoc();
   ?>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
   <title><?php echo $row_A['title'] ?> - | 喵窝 | 我的个人博客 | Powered By Siner</title>
 </head>
 
@@ -205,8 +206,7 @@
       <?php include 'RightMenu.php' ?>
     </aside>
   </section>
-  <?php include 'footer.php';
-  include 'modal.php' ?>
+  <?php include 'footer.php' ?>
   <script src="js/jquery.qqFace.js"></script>
   <script type="text/javascript">
     function CanClick(str) {

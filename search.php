@@ -1,28 +1,3 @@
-<?php
-include 'tool.php';
-$keyword = "";
-if (isset($_POST["keyword"])) {
-  $keyword = $_POST["keyword"];
-} else if (isset($_GET["keyword"])) {
-  $keyword = $_GET["keyword"];
-}
-$sql = "SELECT * FROM `article` WHERE upper(title) LIKE upper(\"%"  . $keyword . "%\") OR
-upper(`foreword`) LIKE upper(\"%"  . $keyword . "%\") OR
-upper(`author`) LIKE upper(\"%"  . $keyword . "%\") OR
-upper(`classify`) LIKE upper(\"%"  . $keyword . "%\") OR
-upper(`content`) LIKE upper(\"%"  . $keyword . "%\") OR
-upper(`label`) LIKE upper(\"%"  . $keyword . "%\")";
-$result = $conn->query($sql);
-$page_num  = $result->num_rows;
-$num = $page_num;
-if ($num != 0 && $keyword != "") {
-  if ($page_num / 5 > (int)($page_num / 5))
-    $page_num =  (int)($page_num / 5) + 1;
-  else
-    $page_num = (int)$page_num / 5;
-  $page = isset($_GET['page']) ? $_GET['page'] : 1;
-}
-?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -32,21 +7,32 @@ if ($num != 0 && $keyword != "") {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?php echo "搜索内容" ?> - | 喵窝 | 我的个人博客 | Powered By Siner</title>
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css/nprogress.css">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-  <link rel="apple-touch-icon-precomposed" href="images/icon/icon.png">
-  <link rel="shortcut icon" href="images/icon/favicon.ico">
-  <script src="js/jquery-2.1.4.min.js"></script>
-  <script src="js/nprogress.js"></script>
-  <script src="js/jquery.lazyload.min.js"></script>
-  <!--[if gte IE 9]>
-  <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
-  <script src="js/html5shiv.min.js" type="text/javascript"></script>
-  <script src="js/respond.min.js" type="text/javascript"></script>
-  <script src="js/selectivizr-min.js" type="text/javascript"></script>
-<![endif]-->
+  <?php
+  include 'tool.php';
+  $keyword = "";
+  if (isset($_POST["keyword"])) {
+    $keyword = $_POST["keyword"];
+  } else if (isset($_GET["keyword"])) {
+    $keyword = $_GET["keyword"];
+  }
+  $sql = "SELECT * FROM `article` WHERE upper(title) LIKE upper(\"%"  . $keyword . "%\") OR
+upper(`foreword`) LIKE upper(\"%"  . $keyword . "%\") OR
+upper(`author`) LIKE upper(\"%"  . $keyword . "%\") OR
+upper(`classify`) LIKE upper(\"%"  . $keyword . "%\") OR
+upper(`content`) LIKE upper(\"%"  . $keyword . "%\") OR
+upper(`label`) LIKE upper(\"%"  . $keyword . "%\")";
+  $result = $conn->query($sql);
+  $page_num  = $result->num_rows;
+  $num = $page_num;
+  if ($num != 0 && $keyword != "") {
+    if ($page_num / 5 > (int)($page_num / 5))
+      $page_num =  (int)($page_num / 5) + 1;
+    else
+      $page_num = (int)$page_num / 5;
+    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+  }
+  ?>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
 <body class="user-select">
@@ -127,10 +113,7 @@ if ($num != 0 && $keyword != "") {
       })
     });
   </script>
-  <?php
-  include 'footer.php';
-  include 'modal.php';
-  ?>
+  <?php include 'footer.php' ?>
 </body>
 
 </html>

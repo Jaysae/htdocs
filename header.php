@@ -6,6 +6,7 @@ if (isset($_SESSION['username'])) {
     $result = $conn->query($sql);
     $result->num_rows > 0;
     $row = $result->fetch_assoc();
+    $uid = $row['id'];
 }
 function Active($var, $id)
 {
@@ -48,7 +49,7 @@ function Active($var, $id)
             </div>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar" aria-expanded="false"> <span class="sr-only"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                <h1 class="logo hvr-bounce-in"><a href="/" title=""><img src="images/MiaoWo.png" alt=""></a></h1>
+                <h1 class="logo hvr-bounce-in"><a href="/" title=""><img src="/images/MiaoWo.png" alt=""></a></h1>
             </div>
             <div class="collapse navbar-collapse" id="header-navbar">
                 <ul class="nav navbar-nav navbar-right">
@@ -63,8 +64,7 @@ function Active($var, $id)
                         <?php
                     }
                 }
-                ?>
-                    <li><a href="/Admin">管理系统</a></li>
+                if (isset($uid) && $uid == 1) { ?><li><a href="/Admin">管理系统</a></li><?php } ?>
                 </ul>
                 <form class="navbar-form visible-xs" action="/Search" method="post">
                     <div class="input-group">

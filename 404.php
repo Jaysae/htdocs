@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>404错误！很抱歉，您要找的页面不存在 - | 喵窝 | 我的个人博客 | Powered By Siner</title>
   <?php include 'tool.php' ?>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
   <style type="text/css">
     .panel {
       padding: 80px 20px 0px;
@@ -67,15 +68,12 @@
         <h2>
           <strong>404错误！很抱歉，您要找的页面不存在</strong>
         </h2>
-        <div class="padding-big"> <a href="index.php" class="btn btn-primary">返回首页</a></div>
+        <div class="padding-big"> <a href="/index.php" class="btn btn-primary">返回首页</a></div>
       </div>
     </div>
   </section>
   </section>
-  <?php
-  include 'footer.php';
-  include 'modal.php';
-  ?>
+  <?php include 'footer.php' ?>
 </body>
 
 </html>

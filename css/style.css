@@ -2047,6 +2047,9 @@ color:#FFF;
 	border-bottom: 1px solid #EEE;
 	background-color: #FFF;
 }
+.pagemenu li a.active{
+	color: #3399CC;
+}
 .pagemenu li a:hover {
 	color: #3399CC;
 }

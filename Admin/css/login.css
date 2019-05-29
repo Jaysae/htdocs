@@ -19,15 +19,8 @@ body {
 	-o-transition: all 0.8s ease-in-out;
 	-ms-transition: all 0.8s ease-in-out;
 	transition: all 0.8s ease-in-out;
-	-moz-transform: rotate(360deg);
-	-webkit-transform: rotate(360deg);
-	-o-transform: rotate(360deg);
-	-ms-transform: rotate(360deg);
-	transform: rotate(360deg);
-}
-.siteIcon img:active {
-	-webkit-transform: scale(1.05);
-	transform: scale(1.05);
+	-webkit-transform: scale(1.15);
+	transform: scale(1.15);
 	-webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
 	transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
 }

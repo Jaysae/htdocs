@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>读者墙 - | 喵窝 | 我的个人博客 | Powered By Siner</title>
   <?php include 'tool.php'; ?>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
 <body class="user-select">
@@ -17,7 +18,7 @@
       <div class="pagemenus">
         <ul class="pagemenu">
           <li><a href="tags.php">标签云</a></li>
-          <li><a href="readers.php">读者墙</a></li>
+          <li><a class="active" href="readers.php">读者墙</a></li>
           <li><a href="links.php">友情链接</a></li>
         </ul>
       </div>
@@ -61,29 +62,10 @@
           if ($i >= 4) $i = 4;
           else $i++;
         } ?>
-        <!-- <a class="item-readers item-readers-1" target="_blank" href="" rel="nofollow">
-            <h4>【金牌读者】<small>评论：123</small></h4>
-            <img class="avatar" height="36" width="36" src="images/icon/icon.png" alt=""><strong>异清轩</strong>http://www.ylsat.com/
-          </a>
-          <a class="item-readers item-readers-2" target="_blank" href="" rel="nofollow">
-            <h4>【银牌读者】<small>评论：12</small></h4>
-            <img class="avatar" height="36" width="36" src="images/icon/icon.png" alt=""><strong>异清轩</strong>http://www.ylsat.com/
-          </a>
-          <a class="item-readers item-readers-3" target="_blank" href="" rel="nofollow">
-            <h4>【铜牌读者】<small>评论：8</small></h4>
-            <img class="avatar" height="36" width="36" src="images/icon/icon.png" alt=""><strong>异清轩</strong>http://www.ylsat.com/
-          </a>
-          <a class="item-readers item-readers-4" target="_blank" href="" rel="nofollow">
-            <h4>【普通读者】<small>评论：1</small></h4>
-            <img class="avatar" height="36" width="36" src="images/icon/icon.png" alt=""><strong>异清轩</strong>http://www.ylsat.com/
-          </a> -->
       </div>
     </div>
   </section>
-  <?php
-  include 'footer.php';
-  include 'modal.php';
-  ?>
+  <?php include 'footer.php' ?>
 </body>
 
 </html>

@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>友情链接 - | 喵窝 | 我的个人博客 | Powered By Siner</title>
     <?php include 'tool.php'; ?>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
 <body class="user-select">
@@ -18,7 +19,7 @@
                 <ul class="pagemenu">
                     <li><a href="tags.php">标签云</a></li>
                     <li><a href="readers.php">读者墙</a></li>
-                    <li><a href="links.php">友情链接</a></li>
+                    <li><a class="active" href="links.php">友情链接</a></li>
                 </ul>
             </div>
         </div>
@@ -46,10 +47,7 @@
             </ul>
         </div>
     </section>
-    <?php
-    include 'footer.php';
-    include 'modal.php';
-    ?>
+    <?php include 'footer.php' ?>
 </body>
 <?php
 function InputImage($url)

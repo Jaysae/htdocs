@@ -17,6 +17,7 @@
         $page_num = (int)$page_num / 5;
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
     ?>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
 <body class="user-select">
@@ -111,8 +112,7 @@
             });
         });
     </script>
-    <?php include 'footer.php';
-    include 'modal.php' ?>
+    <?php include 'footer.php' ?>
 </body>
 
 </html>
