@@ -63,7 +63,7 @@
   include 'header.php'
   ?>
   <section class="container">
-    <div class="panel" class="error_404">
+    <div class="panel">
       <div class="text-center">
         <h2>
           <strong>404错误！很抱歉，您要找的页面不存在</strong>
