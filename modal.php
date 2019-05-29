@@ -6,7 +6,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="WeChatModalLabel" style="cursor:default;">微信扫一扫</h4>
       </div>
-      <div class="modal-body" style="text-align:center"> <img src="images/weixin.png" alt="" style="cursor:pointer" /> </div>
+      <div class="modal-body" style="text-align:center;cursor:pointer"> <img src="images/weixin.png" alt="" width="200px" height="200" /> </div>
     </div>
   </div>
 </div>
