@@ -53,7 +53,8 @@
       </ul>
     </div>
   </section>
-  <?php include 'footer.php' ?>
+  <?php include 'footer.php';
+  include 'live2d.php' ?>
 </body>
 
 </html>

@@ -63,7 +63,7 @@
   include 'header.php'
   ?>
   <section class="container">
-    <div class="panel">
+    <div class="panel" class="error_404">
       <div class="text-center">
         <h2>
           <strong>404错误！很抱歉，您要找的页面不存在</strong>
@@ -73,7 +73,8 @@
     </div>
   </section>
   </section>
-  <?php include 'footer.php' ?>
+  <?php include 'footer.php';
+  include 'live2d.php' ?>
 </body>
 
 </html>

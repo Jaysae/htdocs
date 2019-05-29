@@ -71,7 +71,7 @@ upper(`label`) LIKE upper(\"%"  . $keyword . "%\")";
                 ?>
                 <article class="excerpt excerpt-<?php echo $row['id'] ?>"><a class="focus" href="article.php?<?php echo $row['id'] ?>" title=""><img class="thumb" data-original="<?php echo $row['image'] ?>" src="<?php echo $row['image'] ?>" alt=""></a>
                   <header><a class="cat" href="program"><?php echo $row['classify'] ?><i></i></a>
-                    <h2><a href="article.php" title=""><?php echo $row['title'] ?></a></h2>
+                    <h2><a href="article.php" class="isArticle"><?php echo $row['title'] ?></a></h2>
                   </header>
                   <p class="meta">
                     <time class="time"><i class="glyphicon glyphicon-time"></i><?php echo $row['date'] ?></time>

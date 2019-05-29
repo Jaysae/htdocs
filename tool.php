@@ -2,6 +2,7 @@
 <link rel="stylesheet" type="text/css" href="/css/iziToast.min.css">
 <link rel="stylesheet" type="text/css" href="/css/nprogress.css">
 <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/live2d/css/live2d.css" />
 <link rel="apple-touch-icon-precomposed" href="/images/icon.png">
 <link rel="shortcut icon" href="/favicon.ico">
 <script src="/js/jquery-2.1.4.min.js"></script>

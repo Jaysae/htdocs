@@ -73,7 +73,7 @@
             if ($result->num_rows > 0) {
               while ($row = $result->fetch_assoc()) {
                 ?>
-                <li><a href="article.php?id=<?php echo $row['id'] ?>"><?php echo $row['title'] ?></a></li>
+                <li><a href="article.php?id=<?php echo $row['id'] ?>" class="isArticle"><?php echo $row['title'] ?></a></li>
               <?php
             }
           }
@@ -206,7 +206,8 @@
       <?php include 'RightMenu.php' ?>
     </aside>
   </section>
-  <?php include 'footer.php' ?>
+  <?php include 'footer.php';
+  include 'live2d.php' ?>
   <script src="js/jquery.qqFace.js"></script>
   <script type="text/javascript">
     function CanClick(str) {

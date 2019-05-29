@@ -75,7 +75,7 @@
 <div class="widget widget_search">
     <form class="navbar-form" action="search.php" method="post">
         <div class="input-group">
-            <input type="text" name="keyword" class="form-control" size="35" placeholder="请输入关键字" maxlength="15" autocomplete="off" required oninvalid="setCustomValidity('请输入搜索内容')" oninput="setCustomValidity('')">
+            <input type="text" name="keyword" class="form-control searchbox" size="35" placeholder="请输入关键字" maxlength="15" autocomplete="off" required oninvalid="setCustomValidity('请输入搜索内容')" oninput="setCustomValidity('')">
             <span class="input-group-btn">
                 <button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
             </span> </div>
