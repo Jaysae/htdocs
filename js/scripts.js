@@ -217,7 +217,8 @@ $(function () {
         var commentButton = $("#comment-submit");
         var promptBox = $('.comment-prompt');
         var promptText = $('.comment-prompt-text');
-        var articleid = $('.articleid').val();
+        var articleId = $('.articleId').val();
+        var userId = $('.userId').val();
         promptBox.fadeIn(400);
         if (commentContent.val() === '') {
             promptText.text('请留下您的评论');
@@ -228,39 +229,28 @@ $(function () {
         promptText.text('正在提交...');
         $.ajax({
             type: "POST",
-            url: "test.php?id=" + articleid,
-            //url:"/Article/comment/id/" + articleid,   
-            data: "commentContent=" + replace_em(commentContent.val()),
+            url: "ajax.php",
+            data: "function=Comment&age=" + articleId + "," + userId + "," + commentContent.val(),
             cache: false, //不缓存此页面  
             success: function (data) {
-                alert(data);
-                promptText.text('评论成功!');
-                commentContent.val(null);
-                $(".commentlist").fadeIn(300);
-                /*$(".commentlist").append();*/
-                commentButton.attr('disabled', false);
-                commentButton.removeClass('disabled');
+                if (data == "true") {
+                    promptText.text('评论成功!');
+                    commentContent.val(null);
+                    $(".commentList").animate({ opacity: "0" }, 500);
+                    $(".commentList").delay(500).animate({ opacity: "1" }, 500);
+                    commentButton.attr('disabled', false);
+                    commentButton.removeClass('disabled');
+                }
             }
         });
-        /*$(".commentlist").append(replace_em(commentContent.val()));*/
         promptBox.fadeOut(100);
         return false;
     });
 });
-//对文章内容进行替换
-function replace_em(str) {
-    str = str.replace(/\</g, '&lt;');
-    str = str.replace(/\>/g, '&gt;');
-    str = str.replace(/\[em_([0-9]*)\]/g, '<img src="/images/arclist/$1.gif" border="0" />');
-    return str;
-}
 
-function check() {
-    console.log("data");
-    return false;
-}
-
-$("#login_btn").click(function () {
+/*登录*/
+$("#loginModalForm").submit(function (event) {
+    event.preventDefault();
     var username = $("#loginModalUserName").val();
     var password = $("#loginModalUserPwd").val();
     $.ajax({
@@ -269,11 +259,111 @@ $("#login_btn").click(function () {
         data: "function=Login&age=" + username + "," + password,
         cache: false, //不缓存此页面  
         success: function (data) {
-            if (data == "true") {
-
+            if (data != "true") {
+                iziToast.error({
+                    title: '登录失败',
+                    message: '用户名或密码错误',
+                    position: 'topCenter',
+                    transitionIn: 'fadeInDown',
+                    timeout: 2000,
+                    zindex: 1100,
+                    pauseOnHover: false,
+                    onOpening: function () {
+                        $('#loginModalUserName').focus();
+                    },
+                });
             } else {
-
+                location.reload();
             }
+        }
+    });
+})
+
+/*注册*/
+$("#regModalForm").submit(function (event) {
+    event.preventDefault();
+    var username = $("#regModalUserName").val();
+    var password = $("#regModalUserPwd").val();
+    var password_a = $("#regModalUserPwdAgain").val();
+    if (password == username) {
+        iziToast.error({
+            title: '什么？！',
+            message: '您怎么会想到使用一模一样的用户名和密码！',
+            position: 'topCenter',
+            transitionIn: 'fadeInDown',
+            zindex: 1100,
+            pauseOnHover: false,
+            onOpening: function () {
+                $('#regModalUserPwd').focus();
+            },
+        });
+        return;
+    }
+    if (password != password_a) {
+        iziToast.error({
+            title: '错误',
+            message: '两次输入的密码不一致',
+            position: 'topCenter',
+            transitionIn: 'fadeInDown',
+            zindex: 1100,
+            pauseOnHover: false,
+            onOpening: function () {
+                $('#regModalUserPwdAgain').focus();
+            },
+        });
+        return;
+    }
+    if (!$('#regModalProtocol').prop('checked')) {
+        iziToast.error({
+            title: '总而言之',
+            message: '您必须勾选“我同意 用户协议”',
+            position: 'topCenter',
+            transitionIn: 'fadeInDown',
+            timeout: 2000,
+            zindex: 1100,
+            pauseOnHover: false,
+            onOpening: function () {
+                $('#regModalUserPwdAgain').focus();
+                $('#regModalProtocol').prop('checked', 'true');
+            },
+        });
+        return;
+    }
+    $.ajax({
+        type: "POST",
+        url: "ajax.php",
+        data: "function=Reg&age=" + username + "," + password,
+        cache: false, //不缓存此页面  
+        success: function (data) {
+            if (data != "true") {
+                iziToast.error({
+                    title: '注册失败',
+                    message: data,
+                    position: 'topCenter',
+                    transitionIn: 'fadeInDown',
+                    zindex: 1100,
+                    pauseOnHover: false,
+                    onOpening: function () {
+                        $('#regModalUserName').focus();
+                    },
+                });
+            } else {
+                location.reload();
+            }
+        }
+    });
+})
+
+/*注销*/
+$("#logoutButton").click(function () {
+    $.ajax({
+        type: "POST",
+        url: "ajax.php",
+        data: "function=Logout",
+        cache: false, //不缓存此页面  
+        success: function (data) {
+            if (data == "true")
+                location.reload();
         }
     });
 })

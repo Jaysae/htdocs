@@ -1,21 +1,3 @@
-<?php include 'tool.php';
-if (isset($_GET['id'])) {
-  $sql = "SELECT * FROM classify where id = " . $_GET['id'];
-  $result = $conn->query($sql);
-  if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-  }
-}
-$name = $row['name'];
-$sql = "SELECT * FROM article where classify LIKE  '" . $name . "'";
-$result = $conn->query($sql);
-$page_num  = $result->num_rows;
-if ($page_num / 5 > (int)($page_num / 5))
-  $page_num =  (int)($page_num / 5) + 1;
-else
-  $page_num = (int)$page_num / 5;
-$page = isset($_GET['page']) ? $_GET['page'] : 1;
-?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -24,22 +6,25 @@ $page = isset($_GET['page']) ? $_GET['page'] : 1;
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?php echo "栏目标题" ?> - | 喵窝 | 我的个人博客 | Powered By Siner</title>
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css/nprogress.css">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-  <link rel="apple-touch-icon-precomposed" href="images/icon/icon.png">
-  <link rel="shortcut icon" href="images/icon/favicon.ico">
-  <script src="js/jquery-2.1.4.min.js"></script>
-  <script src="js/nprogress.js"></script>
-  <script src="js/jquery.lazyload.min.js"></script>
-  <!--[if gte IE 9]>
-        <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
-        <script src="js/html5shiv.min.js" type="text/javascript"></script>
-        <script src="js/respond.min.js" type="text/javascript"></script>
-        <script src="js/selectivizr-min.js" type="text/javascript"></script>
-      <![endif]-->
+  <?php include 'tool.php';
+  if (isset($_GET['id'])) {
+    $sql = "SELECT * FROM classify where id = " . $_GET['id'];
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+      $row = $result->fetch_assoc();
+    }
+  }
+  $name = $row['name'];
+  $sql = "SELECT * FROM article where classify LIKE  '" . $name . "'";
+  $result = $conn->query($sql);
+  $page_num  = $result->num_rows;
+  if ($page_num / 5 > (int)($page_num / 5))
+    $page_num =  (int)($page_num / 5) + 1;
+  else
+    $page_num = (int)$page_num / 5;
+  $page = isset($_GET['page']) ? $_GET['page'] : 1;
+  ?>
+  <title><?php echo $name ?> - | 喵窝 | 我的个人博客 | Powered By Siner</title>
 </head>
 
 <body class="user-select">

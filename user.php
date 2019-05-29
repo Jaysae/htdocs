@@ -10,12 +10,12 @@
 
 <body>
     <?php
-    echo "账号：" . "SinerSAMA" . "<br>";
-    echo "明文：" . "Siner5920" . "<br>";
+    echo "账号：" . "Jaysae777" . "<br>";
+    echo "明文：" . "Jaysae" . "<br>";
     $md5 =  md5(time() . mt_rand(1, 1000000));
     $md5 = substr($md5, 4, 4) . substr($md5, 12, 4);
     echo "偏移：" . $md5 . "<br>";
-    echo "密码：" . md5("Siner5920" . $md5) . "<br>";
+    echo "密码：" . md5("Jaysae" . $md5) . "<br>";
     echo "头像：" . "/images/My Siner.jpg" . "<br>";
     ?>
 </body>

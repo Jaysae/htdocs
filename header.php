@@ -1,5 +1,4 @@
 <?php
-include 'tool.php';
 session_start();
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
@@ -35,12 +34,13 @@ function Active($var, $id)
                 </ul>
                 <?php
                 if (isset($username)) { ?>
-                    <a href="#"><?php echo $username ?>，欢迎回来喵窝！</a>
+                    <a href="#">Hi,<?php echo $username ?></a>&nbsp;&nbsp;
+                    <a data-toggle="modal" data-target="#logoutModal" class="logout" rel="nofollow">注销</a>&nbsp;&nbsp;
                 <?php
             } else {
                 ?>
                     <a data-toggle="modal" data-target="#loginModal" class="login" rel="nofollow">Hi,请登录</a>&nbsp;&nbsp;
-                    <a href="javascript:;" class="register" rel="nofollow">我要注册</a>&nbsp;&nbsp;
+                    <a data-toggle="modal" data-target="#regModal" class="register" rel="nofollow">我要注册</a>&nbsp;&nbsp;
                 <?php
             }
             ?>

@@ -1,4 +1,3 @@
-<?php include 'tool.php'; ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -8,21 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>友情链接 - | 喵窝 | 我的个人博客 | Powered By Siner</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/nprogress.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-    <link rel="apple-touch-icon-precomposed" href="images/icon/icon.png">
-    <link rel="shortcut icon" href="images/icon/favicon.ico">
-    <script src="js/jquery-2.1.4.min.js"></script>
-    <script src="js/nprogress.js"></script>
-    <script src="js/jquery.lazyload.min.js"></script>
-    <!--[if gte IE 9]>
-  <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
-  <script src="js/html5shiv.min.js" type="text/javascript"></script>
-  <script src="js/respond.min.js" type="text/javascript"></script>
-  <script src="js/selectivizr-min.js" type="text/javascript"></script>
-<![endif]-->
+    <?php include 'tool.php'; ?>
 </head>
 
 <body class="user-select">

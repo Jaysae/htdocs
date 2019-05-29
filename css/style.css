@@ -605,10 +605,10 @@ color:#FFF;
 	float: left;
 	margin-left: -235px;
 	width: 220px;
+	overflow: hidden;
+	border-radius: 5px;
 }
 .excerpt .thumb {
-	border-radius: 5px;
-	width: 220px;
 	height: 150px;
 	overflow: hidden;
 }
@@ -827,8 +827,26 @@ color:#FFF;
 	word-wrap: break-word;
 	cursor: default;
 }
+.article-content .foreword{
+	background-color: #EEE;
+	font-size: 12px;
+	padding: 3px;
+	border-radius: 3px;
+	color: #aaa;
+	cursor: default;
+}
+.article-content .foreword span{
+	font-size: 12px;
+	padding: 3px;
+	color: #aaa;
+	cursor: default;
+	float: right;
+	position: relative;
+	top: -28px;
+	right: 3px;
+}
 .article-content img {
-	margin: 5px auto;
+	/* margin: 5px auto; */
 	display: block;
 	max-width: 100%;
 	height: auto;
@@ -967,11 +985,8 @@ color:#FFF;
 	-o-transition: all 0.8s ease-in-out;
 	-ms-transition: all 0.8s ease-in-out;
 	transition: all 0.8s ease-in-out;
-	-moz-transform: rotate(360deg);
-	-webkit-transform: rotate(360deg);
-	-o-transform: rotate(360deg);
-	-ms-transform: rotate(360deg);
-	transform: rotate(360deg);
+	opacity: .7;
+	filter: alpha(opacity=70);
 }
 .comment-box {
 	border: 2px solid #CCD4D9;
@@ -1108,7 +1123,7 @@ color:#FFF;
 #postcomments {
 	padding-bottom: 20px;
 }
-.commentlist {
+.commentList {
 	padding: 0;
 	margin: 0;
 	list-style: none;
@@ -1118,31 +1133,23 @@ color:#FFF;
 .comment-content {
 	border-bottom: #EEE 1px solid;
 }
+.comment-content svg{
+	width: 36px;
+	height: 36px;
+}
 .comment-content:hover {
 	opacity: .7;
 	filter: alpha(opacity=70);
 }
-.comment-content:hover img {
-	-webkit-transform: scale(1.05);
-	transform: scale(1.05);
-	-webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
-	transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
-}
-.comment-content:hover img.avatar {
+.comment-content:hover img.avatar , .comment-content:hover svg{
 	-moz-transition: all 0.8s ease-in-out;
 	-webkit-transition: all 0.8s ease-in-out;
 	-o-transition: all 0.8s ease-in-out;
 	-ms-transition: all 0.8s ease-in-out;
 	transition: all 0.8s ease-in-out;
-	-moz-transform: rotate(360deg);
-	-webkit-transform: rotate(360deg);
-	-o-transform: rotate(360deg);
-	-ms-transform: rotate(360deg);
-	transform: rotate(360deg);
 }
 .comment-f {
 	position: absolute;
-	top: 15px;
 	right: 0;
 	font-size: 16px;
 	color: #ccc;
@@ -1211,6 +1218,10 @@ color:#FFF;
 }
 .quotes .disabled {
 	cursor: not-allowed;
+}
+.quotes .disabled:hover {
+	color: #666;
+	background:#eeeeee;
 }
 .quotes .current {
 	background: #3399CC;
@@ -1326,7 +1337,6 @@ color:#FFF;
 }
 .widget-tabs .tab-content .centre div a span{
 	width: 42px;
-
 	float: left;
 	text-align: justify;
 	text-align-last: justify;
@@ -1963,10 +1973,10 @@ color:#FFF;
 .comment-f {
 	display: none;
 }
-.commentlist > .comment .children {
+.commentList > .comment .children {
 	margin-left: 0;
 }
-.commentlist > .comment.depth-1 > .children {
+.commentList > .comment.depth-1 > .children {
 	margin-left: 46px;
 }
 .comt-author {
@@ -2179,11 +2189,6 @@ color:#FFF;
 	-o-transition: all 0.8s ease-in-out;
 	-ms-transition: all 0.8s ease-in-out;
 	transition: all 0.8s ease-in-out;
-	-moz-transform: rotate(360deg);
-	-webkit-transform: rotate(360deg);
-	-o-transform: rotate(360deg);
-	-ms-transform: rotate(360deg);
-	transform: rotate(360deg);
 }
 .readers a.item-readers h4 {
 	color: #777;
@@ -2209,22 +2214,36 @@ color:#FFF;
 	color: #666;
 }
 /*登录模态框*/
-#loginModal .modal-dialog {
+.modal .modal-dialog {
 	max-width: 420px;
 	margin-top: 100px;
 }
-#loginModal h4 {
+.modal h4 {
 	cursor: default;
 	color: #3399CC;
 }
-#loginModal .modal-body {
+.modal .modal-body {
 	padding: 15px 30px;
 }
-#loginModal .modal-body label {
+.modal .modal-body label {
 	color: #555;
 	font-size: 15px;
 	font-weight: 500;
 }
-#loginModal .modal-body input {
+.modal .modal-body input {
 	color: #A0A0A0;
+}
+.modal .modal-body input[type=checkbox] {
+	width: 15px;
+	height: 15px;
+	color: #A0A0A0;
+	vertical-align:middle;
+	margin-top: 0px !important;
+}
+.modal .modal-body span {
+	vertical-align:middle;
+}
+.modal-open { 
+	overflow: inherit ;
+	padding-right: 0px !important;
 }

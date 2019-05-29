@@ -13,7 +13,8 @@
     echo "操作系统：<strong>" . get_os() . "</strong><br>";
     echo "浏览器：<strong>" . browse_info() . "</strong><br>";
     echo "Ip地址：<strong>" . getIp() . "</strong><br>";
-    echo "地址：<strong>" . getCity() . "</strong><br>";
+    // echo "地址：<strong>" . getCity() . "</strong><br>";
+    echo "当前时间是 " . date("Y-m-d H:i:s");
     ?>
 </body>
 
@@ -34,7 +35,7 @@ function getIp()
     return $cip == "::1" ? "127.0.0.1" : $cip;
 }
 
-function getCity($ip = '220.160.163.113') //获取地区
+function getCity($ip = '218.70.26.255') //获取地区
 {
     $url = "http://ip.taobao.com/service/getIpInfo.php?ip=" . $ip; //淘宝借口需要填写ip
     $ip = json_decode(file_get_contents($url), true);

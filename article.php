@@ -6,22 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?php echo "文章标题" ?> - | 喵窝 | 我的个人博客 | Powered By Siner</title>
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css/nprogress.css">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-  <link rel="apple-touch-icon-precomposed" href="images/icon/icon.png">
-  <link rel="shortcut icon" href="images/icon/favicon.ico">
-  <script src="js/jquery-2.1.4.min.js"></script>
-  <script src="js/nprogress.js"></script>
-  <script src="js/jquery.lazyload.min.js"></script>
-  <!--[if gte IE 9]>
-  <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
-  <script src="js/html5shiv.min.js" type="text/javascript"></script>
-  <script src="js/respond.min.js" type="text/javascript"></script>
-  <script src="js/selectivizr-min.js" type="text/javascript"></script>
-<![endif]-->
+  <?php include 'tool.php';
+  if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+  } else {
+    $id = 1;
+  }
+  $sql = "SELECT * FROM article WHERE id = '$id'";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0)
+    $row_A = $result->fetch_assoc();
+  ?>
+  <title><?php echo $row_A['title'] ?> - | 喵窝 | 我的个人博客 | Powered By Siner</title>
 </head>
 
 <body class="user-select single">
@@ -30,120 +26,182 @@
     <div class="content-wrap">
       <div class="content">
         <header class="article-header">
-          <h1 class="article-title"><a href="article.html">php如何判断一个日期的格式是否正确</a></h1>
-          <div class="article-meta"> <span class="item article-meta-time">
-              <time class="time" data-toggle="tooltip" data-placement="bottom" title="时间：2016-1-4 10:29:39"><i class="glyphicon glyphicon-time"></i> 2016-1-4 10:29:39</time>
-            </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="来源：第一PHP社区"><i class="glyphicon glyphicon-globe"></i> 第一PHP社区</span> <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="栏目：后端程序"><i class="glyphicon glyphicon-list"></i> <a href="program" title="">后端程序</a></span> <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="查看：120"><i class="glyphicon glyphicon-eye-open"></i> 共120人围观</span> <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="评论：0"><i class="glyphicon glyphicon-comment"></i>
-              0个不明物体</span> </div>
+          <h1 class="article-title"><a href=""><?php echo $row_A['title'] ?></a></h1>
+          <div class="article-meta">
+            <span class="item article-meta-time">
+              <time class="time" data-toggle="tooltip" data-placement="bottom" title="时间：<?php echo $row_A['date'] ?>">
+                <i class="glyphicon glyphicon-time"></i> <?php echo $row_A['date'] ?>
+              </time>
+            </span>
+            <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="作者：<?php echo $row_A['author'] ?>">
+              <i class="glyphicon glyphicon-globe"></i> <?php echo $row_A['author'] ?>
+            </span>
+            <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="栏目：<?php echo $row_A['classify'] ?>">
+              <i class="glyphicon glyphicon-list"></i>
+              <a href="search.php?keyword=<?php echo $row_A['classify'] ?>" title=""><?php echo $row_A['classify'] ?></a>
+            </span>
+            <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="查看：<?php echo $row_A['view'] ?>">
+              <i class="glyphicon glyphicon-eye-open"></i> 共<?php echo $row_A['view'] ?>人围观
+            </span>
+            <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="评论：0">
+              <i class="glyphicon glyphicon-comment"></i> 0个不明物体
+            </span>
+          </div>
         </header>
         <article class="article-content">
-          <p><img data-original="images/banner/banner_03.jpg" src="images/banner/banner_03.jpg" alt="" /></p>
-          <p> 用php获取上个月最后一天的时间，有两种方法，都非常简单，详细实现源码如下： </p>
-          <pre class="prettyprint lang-php">&lt;?php
-  date_default_timezone_set("PRC"); //设置时区
-  //方法一
-  $times = date("d") * 24 * 3600;
-  echo date("Y-m-d H:i:s", time()-$times);
-  echo '&lt;br/&gt;';
-  //方法二
-  $day = date('d');
-  echo date("Y-m-d H:i:s", strtotime(-$day.' day'));
-?&gt;</pre>
-          <p> 方法一是利用当前时间离本月初有多少时间，然后用当前时间减去这个时间差，就可以得到上月最后一天了。 </p>
-          <p> 方法二是先计算本月多少号，即离月初有多少天，然后用strtotime计算出$day天前的时间戳，也可以得到上个月的最后一天。 </p>
-          <p class="article-copyright hidden-xs">未经允许不得转载：<a href="">异清轩博客</a> » <a href="article.html">php如何判断一个日期的格式是否正确</a></p>
+          <p class="foreword">
+            <?php echo $row_A['foreword'] ?>
+            <br>
+            <span>------导读</span>
+          </p>
+          <p><img data-original="<?php echo $row_A['image'] ?>" src="<?php echo $row_A['image'] ?>" alt="" /></p>
+          <div><?php echo $row_A['content'] ?></div>
+          <p class="article-copyright hidden-xs">未经允许不得转载：
+            <a href="">异清轩博客</a> » <a href="article.html">php如何判断一个日期的格式是否正确</a>
+          </p>
         </article>
         <div class="article-tags">标签：<a href="" rel="tag">PHP</a></div>
         <div class="relates">
           <div class="title">
-            <h3>相关推荐</h3>
+            <h3>栏目热门推荐</h3>
           </div>
           <ul>
-            <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
-            <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
-            <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
-            <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
-            <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
-            <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
-            <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
-            <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
+            <?php
+            $sql = "SELECT * FROM article WHERE classify LIKE '" . $row_A['classify'] . "' ORDER BY article.view DESC LIMIT 0,7";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+              while ($row = $result->fetch_assoc()) {
+                ?>
+                <li><a href="article.php?id=<?php echo $row['id'] ?>"><?php echo $row['title'] ?></a></li>
+              <?php
+            }
+          }
+          ?>
           </ul>
         </div>
         <div class="title" id="comment">
-          <h3>评论 <small>抢沙发</small></h3>
+          <h3>评论
+            <?php if ($row_A['comment_off'] == null) { ?>
+              <small>抢沙发</small></h3>
+          <?php } ?>
         </div>
-        <!--<div id="respond">
-        <div class="comment-signarea">
-          <h3 class="text-muted">评论前必须登录！</h3>
-          <p> <a href="javascript:;" class="btn btn-primary login" rel="nofollow">立即登录</a> &nbsp; <a href="javascript:;" class="btn btn-default register" rel="nofollow">注册</a> </p>
-          <h3 class="text-muted">当前文章禁止评论</h3>
+        <div id="respond" <?php if ($row_A['comment_off'] == null && isset($_SESSION['username'])) echo "style='display:none;'" ?>>
+          <div class="comment-signarea">
+            <?php if (!isset($_SESSION['username'])) { ?>
+              <h3 class="text-muted">评论前必须登录！</h3>
+              <p>
+                <a data-toggle="modal" data-target="#loginModal" class="btn btn-primary login" rel="nofollow">立即登录</a> &nbsp;
+                <a data-toggle="modal" data-target="#regModal" class="btn btn-default register" rel="nofollow">注册</a>
+              </p>
+            <?php } ?>
+            <?php if ($row_A['comment_off'] != null) { ?>
+              <h3 class="text-muted">当前文章禁止评论</h3>
+            <?php } ?>
+          </div>
         </div>
-      </div>-->
-        <div id="respond">
+        <div id="respond" <?php if ($row_A['comment_off'] != null || !isset($_SESSION['username'])) echo "style='display:none;'" ?>>
           <form action="" method="post" id="comment-form">
             <div class="comment">
-              <div class="comment-title"><img class="avatar" src="images/icon/icon.png" alt="" /></div>
+              <?php
+              if (isset($_SESSION['username'])) {
+                $username = $_SESSION['username'];
+                $sql = "SELECT * FROM user_center WHERE username_t LIKE '$username'";
+                $result = $conn->query($sql);
+                $result->num_rows > 0;
+                $row = $result->fetch_assoc();
+              }
+              ?>
+              <div class="comment-title"><img class="avatar" src="<?php if (isset($_SESSION['username'])) echo $row['avatar']; ?>" alt="" /></div>
               <div class="comment-box">
-                <textarea placeholder="您的评论可以一针见血" name="comment" id="comment-textarea" cols="100%" rows="3" tabindex="1"></textarea>
-                <div class="comment-ctrl"> <span class="emotion"><img src="images/face/5.png" width="20" height="20" alt="" />表情</span>
-                  <div class="comment-prompt"> <i class="fa fa-spin fa-circle-o-notch"></i> <span class="comment-prompt-text"></span> </div>
-                  <input type="hidden" value="1" class="articleid" />
-                  <button type="submit" name="comment-submit" id="comment-submit" tabindex="5" articleid="1">评论</button>
+                <textarea placeholder="您的评论可以一针见血" name="comment" id="comment-textarea" cols="100%" rows="3" tabindex="1" maxlength="300"></textarea>
+                <div class="comment-ctrl">
+                  <span class="emotion" style='display:none;'>
+                    <img src="images/face/5.png" width="20" height="20" alt="" />表情
+                  </span>
+                  <div class="comment-prompt">
+                    <i class="fa fa-spin fa-circle-o-notch"></i>
+                    <span class="comment-prompt-text"></span>
+                  </div>
+                  <input type="hidden" value="<?php echo $row_A['id'] ?>" class="articleId" />
+                  <input type="hidden" value="<?php echo $row['id'] ?>" class="userId" />
+                  <button type="submit" name="comment-submit" id="comment-submit" tabindex="5">评论</button>
                 </div>
               </div>
             </div>
           </form>
         </div>
         <div id="postcomments">
-          <ol class="commentlist">
-            <li class="comment-content"><span class="comment-f">#1</span>
-              <div class="comment-avatar"><img class="avatar" src="images/icon/icon.png" alt="" /></div>
-              <div class="comment-main">
-                <p>来自<span class="address">河南郑州</span>的用户<span class="time">(2016-01-06)</span><br />
-                  这是匿名评论的内容这是匿名评论的内容，这是匿名评论的内容这是匿名评论的内容这是匿名评论的内容这是匿名评论的内容这是匿名评论的内容这是匿名评论的内容。</p>
-              </div>
-            </li>
+          <ol class="commentList">
+            <?php
+            $id_a = $row_A['id'];
+            $sql = "SELECT comment.id,comment.content,comment.date,user_center.username_t,user_center.avatar,user_center.login_city 
+            FROM comment INNER JOIN user_center ON comment.user_id = user_center.id
+            WHERE comment.article_id = '$id_a' ORDER BY comment.date ASC";
+            $result = $conn->query($sql);
+            $page_num  = $result->num_rows;
+            if ($page_num / 5 > (int)($page_num / 5))
+              $page_num =  (int)($page_num / 5) + 1;
+            else
+              $page_num = (int)$page_num / 5;
+            $page = isset($_GET['page']) ? $_GET['page'] : 1;
+            $sql = "SELECT comment.id,comment.content,comment.date,user_center.username_t,user_center.avatar,user_center.login_city 
+            FROM comment INNER JOIN user_center ON comment.user_id = user_center.id
+            WHERE comment.article_id = '$id_a' ORDER BY comment.date ASC LIMIT " . ($page - 1) * 5 . ",5";
+            $result = $conn->query($sql);
+            $i = 1;
+            function City($str)
+            {
+              $len = strlen($str) - 6;
+              return substr($str, 0, $len);
+            }
+            if ($result->num_rows > 0) {
+              while ($row = $result->fetch_assoc()) {
+                ?>
+                <li class="comment-content"><span class="comment-f">#<?php echo ($page - 1) * 5 + $i ?></span>
+                  <div class="comment-avatar">
+                    <?php if ($row['avatar'] != "") { ?>
+                      <img class="avatar" src="<?php echo $row['avatar'] ?>" alt="" />
+                    <?php } else { ?>
+                      <svg data-jdenticon-value="<?php echo $row['username_t'] ?>"></svg>
+                    <?php } ?>
+                  </div>
+                  <div class="comment-main">
+                    <p>
+                      来自<span class="address"><?php echo City($row['login_city']) ?></span>的
+                      <?php echo $row['username_t'] ?>
+                      <span class="time">(<?php echo $row['date'] ?>)</span><br />
+                      <?php echo $row['content'] ?>
+                    </p>
+                  </div>
+                </li>
+                <?php $i++;
+              }
+            } ?>
           </ol>
-
-          <div class="quotes"><span class="disabled">首页</span><span class="disabled">上一页</span><a class="current">1</a><a href="">2</a><span class="disabled">下一页</span><span class="disabled">尾页</span>
+          <div class="quotes">
+            <?php
+            quotes($row_A, $page, $page_num);
+            function quotes($row_A, $page, $page_num)
+            {
+              $echo = $page == 1 ? "<a class='disabled'" : "<a class='canClick'";
+              echo $echo . "href='article.php?id=" . $row_A['id'] . "&page=1'>" . "首页" . "</a>";
+              $temp = $page - 1 == 0 ? "1" : $page - 1;
+              echo $echo . "href='article.php?id=" . $row_A['id'] . "&page=" . $temp . "'>" . "上一页" . "</a>";
+              for ($i = 0; $i < $page_num; $i++) { ?>
+                <a <?php echo $page == (1 + $i) ? "class=\"current\"" : "class=\"canClick\"" ?> href="article.php?id=<?php echo $row_A['id'] ?>&page=<?php echo (1 + $i) ?>">
+                  <?php echo (1 + $i) ?>
+                </a>
+              <?php }
+            $echo = $page == $page_num ? "<a class='disabled'" : "<a class='canClick'";
+            $temp = $page + 1 > $page_num ? $page_num : $page + 1;
+            echo $echo . "href='article.php?id=" . $row_A['id'] . "&page=" . $temp . "'>" . "下一页" . "</a>";
+            echo $echo . "href='article.php?id=" . $row_A['id'] . "&page=" . $page_num . "'>" . "尾页" . "</a>";
+          } ?>
           </div>
         </div>
       </div>
     </div>
     <aside class="sidebar">
-      <div class="fixed">
-        <div class="widget widget-tabs">
-          <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#notice" aria-controls="notice" role="tab" data-toggle="tab">网站公告</a></li>
-            <li role="presentation"><a href="#centre" aria-controls="centre" role="tab" data-toggle="tab">会员中心</a></li>
-            <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">联系站长</a>
-            </li>
-          </ul>
-          <div class="tab-content">
-            <div role="tabpanel" class="tab-pane notice active" id="notice">
-              <ul>
-                <li>
-                  <time datetime="2016-01-04">01-04</time>
-                  <a href="" target="_blank">欢迎访问异清轩博客</a></li>
-                <li>
-                  <time datetime="2016-01-04">01-04</time>
-                  <a target="_blank" href="">在这里可以看到前端技术，后端程序，网站内容管理系统等文章，还有我的程序人生！</a></li>
-                <li>
-                  <time datetime="2016-01-04">01-04</time>
-                  <a target="_blank" href="">在这个小工具中最多可以调用五条</a></li>
-              </ul>
-            </div>
-            <div role="tabpanel" class="tab-pane centre" id="centre">
-              <h4>需要登录才能进入会员中心</h4>
-              <p> <a href="javascript:;" class="btn btn-primary">立即登录</a> <a href="javascript:;" class="btn btn-default">现在注册</a> </p>
-            </div>
-            <div role="tabpanel" class="tab-pane contact" id="contact">
-              <h2>Email:<br />
-                <a href="mailto:admin@ylsat.com" data-toggle="tooltip" data-placement="bottom" title="admin@ylsat.com">admin@ylsat.com</a></h2>
-            </div>
-          </div>
-        </div>
-      </div>
       <?php include 'RightMenu.php' ?>
     </aside>
   </section>
@@ -151,11 +209,61 @@
   include 'modal.php' ?>
   <script src="js/jquery.qqFace.js"></script>
   <script type="text/javascript">
+    function CanClick(str) {
+      $.ajax({
+        url: str,
+        context: $('commentList'),
+        success: function(data) {
+          commentList = $(data).find('.commentList').html();
+          quotes = $(data).find('.quotes').html();
+          $(".commentList,.quotes").animate({
+            opacity: "0"
+          }, 100);
+          $(".commentList").animate({
+            height: "375px"
+          }, 100);
+          setTimeout(function() {
+            $(".commentList").html(commentList);
+            $(".quotes").html(quotes);
+            jdenticon();
+            $('.disabled').click(function(event) {
+              event.preventDefault();
+            });
+            $('.current').click(function(event) {
+              event.preventDefault();
+            });
+            $('.canClick').click(function(event) {
+              str = $(this).attr('href');
+              CanClick(str);
+              event.preventDefault();
+            });
+            temp = $(".comment-content").length * 75;
+            $(".commentList").animate({
+              height: (temp + "px")
+            }, 200);
+            $(".commentList,.quotes").animate({
+              opacity: "1"
+            }, 500);
+          }, 500);
+        }
+      });
+    }
     $(function() {
       $('.emotion').qqFace({
         id: 'facebox',
         assign: 'comment-textarea',
         path: '/images/arclist/' //表情存放的路径
+      });
+      $('.disabled').click(function(event) {
+        event.preventDefault();
+      });
+      $('.current').click(function(event) {
+        event.preventDefault();
+      });
+      $('.canClick').click(function(event) {
+        str = $(this).attr('href');
+        CanClick(str);
+        event.preventDefault();
       });
     });
   </script>
