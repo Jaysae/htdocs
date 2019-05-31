@@ -67,7 +67,7 @@
             <form action="" method="post" autocomplete="off">
               <div class="form-group">
                 <label for="category-name">栏目名称</label>
-                <input type="text" id="category-name" name="name" class="form-control" placeholder="在此处输入栏目名称" required autocomplete="off" maxlength="8" oninvalid="setCustomValidity('请输入栏目名称')" oninput="setCustomValidity('')>
+                <input type="text" id="category-name" name="name" class="form-control" placeholder="在此处输入栏目名称" required autocomplete="off" maxlength="8" oninvalid="setCustomValidity('请输入栏目名称')" oninput="setCustomValidity('')">
                 <span class=" prompt-text">这将是它在站点上显示的名字。</span> </div>
               <button class="btn btn-primary" type="submit" name="submit">添加新栏目</button>
             </form>
