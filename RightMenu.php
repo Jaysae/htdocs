@@ -12,11 +12,13 @@
                     $sql = "SELECT * FROM notice";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) { ?>
-                            <li>
-                                <time datetime="<?php echo $row['date'] ?>" title="该公告于 <?php echo $row['date'] ?> 发布。"><?php echo substr($row['date'], 6) ?></time>
-                                <a data-toggle="modal" data-target="#noticePopups" rel="nofollow" title="<?php echo $row['content'] ?>" class="<?php echo $row['date'] ?>"><?php echo $row['content'] ?></a></li>
-                        <?php }
+                        while ($row = $result->fetch_assoc()) {
+                            if ($row['content'] != "") { ?>
+                                <li>
+                                    <time datetime="<?php echo $row['date'] ?>" title="该公告于 <?php echo $row['date'] ?> 发布。"><?php echo substr($row['date'], 6) ?></time>
+                                    <a data-toggle="modal" data-target="#noticePopups" rel="nofollow" title="<?php echo $row['content'] ?>" class="<?php echo $row['date'] ?>"><?php echo $row['content'] ?></a></li>
+                            <?php }
+                    }
                 } ?>
                 </ul>
             </div>
@@ -28,8 +30,6 @@
                 $result->num_rows > 0;
                 $row = $result->fetch_assoc();
                 $id_C = $row['id'];
-                $sql = "SELECT * FROM comment WHERE user_id = $id_C";
-                $result = $conn->query($sql);
                 ?>
                 <div role="tabpanel" class="tab-pane centre" id="centre">
                     <?php if ($row['avatar'] != "") { ?>
@@ -45,7 +45,7 @@
                             <?php echo $row['login_browse'] ?></a>
                         <a href="#">
                             <span>评论数</span>：<i class="glyphicon glyphicon-comment"></i>
-                            <?php echo $result->num_rows ?>个自知之明</a>
+                            <?php echo $conn->query("SELECT COUNT(*) FROM comment WHERE user_id = $id_C")->fetch_assoc()['COUNT(*)'] ?>个自知之明</a>
                         <a href="#"><span>等级</span>：<i class="glyphicon glyphicon-<?php echo $id_C == "1" ? "king" : "pawn" ?>"></i>
                             </i> <?php echo $id_C == "1" ? "管理员" : "普通读者" ?></a>
                         <?php if (isset($glyphicon)) {
@@ -67,7 +67,7 @@
 
             <div role="tabpanel" class="tab-pane contact" id="contact">
                 <h2>Email:<br />
-                    <a href="mailto:2512624184@qq.com" data-toggle="tooltip" data-placement="bottom" title="2512624184@qq.com">2512624184@qq.com</a></h2>
+                    <a href="mailto:<?php echo WebSite_Email ?>" data-toggle="tooltip" data-placement="bottom" title="<?php echo WebSite_Email ?>"><?php echo WebSite_Email ?></a></h2>
             </div>
         </div>
     </div>

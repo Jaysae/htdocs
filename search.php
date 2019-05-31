@@ -1,3 +1,4 @@
+<?php include 'config.php' ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -6,7 +7,6 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?php echo "搜索内容" ?> - | 喵窝 | 我的个人博客 | Powered By Siner</title>
   <?php
   include 'tool.php';
   $keyword = "";
@@ -21,17 +21,18 @@ upper(`author`) LIKE upper(\"%"  . $keyword . "%\") OR
 upper(`classify`) LIKE upper(\"%"  . $keyword . "%\") OR
 upper(`content`) LIKE upper(\"%"  . $keyword . "%\") OR
 upper(`label`) LIKE upper(\"%"  . $keyword . "%\")";
-  $result = $conn->query($sql);
-  $page_num  = $result->num_rows;
+  $page_num = $conn->query($sql)->num_rows;
   $num = $page_num;
   if ($num != 0 && $keyword != "") {
-    if ($page_num / 5 > (int)($page_num / 5))
-      $page_num =  (int)($page_num / 5) + 1;
+    $amount = 5;
+    if ($page_num / $amount > (int)($page_num / $amount))
+      $page_num =  (int)($page_num / $amount) + 1;
     else
-      $page_num = (int)$page_num / 5;
+      $page_num = (int)$page_num / $amount;
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
   }
   ?>
+  <title><?php echo $keyword == "" ? "Nothing" : $keyword ?> - | <?php echo WebSite_Title ?> | <?php echo WebSite_Subtitle ?> | Powered By <?php echo WebSite_Copyright ?></title>
   <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
@@ -49,10 +50,11 @@ upper(`label`) LIKE upper(\"%"  . $keyword . "%\")";
               <button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
             </span>
           </div>
-          <div class="more"><?php
-                            $str = "<a id=\"tips\">Null</a>";
-                            echo $keyword == "" ? str_replace('Null', '您未输入搜索内容！', $str) : ($num == 0 ? str_replace('Null', '抱歉，没有您想搜索的内容！', $str) : "")
-                            ?></div>
+          <div class="more">
+            <?php
+            $str = "<a id=\"tips\">Null</a>";
+            echo $keyword == "" ? str_replace('Null', '您未输入搜索内容！', $str) : ($num == 0 ? str_replace('Null', '抱歉，没有您想搜索的内容！', $str) : "")
+            ?></div>
         </form>
       </div>
       <div class="content-wrap">
@@ -64,7 +66,7 @@ upper(`label`) LIKE upper(\"%"  . $keyword . "%\")";
           upper(`author`) LIKE upper(\"%"  . $keyword . "%\") OR
           upper(`classify`) LIKE upper(\"%"  . $keyword . "%\") OR
           upper(`content`) LIKE upper(\"%"  . $keyword . "%\") OR
-          upper(`label`) LIKE upper(\"%"  . $keyword . "%\") LIMIT " . ($page - 1) * 5 . ",5";
+          upper(`label`) LIKE upper(\"%"  . $keyword . "%\") LIMIT " . ($page - 1) * $amount . "," . $amount . "";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
               while ($row = $result->fetch_assoc()) {

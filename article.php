@@ -1,3 +1,4 @@
+<?php include 'config.php' ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -18,7 +19,7 @@
     $row_A = $result->fetch_assoc();
   ?>
   <link rel="stylesheet" type="text/css" href="/css/style.css">
-  <title><?php echo $row_A['title'] ?> - | 喵窝 | 我的个人博客 | Powered By Siner</title>
+  <title><?php echo $row_A['title'] ?> - | <?php echo WebSite_Title ?> | <?php echo WebSite_Subtitle ?> | Powered By <?php echo WebSite_Copyright ?></title>
 </head>
 
 <body class="user-select single">
@@ -135,24 +136,26 @@
           <ol class="commentList">
             <?php
             $id_a = $row_A['id'];
-            $sql = "SELECT comment.id,comment.content,comment.date,user_center.username_t,user_center.avatar,user_center.login_city 
-            FROM comment INNER JOIN user_center ON comment.user_id = user_center.id
-            WHERE comment.article_id = '$id_a' ORDER BY comment.date ASC";
-            $result = $conn->query($sql);
-            $page_num  = $result->num_rows;
-            if ($page_num / 5 > (int)($page_num / 5))
-              $page_num =  (int)($page_num / 5) + 1;
+            $sql = "SELECT COUNT(*) FROM comment INNER JOIN user_center ON comment.user_id = user_center.id WHERE comment.article_id = '$id_a' ORDER BY comment.date ASC";
+            $page_num = $conn->query($sql)->fetch_assoc()['COUNT(*)'];
+            $amount = 5;
+            if ($page_num / $amount > (int)($page_num / $amount))
+              $page_num =  (int)($page_num / $amount) + 1;
             else
-              $page_num = (int)$page_num / 5;
+              $page_num = (int)$page_num / $amount;
             $page = isset($_GET['page']) ? $_GET['page'] : 1;
             $sql = "SELECT comment.id,comment.content,comment.date,user_center.username_t,user_center.avatar,user_center.login_city 
             FROM comment INNER JOIN user_center ON comment.user_id = user_center.id
-            WHERE comment.article_id = '$id_a' ORDER BY comment.date ASC LIMIT " . ($page - 1) * 5 . ",5";
+            WHERE comment.article_id = '$id_a' ORDER BY comment.date ASC LIMIT " . ($page - 1) * $amount . "," . $amount . "";
             $result = $conn->query($sql);
             $i = 1;
             function City($str)
             {
-              $len = strlen($str) - 6;
+              if (substr($str, 0, 1) == "X") {
+                $len = strlen($str) - 12;
+                return substr($str, 0, $len);
+              }
+              $len = strlen($str) - 7;
               return substr($str, 0, $len);
             }
             if ($result->num_rows > 0) {
@@ -168,8 +171,10 @@
                   </div>
                   <div class="comment-main">
                     <p>
-                      来自<span class="address"><?php echo City($row['login_city']) ?></span>的
-                      <?php echo $row['username_t'] ?>
+                      <?php if ($row['login_city'] != "") { ?>
+                        来自<span class="address"><?php echo City($row['login_city']) ?></span>的
+                      <?php }
+                    echo $row['username_t'] ?>
                       <span class="time">(<?php echo $row['date'] ?>)</span><br />
                       <?php echo $row['content'] ?>
                     </p>
@@ -227,10 +232,7 @@
             $(".commentList").html(commentList);
             $(".quotes").html(quotes);
             jdenticon();
-            $('.disabled').click(function(event) {
-              event.preventDefault();
-            });
-            $('.current').click(function(event) {
+            $('.disabled,.current').click(function(event) {
               event.preventDefault();
             });
             $('.canClick').click(function(event) {
@@ -255,10 +257,7 @@
         assign: 'comment-textarea',
         path: '/images/arclist/' //表情存放的路径
       });
-      $('.disabled').click(function(event) {
-        event.preventDefault();
-      });
-      $('.current').click(function(event) {
+      $('.disabled,.current').click(function(event) {
         event.preventDefault();
       });
       $('.canClick').click(function(event) {

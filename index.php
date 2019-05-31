@@ -1,3 +1,4 @@
+<?php include 'config.php' ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -6,16 +7,16 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>喵窝 - 我的个人博客 | Powered By Siner</title>
+    <title><?php echo WebSite_Title ?> - <?php echo WebSite_Subtitle ?> | Powered By <?php echo WebSite_Copyright ?></title>
     <?php include 'tool.php';
-    $sql = "SELECT * FROM article";
-    $result = $conn->query($sql);
-    $page_num  = $result->num_rows;
-    if ($page_num / 5 > (int)($page_num / 5))
-        $page_num =  (int)($page_num / 5) + 1;
+    $page_num = $conn->query("SELECT * FROM article")->num_rows;
+    $amount = 5;
+    if ($page_num / $amount > (int)($page_num / $amount))
+        $page_num =  (int)($page_num / $amount) + 1;
     else
-        $page_num = (int)$page_num / 5;
+        $page_num = (int)$page_num / $amount;
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
+    if ($page_num >= 2) $page_num = 2;
     ?>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
@@ -64,7 +65,7 @@
                 </div>
 
                 <?php
-                $sql = "SELECT * FROM article LIMIT " . ($page - 1) * 5 . ",5";
+                $sql = "SELECT * FROM article ORDER BY `article`.`date` DESC LIMIT " . ($page - 1) * $amount . "," . $amount;
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
@@ -88,12 +89,12 @@
                         <li class="prev-page"></li>
                         <?php for ($i = 0; $i < $page_num; $i++) { ?>
                             <li <?php echo $page == (1 + $i) ? "class=\"active\"" : "" ?>>
-                                <a href="index.php?page=<?php echo (1 + $i) ?>">
+                                <a href="index-<?php echo (1 + $i) ?>">
                                     <?php echo (1 + $i) ?>
                                 </a>
                             </li>
                         <?php } ?>
-                        <li class="next-page"><a href="index.php?page=<?php echo ($page + 1) > $page_num ? $page_num + 1 : ($page + 1) ?>">下一页</a></li>
+                        <li class="next-page"><a href="index-<?php echo ($page + 1) > $page_num ? $page_num + 1 : ($page + 1) ?>">下一页</a></li>
                         <li><span>共 <?php echo $page_num ?> 页</span></li>
                     </ul>
                 </nav>

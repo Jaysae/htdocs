@@ -60,7 +60,9 @@ function Active($var, $id)
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             ?>
-                            <li <?php Active("category.php?id=" . $row['id'], true); ?>><a href="category.php?id=<?php echo $row['id']; ?>"><?php echo $row['name']; ?></a></li>
+                            <li <?php Active("category.php?id=" . $row['id'], true);
+                                if (isset($page))
+                                    Active("category.php?id=" . $row['id'] . "&page=" . $page, true); ?>><a href="category-<?php echo $row['id']; ?>"><?php echo $row['name']; ?></a></li>
                         <?php
                     }
                 }

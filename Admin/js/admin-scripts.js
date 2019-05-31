@@ -8,7 +8,7 @@
     $('img').attr('draggable', 'false');
     $('a').attr('draggable', 'false');
 })();
- 
+
 //设置Cookie
 function setCookie(name, value, time) {
     var strsec = getsec(time);
@@ -27,7 +27,7 @@ function getsec(str) {
         return str1 * 24 * 60 * 60 * 1000;
     }
 }
- 
+
 //获取Cookie
 function getCookie(name) {
     var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
@@ -38,38 +38,38 @@ function getCookie(name) {
     }
 }
 
-var checkall=document.getElementsByName("checkbox[]");  
+var checkall = document.getElementsByName("checkbox[]");
 //全选
-function select(){
-	for(var $i=0;$i<checkall.length;$i++){  
-		checkall[$i].checked=true;  
-	}  
+function select() {
+    for (var $i = 0; $i < checkall.length; $i++) {
+        checkall[$i].checked = true;
+    }
 };
 //反选
-function reverse(){
-	for(var $i=0;$i<checkall.length;$i++){  
-		if(checkall[$i].checked){  
-			checkall[$i].checked=false;  
-		}else{  
-			checkall[$i].checked=true;  
-		}  
-	}  
-}     
+function reverse() {
+    for (var $i = 0; $i < checkall.length; $i++) {
+        if (checkall[$i].checked) {
+            checkall[$i].checked = false;
+        } else {
+            checkall[$i].checked = true;
+        }
+    }
+}
 //全不选     
-function noselect(){ 
-	for(var $i=0;$i<checkall.length;$i++){  
-		checkall[$i].checked=false;  
-	}  
-} 
- 
+function noselect() {
+    for (var $i = 0; $i < checkall.length; $i++) {
+        checkall[$i].checked = false;
+    }
+}
+
 //IE6-9禁止用户选中文本
 /*document.body.onselectstart = document.body.ondrag = function () {
     return false;
 };*/
- 
+
 //启用工具提示
 $('[data-toggle="tooltip"]').tooltip();
- 
+
 
 //禁止右键菜单
 /*window.oncontextmenu = function(){
@@ -120,12 +120,104 @@ $('[data-toggle="tooltip"]').tooltip();
 		return false;
 	}
 }; */
+/*登录*/
+$("#loginModalForm").submit(function (event) {
+    event.preventDefault();
+    var username = $("#userName").val();
+    var password = $("#userPwd").val();
+    var isThis = $(this);
+    isThis.find('.comment-prompt').show();
+    isThis.find('.comment-prompt-text').hide();
+    isThis.find('input[type=text]').attr("disabled", true);
+    isThis.find('input[type=password]').attr("disabled", true);
+    $('.footer').hide();
+    $.ajax({
+        type: "POST",
+        url: "/ajax.php",
+        data: "function=Login&age=" + username + "," + password + ",admin",
+        cache: false, //不缓存此页面  
+        success: function (data) {
+            if (data != "true") {
+                isThis.find('.comment-prompt').hide();
+                isThis.find('.comment-prompt-text').show();
+                isThis.find('input[type=text]').attr("disabled", false);
+                isThis.find('input[type=password]').attr("disabled", false);
+                $('.footer').show();
+                mes = data == "NoAdmin" ? "此账号不具备管理员权限！即将返回首页！" : "用户名或密码错误";
+                iziToast.error({
+                    title: '登录失败',
+                    message: mes,
+                    position: 'topCenter',
+                    transitionIn: 'fadeInDown',
+                    timeout: 2000,
+                    zindex: 1100,
+                    pauseOnHover: false,
+                    onOpening: function () {
+                        $('#loginModalUserName').focus();
+                    },
+                });
+                if (data == "NoAdmin") {
+                    setTimeout(function () { window.location.replace("/"); }, 2468);
+                }
+            } else {
+                window.location.replace("/Admin")
+            }
+        }
+    });
+})
 
-//Console
-try {
-    if (window.console && window.console.log) {
-        console.log("\n欢迎访问异清轩博客！\n\n在本站可以看到前端技术，后端程序，网站内容管理系统等文章；\n\n还有我的程序人生！！！\n");
-        console.log("\n请记住我们的网址：%c www.ylsat.com", "color:red");
-        console.log("\nPOWERED BY WY ALL RIGHTS RESERVED");
-    }
-} catch (e) {};
+/*注销*/
+$("#logoutButton").click(function () {
+    $.ajax({
+        type: "POST",
+        url: "/ajax.php",
+        data: "function=Logout",
+        cache: false, //不缓存此页面  
+        success: function (data) {
+            if (data == "true")
+                window.location.replace("/")
+        }
+    });
+})
+
+/*设置*/
+$("#setting").submit(function (event) {
+    event.preventDefault();
+    var title = $("input[name=title]").val();
+    var subtitle = $("input[name=subtitle]").val();
+    var Url = $("input[name=Url]").val();
+    var Keywords = $("input[name=Keywords]").val();
+    var Description = $("textarea[name=Description]").text();
+    var email = $("input[name=email]").val();
+    var icp = $("input[name=ICP]").val();
+    var Copyright = $("input[name=Copyright]").val();
+    var LoginOut = $("input[name=LoginOut]").val();
+    $.ajax({
+        type: "POST",
+        url: "/ajax.php",
+        data: "function=Setting&age=" + title + "," + subtitle + "," + Url + "," + Keywords + "," + Description + "," + email + "," + icp + "," + Copyright + "," + LoginOut,
+        cache: false, //不缓存此页面  
+        success: function (data) {
+            if (data == "true") {
+                iziToast.success({
+                    title: '更新成功',
+                    message: '已成功更新配置文件!',
+                    position: 'bottomRight',
+                    transitionIn: 'bounceInLeft',
+                    zindex: 1100,
+                    pauseOnHover: false,
+                });
+                setTimeout(function () {
+                    iziToast.warning({
+                        title: '特殊提醒',
+                        message: '‘登录超时’在更新后很有可能无法影响到已登录的用户！',
+                        position: 'bottomRight',
+                        transitionIn: 'bounceInLeft',
+                        zindex: 1100,
+                        pauseOnHover: false,
+                    });
+                }, 500);
+            }
+        }
+    });
+})

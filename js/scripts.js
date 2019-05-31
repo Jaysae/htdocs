@@ -229,7 +229,7 @@ $(function () {
         promptText.text('正在提交...');
         $.ajax({
             type: "POST",
-            url: "ajax.php",
+            url: "/ajax.php",
             data: "function=Comment&age=" + articleId + "," + userId + "," + commentContent.val(),
             cache: false, //不缓存此页面  
             success: function (data) {
@@ -253,13 +253,24 @@ $("#loginModalForm").submit(function (event) {
     event.preventDefault();
     var username = $("#loginModalUserName").val();
     var password = $("#loginModalUserPwd").val();
+    var isThis = $(this);
+    isThis.find('.comment-prompt').show();
+    isThis.find('button[type=button]').hide();
+    isThis.find('button[type=submit]').hide();
+    isThis.find('input[type=text]').attr("disabled", true);
+    isThis.find('input[type=password]').attr("disabled", true);
     $.ajax({
         type: "POST",
-        url: "ajax.php",
+        url: "/ajax.php",
         data: "function=Login&age=" + username + "," + password,
         cache: false, //不缓存此页面  
         success: function (data) {
             if (data != "true") {
+                isThis.find('.comment-prompt').hide();
+                isThis.find('button[type=button]').show();
+                isThis.find('button[type=submit]').show();
+                isThis.find('input[type=text]').attr("disabled", false);
+                isThis.find('input[type=password]').attr("disabled", false);
                 iziToast.error({
                     title: '登录失败',
                     message: '用户名或密码错误',
@@ -329,13 +340,24 @@ $("#regModalForm").submit(function (event) {
         });
         return;
     }
+    var isThis = $(this);
+    isThis.find('.comment-prompt').show();
+    isThis.find('button[type=button]').hide();
+    isThis.find('button[type=submit]').hide();
+    isThis.find('input[type=text]').attr("disabled", true);
+    isThis.find('input[type=password]').attr("disabled", true);
     $.ajax({
         type: "POST",
-        url: "ajax.php",
+        url: "/ajax.php",
         data: "function=Reg&age=" + username + "," + password,
         cache: false, //不缓存此页面  
         success: function (data) {
             if (data != "true") {
+                isThis.find('.comment-prompt').hide();
+                isThis.find('button[type=button]').show();
+                isThis.find('button[type=submit]').show();
+                isThis.find('input[type=text]').attr("disabled", false);
+                isThis.find('input[type=password]').attr("disabled", false);
                 iziToast.error({
                     title: '注册失败',
                     message: data,
@@ -358,7 +380,7 @@ $("#regModalForm").submit(function (event) {
 $("#logoutButton").click(function () {
     $.ajax({
         type: "POST",
-        url: "ajax.php",
+        url: "/ajax.php",
         data: "function=Logout",
         cache: false, //不缓存此页面  
         success: function (data) {
@@ -367,11 +389,3 @@ $("#logoutButton").click(function () {
         }
     });
 })
-// //Console
-// try {
-//     if (window.console && window.console.log) {
-//         console.log("\n欢迎访问异清轩博客！\n\n在本站可以看到前端技术，后端程序，网站内容管理系统等文章；\n\n还有我的程序人生！！！\n");
-//         console.log("\n请记住我们的网址：%c www.ylsat.com", "color:red");
-//         console.log("\nPOWERED BY WY ALL RIGHTS RESERVED");
-//     }
-// } catch (e) { };

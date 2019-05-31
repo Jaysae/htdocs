@@ -30,13 +30,6 @@
                 <script id="article-content" name="content" type="text/plain"></script>
               </div>
               <div class="add-article-box">
-                <h2 class="add-article-box-title"><span>关键字</span></h2>
-                <div class="add-article-box-content">
-                  <input type="text" class="form-control" placeholder="请输入关键字" name="keywords" autocomplete="off">
-                  <span class="prompt-text">多个标签请用英文逗号,隔开。</span>
-                </div>
-              </div>
-              <div class="add-article-box">
                 <h2 class="add-article-box-title"><span>描述</span></h2>
                 <div class="add-article-box-content">
                   <textarea class="form-control" name="describe" autocomplete="off"></textarea>
@@ -50,32 +43,29 @@
                 <h2 class="add-article-box-title"><span>栏目</span></h2>
                 <div class="add-article-box-content">
                   <ul class="category-list">
-                    <li>
-                      <label>
-                        <input name="category" type="radio" value="1" checked>
-                        这是栏目 <em class="hidden-md">( 栏目ID: <span>1</span> )</em></label>
-                    </li>
-                    <li>
-                      <label>
-                        <input name="category" type="radio" value="2">
-                        这是栏目 <em class="hidden-md">( 栏目ID: <span>2</span> )</em></label>
-                    </li>
-                    <li>
-                      <label>
-                        <input name="category" type="radio" value="3">
-                        这是栏目 <em class="hidden-md">( 栏目ID: <span>3</span> )</em></label>
-                    </li>
-                    <li>
-                      <label>
-                        <input name="category" type="radio" value="4">
-                        这是栏目 <em class="hidden-md">( 栏目ID: <span>4</span> )</em></label>
-                    </li>
-                    <li>
-                      <label>
-                        <input name="category" type="radio" value="5">
-                        这是栏目 <em class="hidden-md">( 栏目ID: <span>5</span> )</em></label>
-                    </li>
+                    <?php
+                    $sql = "SELECT * FROM classify";
+                    $result = $conn->query($sql);
+                    $i = 0;
+                    while ($row = $result->fetch_assoc()) {
+                      $i++;
+                      ?>
+                      <li>
+                        <label>
+                          <input name="category" type="radio" value="1" <?php echo $i == 1 ? "checked" : "" ?>>
+                          <?php echo $row['name'] ?> <em class="hidden-md">( 栏目ID: <span><?php echo $row['id'] ?></span> )</em></label>
+                      </li>
+                    <?php
+                  }
+                  ?>
                   </ul>
+                </div>
+              </div>
+              <div class="add-article-box">
+                <h2 class="add-article-box-title"><span>关键字</span></h2>
+                <div class="add-article-box-content">
+                  <input type="text" class="form-control" placeholder="请输入关键字" name="keywords" autocomplete="off">
+                  <span class="prompt-text">多个标签请用英文逗号,隔开。</span>
                 </div>
               </div>
               <div class="add-article-box">
@@ -97,7 +87,6 @@
                 <h2 class="add-article-box-title"><span>发布</span></h2>
                 <div class="add-article-box-content">
                   <p><label>状态：</label><span class="article-status-display">未发布</span></p>
-                  <p><label>公开度：</label><input type="radio" name="visibility" value="0" checked />公开 <input type="radio" name="visibility" value="1" />加密</p>
                   <p><label>发布于：</label><span class="article-time-display"><input style="border: none;" type="datetime" name="time" value="2016-01-09 17:29:37" /></span></p>
                 </div>
                 <div class="add-article-box-footer">

@@ -1,3 +1,4 @@
+<?php include 'config.php' ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -9,23 +10,25 @@
   <?php include 'tool.php';
   if (isset($_GET['id'])) {
     $sql = "SELECT * FROM classify where id = " . $_GET['id'];
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-      $row = $result->fetch_assoc();
-    }
+    $row = $conn->query($sql)->fetch_assoc();
+    $name = $row['name'];
+    $sql = "SELECT * FROM article where classify LIKE  '$name'";
+    $id = $_GET['id'];
+  } else {
+    $sql = "SELECT * FROM article where id = 1";
+    $id = 1;
+    $name = "前端技术";
   }
-  $name = $row['name'];
-  $sql = "SELECT * FROM article where classify LIKE  '" . $name . "'";
-  $result = $conn->query($sql);
-  $page_num  = $result->num_rows;
-  if ($page_num / 5 > (int)($page_num / 5))
-    $page_num =  (int)($page_num / 5) + 1;
+  $page_num = $conn->query($sql)->num_rows;
+  $amount = 5;
+  if ($page_num / $amount > (int)($page_num / $amount))
+    $page_num =  (int)($page_num / $amount) + 1;
   else
-    $page_num = (int)$page_num / 5;
+    $page_num = (int)$page_num / $amount;
   $page = isset($_GET['page']) ? $_GET['page'] : 1;
   ?>
   <link rel="stylesheet" type="text/css" href="/css/style.css">
-  <title><?php echo $name ?> - | 喵窝 | 我的个人博客 | Powered By Siner</title>
+  <title><?php echo $name ?> - | <?php echo WebSite_Title ?> | <?php echo WebSite_Subtitle ?> | Powered By <?php echo WebSite_Copyright ?></title>
 </head>
 
 <body class="user-select">
@@ -39,7 +42,7 @@
           <h3><?php echo $name; ?></h3>
         </div>
         <?php
-        $sql = "SELECT * FROM article where classify LIKE '" . $name . "' LIMIT " . ($page - 1) * 5 . ",5";
+        $sql = "SELECT * FROM article where classify LIKE '" . $name . "' LIMIT " . ($page - 1) * $amount . "," . $amount . "";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
           while ($row = $result->fetch_assoc()) {
@@ -55,6 +58,8 @@
             </article>
           <?php
         }
+      } else {
+        echo "唔...这个页面没有内容呢！";
       }
       ?>
         <div class="ias_end" style="display:none"><a>已是最后一页</a></div>
@@ -65,14 +70,14 @@
             for ($i = 0; $i < $page_num; $i++) {
               ?>
               <li <?php echo $page == (1 + $i) ? "class=\"active\"" : "" ?>>
-                <a href="category.php?id=<?php echo $_GET['id'] ?>&page=<?php echo (1 + $i) ?>">
+                <a href="category-<?php echo $id ?>-<?php echo (1 + $i) ?>">
                   <?php echo (1 + $i) ?>
                 </a>
               </li>
             <?php
           }
           ?>
-            <li class="next-page"><a href="category.php?id=<?php echo $_GET['id'] ?>&page=<?php echo ($page + 1) > $page_num ? $page_num + 1 : ($page + 1) ?>">下一页</a></li>
+            <li class="next-page"><a href="category-<?php echo $id ?>-<?php echo ($page + 1) > $page_num ? $page_num + 1 : ($page + 1) ?>">下一页</a></li>
             <li><span>共 <?php echo $page_num ?> 页</span></li>
           </ul>
         </nav>

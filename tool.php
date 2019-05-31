@@ -1,3 +1,4 @@
+<?php $startTime = time(); ?>
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/css/iziToast.min.css">
 <link rel="stylesheet" type="text/css" href="/css/nprogress.css">
@@ -5,6 +6,8 @@
 <link rel="stylesheet" href="/live2d/css/live2d.css" />
 <link rel="apple-touch-icon-precomposed" href="/images/icon.png">
 <link rel="shortcut icon" href="/favicon.ico">
+<meta name="keywords" content="<?php echo WebSite_Keywords ?>">
+<meta name="description" content="<?php echo WebSite_Description ?>">
 <script src="/js/jquery-2.1.4.min.js"></script>
 <script src="/js/nprogress.js"></script>
 <script src="/js/jquery.lazyload.min.js"></script>

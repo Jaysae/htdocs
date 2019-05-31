@@ -1,3 +1,4 @@
+<?php include 'config.php' ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -6,7 +7,7 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>读者墙 - | 喵窝 | 我的个人博客 | Powered By Siner</title>
+  <title>读者墙 - | <?php echo WebSite_Title ?> | <?php echo WebSite_Subtitle ?> | Powered By <?php echo WebSite_Copyright ?></title>
   <?php include 'tool.php'; ?>
   <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>

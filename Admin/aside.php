@@ -4,7 +4,7 @@
         <li <?php echo $php_self == "index.php" ? "class='active'" : ""; ?>><a href="index.php">报告</a></li>
     </ul>
     <ul class="nav nav-sidebar">
-        <li <?php echo $php_self == "article.php" ? "class='active'" : ""; ?>><a href="article.php">文章</a></li>
+        <li <?php echo $php_self == "article.php" || $php_self == "add-article.php" ? "class='active'" : ""; ?>><a href="article.php">文章</a></li>
         <li <?php echo $php_self == "notice.php" ? "class='active'" : ""; ?>><a href="notice.php">公告</a></li>
         <li <?php echo $php_self == "comment.php" ? "class='active'" : ""; ?>><a href="comment.php">评论</a></li>
     </ul>

@@ -1,8 +1,11 @@
 <footer class="footer">
   <div class="container">
-    <p>&copy; 2019 <a href="">scmanga.cn</a> &nbsp;
-      <!-- <a href="http://www.miitbeian.gov.cn/" target="_blank" rel="nofollow">豫ICP备20151109-1</a> &nbsp; -->
+    <p>&copy; 2019 <a href="/"><?php echo WebSite_Url ?></a> &nbsp;
+      <a href="http://www.miitbeian.gov.cn/" target="_blank" rel="nofollow"><?php echo WebSite_ICP ?></a> &nbsp;
       <!-- <a href="sitemap.xml" target="_blank" class="sitemap">网站地图</a> -->
+    </p>
+    <p>
+      <a href="#" rel="nofollow">Powered By <?php echo WebSite_Copyright ?></a> &nbsp;
     </p>
   </div>
   <div id="gotop"><a class="gotop"></a></div>
@@ -13,7 +16,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="WeChatModalLabel" style="cursor:default;">微信扫一扫</h4>
+        <h4 class="modal-title" id="WeChatModalLabel" style="cursor:default;">扫一扫</h4>
       </div>
       <div class="modal-body" style="text-align:center;cursor:pointer"> <img src="/images/weixin.png" alt="" width="200px" height="200" /> </div>
     </div>
@@ -92,6 +95,10 @@
           </div>
         </div>
         <div class="modal-footer">
+          <div class="comment-prompt">
+            <i class="fa fa-spin fa-circle-o-notch"></i>
+            <span class="comment-prompt-text">正在登陆</span>
+          </div>
           <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
           <button type="submit" class="btn btn-primary">登录</button>
         </div>
@@ -128,6 +135,10 @@
           </div>
         </div>
         <div class="modal-footer">
+          <div class="comment-prompt">
+            <i class="fa fa-spin fa-circle-o-notch"></i>
+            <span class="comment-prompt-text">正在注册</span>
+          </div>
           <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
           <button type="submit" class="btn btn-primary" id="reg_btn">注册</button>
         </div>

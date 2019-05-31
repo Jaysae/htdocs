@@ -261,9 +261,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="WeChatModalLabel" style="cursor:default;">微信扫一扫</h4>
+                    <h4 class="modal-title" id="WeChatModalLabel" style="cursor:default;">扫一扫</h4>
                 </div>
-                <div class="modal-body" style="text-align:center"> <img src="images/weixin.jpg" alt="" style="cursor:pointer" /> </div>
+                <div class="modal-body" style="text-align:center"> <img src="/images/weixin.png" width="200" height="200" style="cursor:pointer" /> </div>
             </div>
         </div>
     </div>
@@ -284,6 +284,24 @@
             </div>
         </div>
     </div>
+    <!--注销模态框-->
+    <div class="modal fade user-select" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="logoutModalLabel" style="cursor:default;">警告</h4>
+                </div>
+                <div class="modal-body">
+                    <p style="padding:15px; cursor:default;" id="logoutModalContent">是否退出登录？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary" id="logoutButton">退出</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!--右键菜单列表-->
     <div id="rightClickMenu">
         <ul class="list-group rightClickMenuList">
@@ -296,3 +314,80 @@
     </div>
     <script src="/js/bootstrap.min.js"></script>
     <script src="js/admin-scripts.js"></script>
+    <script src="/js/iziToast.min.js"></script>
+    <div class="iziToast-wrapper iziToast-wrapper-bottomLeft"></div>
+    <div class="iziToast-wrapper iziToast-wrapper-bottomRight"></div>
+    <div class="iziToast-wrapper iziToast-wrapper-topLeft"></div>
+    <div class="iziToast-wrapper iziToast-wrapper-topRight"></div>
+    <div class="iziToast-wrapper iziToast-wrapper-bottomCenter"></div>
+    <div class="iziToast-wrapper iziToast-wrapper-topCenter"></div>
+    <?php
+    function showLoginToast()
+    {
+        if (isset($_SESSION['showAdminToast']) && isset($_SESSION['login']) && $_SESSION['showAdminToast'] && $_SESSION['login']) {
+            $_SESSION['showToast'] = false;
+            $_SESSION['showAdminToast'] = false;
+            return "1";
+        } else return "0";
+    }
+    ?>
+    <script type="text/javascript">
+        function CanClick(str) {
+            $.ajax({
+                url: str,
+                context: $('commentList'),
+                success: function(data) {
+                    commentList = $(data).find('.commentList').html();
+                    quotes = $(data).find('.quotes').html();
+                    $(".commentList").html(commentList);
+                    $(".quotes").html(quotes);
+                    $('.disabled a,.active a').click(function(event) {
+                        event.preventDefault();
+                    });
+                    $('.canClick a').click(function(event) {
+                        str = $(this).attr('href');
+                        CanClick(str);
+                        event.preventDefault();
+                    });
+                    $("#main table tbody tr td a").click(function() {
+                        var name = $(this);
+                        Delete(name);
+                    });
+                }
+            });
+        };
+        $('.disabled a,nav .active a').click(function(event) {
+            event.preventDefault();
+        });
+        $(function() {
+            if (<?php echo showLoginToast() ?>) {
+                $("#Login").autotype();
+                iziToast.success({
+                    title: '<?php echo isset($_SESSION['username']) ? $_SESSION['username'] : "" ?>',
+                    message: '尊敬的管理员，欢迎回来！',
+                    position: 'bottomRight',
+                    transitionIn: 'bounceInLeft',
+                    zindex: 1100,
+                    pauseOnHover: false,
+                });
+            }
+        });
+        $.fn.autotype = function() {
+            var $text = $(this);
+            var str = $text.html();
+            var index = 0;
+            var x = $text.html('');
+            var timer = setInterval(function() {
+                var current = str.substr(index, 1);
+                if (current == '<')
+                    index = str.indexOf('>', index) + 1;
+                else
+                    index++;
+                $text.html(str.substring(0, index) + (index & 1 ? '' : '_'));
+                index > $text.html().length + 10 && (index = 0);
+                if (index >= str.length) {
+                    clearInterval(timer);
+                }
+            }, 100);
+        };
+    </script>
