@@ -26,6 +26,7 @@
   else
     $page_num = (int)$page_num / $amount;
   $page = isset($_GET['page']) ? $_GET['page'] : 1;
+  if ($page > $page_num) $page = $page_num;
   ?>
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <title><?php echo $name ?> - | <?php echo WebSite_Title ?> | <?php echo WebSite_Subtitle ?> | Powered By <?php echo WebSite_Copyright ?></title>
@@ -44,16 +45,16 @@
         <?php
         $sql = "SELECT * FROM article where classify LIKE '" . $name . "' LIMIT " . ($page - 1) * $amount . "," . $amount . "";
         $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
+        if ($result && $result->num_rows > 0) {
           while ($row = $result->fetch_assoc()) {
             ?>
-            <article class="excerpt excerpt-<?php echo $row['id'] ?>"><a class="focus" href="article.php?<?php echo $row['id'] ?>" title=""><img class="thumb" data-original="<?php echo $row['image'] ?>" src="<?php echo $row['image'] ?>" alt=""></a>
+            <article class="excerpt excerpt-<?php echo $row['id'] ?>"><a class="focus" href="article-<?php echo $row['id'] ?>" title=""><img class="thumb" data-original="<?php echo $row['image'] ?>" src="<?php echo $row['image'] ?>" alt=""></a>
               <header><a class="cat" href="program"><?php echo $row['classify'] ?><i></i></a>
-                <h2><a href="article.php?<?php echo $row['id'] ?>" class="isArticle"><?php echo $row['title'] ?></a></h2>
+                <h2><a href="article-<?php echo $row['id'] ?>" class="isArticle"><?php echo $row['title'] ?></a></h2>
               </header>
               <p class="meta">
                 <time class="time"><i class="glyphicon glyphicon-time"></i><?php echo $row['date'] ?></time>
-                <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 共<?php echo $row['view'] ?>人围观</span> <a class="comment" href="article.php?<?php echo $row['id'] ?>"><i class="glyphicon glyphicon-comment"></i> 0个不明物体</a></p>
+                <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 共<?php echo $row['view'] ?>人围观</span> <a class="comment" href="article-<?php echo $row['id'] ?>"><i class="glyphicon glyphicon-comment"></i> 0个不明物体</a></p>
               <div class="note"><?php echo $row['foreword'] ?></div>
             </article>
           <?php

@@ -22,9 +22,9 @@ function Active($var, $id)
         <div class="container">
             <div class="header-topbar hidden-xs link-border">
                 <ul class="site-nav topmenu">
-                    <li><a href="tags.php">标签云</a></li>
-                    <li><a href="readers.php" rel="nofollow">读者墙</a></li>
-                    <li><a href="links.php" rel="nofollow">友情链接</a></li>
+                    <li><a href="tags">标签云</a></li>
+                    <li><a href="readers" rel="nofollow">读者墙</a></li>
+                    <li><a href="links" rel="nofollow">友情链接</a></li>
                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" rel="nofollow">关注本站 <span class="caret"></span></a>
                         <ul class="dropdown-menu header-topbar-dropdown-menu">
                             <li><a data-toggle="modal" data-target="#WeChat" rel="nofollow"><i class="fa fa-weixin"></i> 微信</a></li>
@@ -37,14 +37,10 @@ function Active($var, $id)
                 if (isset($username)) { ?>
                     <a href="#">Hi,<?php echo $username ?></a>&nbsp;&nbsp;
                     <a data-toggle="modal" data-target="#logoutModal" class="logout" rel="nofollow">注销</a>&nbsp;&nbsp;
-                <?php
-            } else {
-                ?>
+                <?php } else { ?>
                     <a data-toggle="modal" data-target="#loginModal" class="login" rel="nofollow">Hi,请登录</a>&nbsp;&nbsp;
                     <a data-toggle="modal" data-target="#regModal" class="register" rel="nofollow">我要注册</a>&nbsp;&nbsp;
-                <?php
-            }
-            ?>
+                <?php } ?>
                 <!-- <a href="" rel="nofollow">找回密码</a> -->
             </div>
             <div class="navbar-header">
@@ -59,11 +55,13 @@ function Active($var, $id)
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
-                            ?>
-                            <li <?php Active("category.php?id=" . $row['id'], true);
-                                if (isset($page))
-                                    Active("category.php?id=" . $row['id'] . "&page=" . $page, true); ?>><a href="category-<?php echo $row['id']; ?>"><?php echo $row['name']; ?></a></li>
-                        <?php
+                            if ($row['name'] != "") {
+                                ?>
+                                <li <?php Active("category.php?id=" . $row['id'], true);
+                                    if (isset($page)) Active("category.php?id=" . $row['id'] . "&page=" . $page, true); ?>>
+                                    <a href="category-<?php echo $row['id']; ?>"><?php echo $row['name']; ?></a>
+                                </li>
+                            <?php }
                     }
                 }
                 if (isset($uid) && $uid == 1) { ?><li><a href="/Admin">管理系统</a></li><?php } ?>

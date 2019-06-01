@@ -16,6 +16,7 @@
   else
     $page_num = (int)$page_num / $amount;
   $page = isset($_GET['page']) ? $_GET['page'] : 1;
+  if ($page > $page_num) $page = $page_num;
   ?>
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -30,39 +31,40 @@
       ?>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
         <div class="row">
-          <div class="col-md-7">
-            <h1 class="page-header">管理 <span class="badge"><?php echo $classify_num ?></span></h1>
-            <div class="table-responsive">
-              <table class="table table-striped table-hover">
-                <thead>
+
+          <h1 class="page-header">管理 <span class="badge"><?php echo $classify_num ?></span></h1>
+          <div class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th><span class="glyphicon glyphicon-paperclip"></span> <span class="visible-lg">ID</span></th>
+                  <th><span class="glyphicon glyphicon-file"></span> <span class="visible-lg">名称</span></th>
+                  <th><span class="glyphicon glyphicon-pushpin"></span> <span class="visible-lg">总数</span></th>
+                  <th><span class="glyphicon glyphicon-pencil"></span> <span class="visible-lg">操作</span></th>
+                </tr>
+              </thead>
+              <tbody class="commentList">
+                <?php
+                while ($row = $result->fetch_assoc()) {
+                  ?>
                   <tr>
-                    <th><span class="glyphicon glyphicon-paperclip"></span> <span class="visible-lg">ID</span></th>
-                    <th><span class="glyphicon glyphicon-file"></span> <span class="visible-lg">名称</span></th>
-                    <th><span class="glyphicon glyphicon-pushpin"></span> <span class="visible-lg">总数</span></th>
-                    <th><span class="glyphicon glyphicon-pencil"></span> <span class="visible-lg">操作</span></th>
+                    <td><?php echo $row['id'] ?></td>
+                    <td class="article-title" rel="<?php echo $row['id'] ?>"><?php echo $row['name'] == "" ? "<i>NULL</i>" : $row['name'] ?></td>
+                    <td>
+                      <?php if ($row['name'] != "") echo $conn->query("SELECT COUNT(*) FROM article WHERE classify LIKE '" . $row['name'] . "'")->fetch_assoc()['COUNT(*)'] . "篇"; ?>
+                    </td>
+                    <td>
+                      <a rel="<?php echo $row['id'] ?>">修改</a> <a rel="<?php echo $row['id'] ?>">删除</a>
+                    </td>
                   </tr>
-                </thead>
-                <tbody class="commentList">
-                  <?php
-                  while ($row = $result->fetch_assoc()) {
-                    ?>
-                    <tr>
-                      <td><?php echo $row['id'] ?></td>
-                      <td><?php echo $row['name'] ?></td>
-                      <td><?php echo $conn->query("SELECT COUNT(*) FROM article WHERE classify LIKE '" . $row['name'] . "'")->fetch_assoc()['COUNT(*)'] ?> 篇</td>
-                      <td><a href="update-category.php?id=<?php echo $row['id'] ?>">修改</a>
-                        <a rel="<?php echo $row['id'] ?>">删除</a>
-                      </td>
-                    </tr>
-                  <?php
-                }
-                ?>
-                </tbody>
-              </table>
-              <span class="prompt-text"><strong>注：</strong>删除一个栏目也会删除栏目下的文章和子栏目,请谨慎删除!</span>
-            </div>
+                <?php
+              }
+              ?>
+              </tbody>
+            </table>
+            <span class="prompt-text"><strong>注：</strong>删除一个栏目也会删除栏目下的文章和子栏目,请谨慎删除！（栏目最大数量为5）</span>
           </div>
-          <div class="col-md-5">
+          <!-- <div class="col-md-5">
             <h1 class="page-header">添加</h1>
             <form action="" method="post" autocomplete="off">
               <div class="form-group">
@@ -71,7 +73,7 @@
                 <span class=" prompt-text">这将是它在站点上显示的名字。</span> </div>
               <button class="btn btn-primary" type="submit" name="submit">添加新栏目</button>
             </form>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -87,15 +89,17 @@
       function Delete(name) {
         var id = name.attr("rel"); //对应id  
         if (event.srcElement.outerText == "删除") {
-          if (window.confirm("此操作不可逆，是否确认？（将删除该栏目下所有文章！）")) {
+          $('#deleteModal').modal('show');
+          $('#deleteButton').click(function() {
+            $('#deleteButton').unbind("click");
             $.ajax({
               type: "POST",
               url: "/ajax.php",
-              data: "function=Delete&age=" + id + ",classify",
+              data: "function=Delete&age=" + id + "//,//classify",
               cache: false, //不缓存此页面   
               success: function(data) {
                 if (data == "true") {
-                  CanClick("/Admin/category.php");
+                  CanClick("/Admin/category");
                   iziToast.success({
                     title: '成功',
                     message: '您所选择的栏目及其所有文章已经成功删除',
@@ -107,8 +111,66 @@
                 }
               }
             });
-          };
+            $('#deleteModal').modal('hide');
+          });
+        } else {
+          $('#categoryModal input[name=categoryID]').val(id);
+          str = $('td[rel=' + id + ']').text().replace(/(^\s*)|(\s*$)/g, "");
+          if (str == "NULL") {
+            str = "";
+          }
+          var name = name.text();
+          $('#categoryModal input[name=categoryName]').val(str);
+          $('#categoryModal').modal('show');
+          $('#categoryButton').click(function() {
+            str = $('#categoryModal input[name=categoryName]').val();
+            time = $('#categoryModal input[name=categoryDate]').val()
+            $('#categoryButton').unbind("click");
+            $.ajax({
+              type: "POST",
+              url: "/ajax.php",
+              data: "function=Category&age=" + id + "//,//" + str,
+              cache: false, //不缓存此页面   
+              success: function(data) {
+                if (data == "true") {
+                  CanClick("/Admin/category");
+                  iziToast.success({
+                    title: '成功',
+                    message: '您所进行的' + name + '操作已完成',
+                    position: 'bottomRight',
+                    transitionIn: 'bounceInLeft',
+                    zindex: 1100,
+                    pauseOnHover: false,
+                  });
+                }
+              }
+            });
+            $('#categoryModal').modal('hide');
+          });
         };
+      };
+
+      function CanClick(str) {
+        $.ajax({
+          url: str,
+          context: $('commentList'),
+          success: function(data) {
+            commentList = $(data).find('.commentList').html();
+            $(".commentList").html(commentList);
+            $('.disabled a,.active a').click(function(event) {
+              event.preventDefault();
+            });
+            $('.canClick a').click(function(event) {
+              str = $(this).attr('href');
+              CanClick(str);
+              event.preventDefault();
+            });
+            $("#main table tbody tr td a").click(function() {
+              var name = $(this);
+              Delete(name);
+            });
+          }
+        });
       };
     });
   </script>

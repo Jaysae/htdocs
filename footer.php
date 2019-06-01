@@ -62,7 +62,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="logoutModalLabel" style="cursor:default;">警告</h4>
+        <h4 class="modal-title" id="logoutModalLabel" style="cursor:default;">提示</h4>
       </div>
       <div class="modal-body">
         <p style="padding:15px; cursor:default;" id="logoutModalContent">是否退出登录？</p>

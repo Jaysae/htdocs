@@ -18,9 +18,9 @@
     <div class="pageside">
       <div class="pagemenus">
         <ul class="pagemenu">
-          <li><a href="tags.php">标签云</a></li>
-          <li><a class="active" href="readers.php">读者墙</a></li>
-          <li><a href="links.php">友情链接</a></li>
+          <li><a href="tags">标签云</a></li>
+          <li><a class="active" href="readers">读者墙</a></li>
+          <li><a href="links">友情链接</a></li>
         </ul>
       </div>
     </div>
@@ -50,7 +50,7 @@
           $result = $conn->query($sql);
           $row = $result->fetch_assoc();
           ?>
-          <a class="item-readers item-readers-<?php echo $i ?>" target="_blank" href="" rel="nofollow">
+          <a class="item-readers item-readers-<?php echo $i ?>" rel="nofollow">
             <h4>【<?php echo $t[$i - 1] ?>】<small>评论：<?php echo $b[$value] ?></small></h4>
             <?php if ($row['avatar'] != "") { ?>
               <img class="avatar" height="36" width="36" src="<?php echo $row['avatar'] ?>">

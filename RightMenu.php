@@ -73,7 +73,7 @@
     </div>
 </div>
 <div class="widget widget_search">
-    <form class="navbar-form" action="search.php" method="post">
+    <form class="navbar-form" action="search" method="post">
         <div class="input-group">
             <input type="text" name="keyword" class="form-control searchbox" size="35" placeholder="请输入关键字" maxlength="15" autocomplete="off" required oninvalid="setCustomValidity('请输入搜索内容')" oninput="setCustomValidity('')">
             <span class="input-group-btn">
@@ -97,7 +97,14 @@
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 ?>
-                <li><a href=""><span class="thumbnail"><img class="thumb" data-original="<?php echo $row['image'] ?>" src="<?php echo $row['image'] ?>" alt=""></span><span class="text"><?php echo $row['title'] ?></span><span class="muted"><i class="glyphicon glyphicon-time"></i><?php echo $row['date'] ?></span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i> <?php echo $row['view'] ?></span></a></li>
+                <li>
+                    <a href="article-<?php echo $row['id'] ?>">
+                        <span class="thumbnail"><img class="thumb" data-original="<?php echo $row['image'] ?>" src="<?php echo $row['image'] ?>" alt=""></span>
+                        <span class="text"><?php echo $row['title'] ?></span>
+                        <span class="muted"><i class="glyphicon glyphicon-time"></i><?php echo $row['date'] ?></span>
+                        <span class="muted"><i class="glyphicon glyphicon-eye-open"></i> <?php echo $row['view'] ?></span>
+                    </a>
+                </li>
             <?php
         }
     }

@@ -43,13 +43,13 @@
               <div class="add-article-box">
                 <h2 class="add-article-box-title"><span>站点关键字</span></h2>
                 <div class="add-article-box-content">
-                  <input type="text" name="Keywords" class="form-control" placeholder="在此处输入站点关键字" autocomplete="off" value="<?php echo str_replace(",", "/", WebSite_Keywords) ?>">
-                  <span class="prompt-text">请使用斜杠( / )隔开，关键字会出现在网页的keywords属性中。</span> </div>
+                  <input type="text" name="Keywords" class="form-control" placeholder="在此处输入站点关键字" autocomplete="off" value="<?php echo WebSite_Keywords ?>">
+                  <span class="prompt-text">请使用英文逗号( , )隔开，关键字会出现在网页的keywords属性中。</span> </div>
               </div>
               <div class="add-article-box">
                 <h2 class="add-article-box-title"><span>站点描述</span></h2>
                 <div class="add-article-box-content">
-                  <textarea class="form-control" name="Description" rows="4" autocomplete="off"><?php echo WebSite_Description ?></textarea>
+                  <textarea class="form-control" name="Description" rows="4" autocomplete="off" style="height:86px"><?php echo WebSite_Description ?></textarea>
                   <span class="prompt-text">描述会出现在网页的description属性中。</span> </div>
               </div>
             </div>

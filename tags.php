@@ -30,9 +30,9 @@
     <div class="pageside">
       <div class="pagemenus">
         <ul class="pagemenu">
-          <li><a class="active" href="tags.php">标签云</a></li>
-          <li><a href="readers.php">读者墙</a></li>
-          <li><a href="links.php">友情链接</a></li>
+          <li><a class="active" href="tags">标签云</a></li>
+          <li><a href="readers">读者墙</a></li>
+          <li><a href="links">友情链接</a></li>
         </ul>
       </div>
     </div>
@@ -47,7 +47,7 @@
           $result = $conn->query($sql);
           $num  = $result->num_rows;
           ?>
-          <li><a href="search.php?keyword=<?php echo $value ?>" title="" target="_blank"><?php echo $value ?> <span class="badge"><?php echo $num ?></span></a></li>
+          <li><a href="search-<?php echo $value ?>" title="<?php echo $value ?>"><?php echo $value ?> <span class="badge"><?php echo $num ?></span></a></li>
         <?php
       }
       ?>

@@ -8,6 +8,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>文章 - 异清轩博客管理系统</title>
   <?php include '../tool.php';
+  if (isset($_POST['title'])) {
+    $title = $_POST['title'];
+    $content = $_POST['content'];
+    $describe = $_POST['describe'];
+    $category = $_POST['category'];
+    $tags = $_POST['tags'];
+    $author = $_POST['author'];
+    $titlePic = $_POST['titlePic'];
+    $time = $_POST['time'];
+    if (isset($_POST['comment'])) {
+      $comment = 1;
+    } else {
+      $comment = "";
+    }
+    $sql = "INSERT INTO article (`title`, `foreword`, `date`, `author`, `classify`, `content`, `view`, `image`, `label`, `comment_off`) 
+    VALUES ('$title','$describe','$time','$author','$category','$content',1,'$titlePic','$tags','$comment')";
+    $conn->query($sql);
+    $Toast = "NewTitle";
+  }
+
   $page_num = $conn->query("SELECT COUNT(*) FROM article")->fetch_assoc()['COUNT(*)'];
   $article_num = $page_num;
   $amount = 15;
@@ -16,6 +36,7 @@
   else
     $page_num = (int)$page_num / $amount;
   $page = isset($_GET['page']) ? $_GET['page'] : 1;
+  if ($page > $page_num) $page = $page_num;
   ?>
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -32,7 +53,7 @@
         <form action="" method="post" id="DeleteAll">
           <h1 class="page-header">操作</h1>
           <ol class="breadcrumb">
-            <li><a href="add-article.php">增加文章</a></li>
+            <li><a href="addArticle">增加文章</a></li>
           </ol>
           <h1 class="page-header">管理 <span class="badge"><?php echo $article_num ?></span></h1>
           <div class="table-responsive">
@@ -57,7 +78,10 @@
                     <td class="article-title"><?php echo $row['title'] ?></td>
                     <td><?php echo $row['classify'] ?></td>
                     <td class="hidden-sm"><?php echo $row['label'] ?></td>
-                    <td class="hidden-sm"><?php echo $conn->query("SELECT COUNT(*) FROM comment WHERE article_id = " . $row['id'])->fetch_assoc()['COUNT(*)'] ?></td>
+                    <td class="hidden-sm">
+                      <?php echo $conn->query("SELECT COUNT(*) FROM comment WHERE article_id = " . $row['id'])->fetch_assoc()['COUNT(*)'] ?>
+                      <?php echo $row['comment_off'] == "1" ? "(评论关闭)" : "" ?>
+                    </td>
                     <td><?php echo $row['date'] ?></td>
                     <td><a href="update-article.php?id=<?php echo $row['id'] ?>">修改</a> <a rel="<?php echo $row['id'] ?>">删除</a></td>
                   </tr>
@@ -119,11 +143,13 @@
       function Delete(name) {
         var id = name.attr("rel"); //对应id  
         if (event.srcElement.outerText == "删除") {
-          if (window.confirm("此操作不可逆，是否确认？")) {
+          $('#deleteModal').modal('show');
+          $('#deleteButton').click(function() {
+            $('#deleteButton').unbind("click");
             $.ajax({
               type: "POST",
               url: "/ajax.php",
-              data: "function=Delete&age=" + id + ",article",
+              data: "function=Delete&age=" + id + "//,//article",
               cache: false, //不缓存此页面   
               success: function(data) {
                 if (data == "true") {
@@ -139,8 +165,34 @@
                 }
               }
             });
-          };
+            $('#deleteModal').modal('hide');
+          });
         };
+      };
+
+      function CanClick(str) {
+        $.ajax({
+          url: str,
+          context: $('commentList'),
+          success: function(data) {
+            commentList = $(data).find('.commentList').html();
+            quotes = $(data).find('.quotes').html();
+            $(".commentList").html(commentList);
+            $(".quotes").html(quotes);
+            $('.disabled a,.active a').click(function(event) {
+              event.preventDefault();
+            });
+            $('.canClick a').click(function(event) {
+              str = $(this).attr('href');
+              CanClick(str);
+              event.preventDefault();
+            });
+            $("#main table tbody tr td a").click(function() {
+              var name = $(this);
+              Delete(name);
+            });
+          }
+        });
       };
 
       $("#DeleteAll").submit(function(event) {
@@ -149,7 +201,7 @@
         $("input:checkbox:checked").each(function(i) {
           arr[i] = $(this).val();
         });
-        var values = arr.join("/");
+        var values = arr.join(",");
         if (values == "") {
           iziToast.warning({
             title: '提示',
@@ -160,28 +212,33 @@
             pauseOnHover: false,
           });
         } else {
-          $.ajax({
-            type: "POST",
-            url: "/ajax.php",
-            data: "function=DeleteAll&age=" + values + ",article",
-            cache: false, //不缓存此页面  
-            success: function(data) {
-              if (data == "true") {
-                if (arr.length == <?php echo $result->num_rows ?>) {
-                  CanClick("/Admin/article.php?page=<?php echo $page - 1 ?>");
-                } else {
-                  CanClick("/Admin/article.php?page=<?php echo $page ?>");
+          $('#deleteModal').modal('show');
+          $('#deleteButton').click(function() {
+            $('#deleteButton').unbind("click");
+            $.ajax({
+              type: "POST",
+              url: "/ajax.php",
+              data: "function=DeleteAll&age=" + values + "//,//article",
+              cache: false, //不缓存此页面  
+              success: function(data) {
+                if (data == "true") {
+                  if (arr.length == <?php echo $result->num_rows ?>) {
+                    CanClick("/Admin/article.php?page=<?php echo $page - 1 ?>");
+                  } else {
+                    CanClick("/Admin/article.php?page=<?php echo $page ?>");
+                  }
+                  iziToast.success({
+                    title: '成功',
+                    message: '您所选择的' + arr.length + '篇文章已经成功删除',
+                    position: 'bottomRight',
+                    transitionIn: 'bounceInLeft',
+                    zindex: 1100,
+                    pauseOnHover: false,
+                  });
                 }
-                iziToast.success({
-                  title: '成功',
-                  message: '您所选择的' + arr.length + '条文章已经成功删除',
-                  position: 'bottomRight',
-                  transitionIn: 'bounceInLeft',
-                  zindex: 1100,
-                  pauseOnHover: false,
-                });
               }
-            }
+            });
+            $('#deleteModal').modal('hide');
           });
         }
       })

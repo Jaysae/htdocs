@@ -35,7 +35,7 @@ if (isset($_SESSION['username'])) {
       </button>
     </form>
     <div class="footer">
-      <p>不知道自己在哪？<a href="/index.php" data-toggle="tooltip" data-placement="left" title="">回到首页 →</a></p>
+      <p>不知道自己在哪？<a href="/index" data-toggle="tooltip" data-placement="left" title="">回到首页 →</a></p>
     </div>
   </div>
   <script src="/js/bootstrap.min.js"></script>

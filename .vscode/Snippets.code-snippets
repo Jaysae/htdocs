@@ -1,0 +1,86 @@
+{
+	//JavaScript 代码片段
+	"JavaScript 输出内容到控制台": {
+		"prefix": "log",
+		"body": [
+			"console.log ($1);",
+			"$2"
+		],
+	},
+	"JavaScript alert消息弹窗": {
+		"prefix": "al",
+		"body": [
+			"alert ($1);",
+			"$2"
+		],
+	},
+	//Jquery 代码片段
+	"Jquery 按CLass查找元素": {
+		"prefix": "cl",
+		"body": [
+			"$('.$1')$2"
+		],
+	},
+	"Jquery 按ID查找元素": {
+		"prefix": "id",
+		"body": [
+			"$('#$1')$2"
+		],
+	},
+	"Jquery 按标签的name属性查找元素": {
+		"prefix": "tag:name",
+		"body": [
+			"$('$1[name=$2]')$3"
+		],
+	},
+	"Jquery 创建点击事件监听": {
+		"prefix": ".oc",
+		"body": [
+			".click(function(){",
+			"    $1",
+			"})"
+		],
+	},
+	"Jquery 创建提交事件监听": {
+		"prefix": ".su",
+		"body": [
+			".submit(function(){",
+			"    $1",
+			"})"
+		],
+	},
+	"Jquery 取得Value值": {
+		"prefix": ".va",
+		"body": [
+			".val();"
+		],
+	},
+	"Jquery 阻止元素当前的默认行为": {
+		"prefix": "eve",
+		"body": [
+			"event.preventDefault();",
+			"$2"
+		],
+	},
+	//HTML PHP 代码片段
+	"快捷插入PHP的echo输出": {
+		"prefix": "ech",
+		"body": [
+			"<?php echo $1 ?>"
+		],
+	},
+	"快捷插入php标签": {
+		"prefix": "?",
+		"body": [
+			"<?php $1 ?>"
+		],
+	},
+	//PHP 代码片段
+	"php echo输出": {
+		"prefix": "ec",
+		"body": [
+			"echo $1;",
+			"$2"
+		],
+	},
+}

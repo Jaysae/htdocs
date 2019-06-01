@@ -158,54 +158,42 @@
     <!--个人信息模态框-->
     <div class="modal fade" id="seeUserInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
-            <form action="" method="post">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">个人信息</h4>
-                    </div>
-                    <div class="modal-body">
-                        <table class="table" style="margin-bottom:0px;">
-                            <thead>
-                                <tr> </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td wdith="20%">姓名:</td>
-                                    <td width="80%"><input type="text" value="王雨" class="form-control" name="truename" maxlength="10" autocomplete="off" /></td>
-                                </tr>
-                                <tr>
-                                    <td wdith="20%">用户名:</td>
-                                    <td width="80%"><input type="text" value="admin" class="form-control" name="username" maxlength="10" autocomplete="off" /></td>
-                                </tr>
-                                <tr>
-                                    <td wdith="20%">电话:</td>
-                                    <td width="80%"><input type="text" value="18538078281" class="form-control" name="usertel" maxlength="13" autocomplete="off" /></td>
-                                </tr>
-                                <tr>
-                                    <td wdith="20%">旧密码:</td>
-                                    <td width="80%"><input type="password" class="form-control" name="old_password" maxlength="18" autocomplete="off" /></td>
-                                </tr>
-                                <tr>
-                                    <td wdith="20%">新密码:</td>
-                                    <td width="80%"><input type="password" class="form-control" name="password" maxlength="18" autocomplete="off" /></td>
-                                </tr>
-                                <tr>
-                                    <td wdith="20%">确认密码:</td>
-                                    <td width="80%"><input type="password" class="form-control" name="new_password" maxlength="18" autocomplete="off" /></td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr></tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="submit" class="btn btn-primary">提交</button>
-                    </div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">个人信息</h4>
                 </div>
-            </form>
+                <div class="modal-body">
+                    <table class="table" style="margin-bottom:0px;">
+                        <thead>
+                            <tr> </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td wdith="20%">用户名:</td>
+                                <td width="80%"><input type="text" value="<?php echo $username ?>" class="form-control" name="username" maxlength="10" autocomplete="off" /></td>
+                            </tr>
+                            <tr>
+                                <td wdith="20%">旧密码:</td>
+                                <td width="80%"><input type="password" class="form-control" name="old_password" maxlength="18" autocomplete="off" /></td>
+                            </tr>
+                            <tr>
+                                <td wdith="20%">新密码:</td>
+                                <td width="80%"><input type="password" class="form-control" name="password" maxlength="18" autocomplete="off" /></td>
+                            </tr>
+                            <tr>
+                                <td wdith="20%">确认密码:</td>
+                                <td width="80%"><input type="password" class="form-control" name="new_password" maxlength="18" autocomplete="off" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="InfoTips" style="text-align: right;display: none"> <i class=" fa fa-spin fa-circle-o-notch"></i> 警告：提交成功后，您将会被强制退出！</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary" id="UserInfoButton">提交</button>
+                </div>
+            </div>
         </div>
     </div>
     <!--个人登录记录模态框-->
@@ -284,13 +272,13 @@
             </div>
         </div>
     </div>
-    <!--注销模态框-->
+    <!--注销提示模态框-->
     <div class="modal fade user-select" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="logoutModalLabel" style="cursor:default;">警告</h4>
+                    <h4 class="modal-title" id="logoutModalLabel" style="cursor:default;">提示</h4>
                 </div>
                 <div class="modal-body">
                     <p style="padding:15px; cursor:default;" id="logoutModalContent">是否退出登录？</p>
@@ -298,6 +286,104 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                     <button type="submit" class="btn btn-primary" id="logoutButton">退出</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--删除提示模态框-->
+    <div class="modal fade user-select" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="deleteModalLabel" style="cursor:default;">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <p style="padding:15px; cursor:default;" id="deleteModalContent">此操作不可逆，是否确认？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary" id="deleteButton">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--公告模态框-->
+    <div class="modal fade user-select" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="noticeModalLabel">
+        <div class="modal-dialog" role="document" style="max-width:450px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="noticeModalLabel" style="cursor:default;">公告</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table" style="margin-bottom:0px;">
+                        <thead>
+                            <tr> </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td wdith="20%">ID:</td>
+                                <td width="80%"><input type="text" value="1" disabled="disabled" class="form-control" name="noticeID" autocomplete="off" /></td>
+                            </tr>
+                            <tr>
+                                <td wdith="20%">内容:</td>
+                                <td width="80%">
+                                    <textarea type="text" class="form-control" name="noticeContent" autocomplete="off" maxlength="20"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td wdith="20%">日期:</td>
+                                <td width="80%"><input type="text" value="<?php echo date("Y-m-d") ?>" disabled="disabled" class="form-control" name="noticeDate" autocomplete="off" /></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr></tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary" id="noticeButton">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--栏目模态框-->
+    <div class="modal fade user-select" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel">
+        <div class="modal-dialog" role="document" style="max-width:450px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="categoryModalLabel" style="cursor:default;">栏目</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table" style="margin-bottom:0px;">
+                        <thead>
+                            <tr> </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td wdith="20%">ID:</td>
+                                <td width="80%"><input type="text" value="1" disabled="disabled" class="form-control" name="categoryID" autocomplete="off" /></td>
+                            </tr>
+                            <tr>
+                                <td wdith="20%">名称:</td>
+                                <td width="80%">
+                                    <input type="text" class="form-control" name="categoryName" autocomplete="off" maxlength="6" />
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr></tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary" id="categoryButton">确认</button>
                 </div>
             </div>
         </div>
@@ -332,30 +418,22 @@
     }
     ?>
     <script type="text/javascript">
-        function CanClick(str) {
-            $.ajax({
-                url: str,
-                context: $('commentList'),
-                success: function(data) {
-                    commentList = $(data).find('.commentList').html();
-                    quotes = $(data).find('.quotes').html();
-                    $(".commentList").html(commentList);
-                    $(".quotes").html(quotes);
-                    $('.disabled a,.active a').click(function(event) {
-                        event.preventDefault();
-                    });
-                    $('.canClick a').click(function(event) {
-                        str = $(this).attr('href');
-                        CanClick(str);
-                        event.preventDefault();
-                    });
-                    $("#main table tbody tr td a").click(function() {
-                        var name = $(this);
-                        Delete(name);
-                    });
-                }
-            });
-        };
+        Date.prototype.Format = function(fmt) {
+            var o = {
+                "M+": this.getMonth() + 1,
+                "d+": this.getDate(),
+                "h+": this.getHours(),
+                "m+": this.getMinutes(),
+                "s+": this.getSeconds(),
+                "q+": Math.floor((this.getMonth() + 3) / 3),
+                "S": this.getMilliseconds()
+            };
+            if (/(y+)/.test(fmt))
+                fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            for (var k in o)
+                if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return fmt;
+        }
         $('.disabled a,nav .active a').click(function(event) {
             event.preventDefault();
         });
@@ -370,6 +448,22 @@
                     zindex: 1100,
                     pauseOnHover: false,
                 });
+            }
+            if ("<?php echo $Toast ?>" == "NewTitle") {
+                $("#Login").autotype();
+                var mes = "<?php echo $title ?>";
+                if (mes.length > 10) {
+                    mes = mes.substring(0, 10) + "...";
+                }
+                iziToast.success({
+                    title: '成功',
+                    message: '文章 ' + mes + ' 已成功添加',
+                    position: 'bottomRight',
+                    transitionIn: 'bounceInLeft',
+                    zindex: 1100,
+                    pauseOnHover: false,
+                });
+                <?php $title = "" ?>
             }
         });
         $.fn.autotype = function() {
@@ -390,4 +484,35 @@
                 }
             }, 100);
         };
+        $('#UserInfoButton').click(function() {
+            var btn = $(this);
+            btn.attr("disabled", true);
+            btn.text("3");
+            $('#InfoTips').fadeIn();
+            setTimeout(function() {
+                btn.text("2");
+            }, 1000);
+            setTimeout(function() {
+                btn.text("1");
+            }, 2000);
+            setTimeout(function() {
+                btn.text("再次确认");
+                btn.attr("disabled", false);
+                btn.unbind("click");
+                btn.click(function() {
+
+                })
+            }, 3000);
+        });
+        $('#seeUserInfo').on('hidden.bs.modal', function() {
+            $('#InfoTips').fadeOut();
+            $('#UserInfoButton').text("提交");
+            $('#UserInfoButton').unbind("click");
+        })
+        $('#deleteModal').on('hidden.bs.modal', function() {
+            $('#deleteButton').unbind("click");
+        });
+        $('#noticeModal').on('hidden.bs.modal', function() {
+            $('#noticeButton').unbind("click");
+        })
     </script>

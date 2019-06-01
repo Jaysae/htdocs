@@ -9,7 +9,7 @@
         $row_U = $conn->query($sql)->fetch_assoc();
         $uid = $row_U['id'];
     } else {
-        header("location: /admin/login.php");
+        header("location: /admin/login");
     } ?>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -26,15 +26,16 @@
                         </ul>
                     </li>
                     <li><a data-toggle="modal" data-target="#logoutModal" class="logout" rel="nofollow">退出登录</a></li>
+                    <li><a href="/">站点首页</a></li>
                     <li><a data-toggle="modal" data-target="#WeChat">帮助</a></li>
                 </ul>
-                <form action="" method="post" class="navbar-form navbar-right" role="search">
+                <!-- <form action="" method="post" class="navbar-form navbar-right" role="search">
                     <div class="input-group">
                         <input type="text" class="form-control" autocomplete="off" placeholder="键入关键字搜索" maxlength="15">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="submit">搜索</button>
                         </span> </div>
-                </form>
+                </form> -->
             </div>
         </div>
     </nav>

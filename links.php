@@ -18,9 +18,9 @@
         <div class="pageside">
             <div class="pagemenus">
                 <ul class="pagemenu">
-                    <li><a href="tags.php">标签云</a></li>
-                    <li><a href="readers.php">读者墙</a></li>
-                    <li><a class="active" href="links.php">友情链接</a></li>
+                    <li><a href="tags">标签云</a></li>
+                    <li><a href="readers">读者墙</a></li>
+                    <li><a class="active" href="links">友情链接</a></li>
                 </ul>
             </div>
         </div>

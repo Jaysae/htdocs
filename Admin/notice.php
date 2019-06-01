@@ -18,7 +18,7 @@
     <?php include 'header.php' ?>
     <div class="row">
       <?php include 'aside.php';
-      $sql = "SELECT * FROM notice ORDER BY `notice`.`id` ASC";
+      $sql = "SELECT * FROM notice ORDER BY `notice`.`date` ASC";
       $result = $conn->query($sql);
       ?>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
@@ -47,11 +47,11 @@
                       <input type="checkbox" class="input-control" name="checkbox[]" value="<?php echo $row['id'] ?>" <?php if ($row['content'] == "") echo "disabled=\"disabled\"" ?> />
                     </td>
                     <td><?php echo $row['content'] == "" ? "<i>NULL</i>" : $row['id'] ?></td>
-                    <td class="article-title"><?php echo $row['content'] == "" ? ">>>该条公告暂无内容<<<" : $row['content'] ?>
+                    <td class="article-title" rel="<?php echo $row['id'] ?>"><?php echo $row['content'] == "" ? ">>>该条公告暂无内容<<<" : $row['content'] ?>
                     </td>
-                    <td><?php echo $row['date'] == "0000-00-00" ? "<i>NULL</i>" : $row['date'] ?></td>
+                    <td><?php echo $row['date'] == "9999-00-00" ? "<i>NULL</i>" : $row['date'] ?></td>
                     <td>
-                      <a href="update-notice.php?id=<?php echo $row['id'] ?>">修改</a>
+                      <a rel="<?php echo $row['id'] ?>"><?php echo $row['content'] == "" ? "新增" : "修改" ?></a>
                       <a rel="<?php echo $row['id'] ?>" <?php echo $row['content'] == "" ? "class='isNull'" : "" ?>>删除</a>
                     </td>
                   </tr>
@@ -97,11 +97,13 @@
       function Delete(name) {
         var id = name.attr("rel"); //对应id  
         if (event.srcElement.outerText == "删除") {
-          if (window.confirm("此操作不可逆，是否确认？")) {
+          $('#deleteModal').modal('show');
+          $('#deleteButton').click(function() {
+            $('#deleteButton').unbind("click");
             $.ajax({
               type: "POST",
               url: "/ajax.php",
-              data: "function=Delete&age=" + id + ",notice",
+              data: "function=Delete&age=" + id + "//,//notice",
               cache: false, //不缓存此页面   
               success: function(data) {
                 if (data == "true") {
@@ -117,8 +119,69 @@
                 }
               }
             });
-          };
-        };
+            $('#deleteModal').modal('hide');
+          });
+        } else {
+          $('#noticeModal input[name=noticeID]').val(id);
+          str = $('td[rel=' + id + ']').text().replace(/(^\s*)|(\s*$)/g, "");
+          if (str == ">>>该条公告暂无内容<<<") {
+            str = "";
+          }
+          var name = name.text();
+          $('#noticeModal textarea[name=noticeContent]').val(str);
+          $('#noticeModal').modal('show');
+          $('#noticeButton').click(function() {
+            str = $('#noticeModal textarea[name=noticeContent]').val();
+            time = $('#noticeModal input[name=noticeDate]').val()
+            $('#noticeButton').unbind("click");
+            $.ajax({
+              type: "POST",
+              url: "/ajax.php",
+              data: "function=Notice&age=" + id + "//,//" + str + "//,//" + time,
+              cache: false, //不缓存此页面   
+              success: function(data) {
+                if (data == "true") {
+                  CanClick("/Admin/notice.php");
+                  iziToast.success({
+                    title: '成功',
+                    message: '您所进行的' + name + '操作已完成',
+                    position: 'bottomRight',
+                    transitionIn: 'bounceInLeft',
+                    zindex: 1100,
+                    pauseOnHover: false,
+                  });
+                }
+              }
+            });
+            $('#noticeModal').modal('hide');
+          });
+        }
+      };
+
+
+      function CanClick(str) {
+        $.ajax({
+          url: str,
+          context: $('commentList'),
+          success: function(data) {
+            commentList = $(data).find('.commentList').html();
+            quotes = $(data).find('.quotes').html();
+            $(".commentList").html(commentList);
+            $(".quotes").html(quotes);
+            $('.disabled a,.active a').click(function(event) {
+              event.preventDefault();
+            });
+            $('.canClick a').click(function(event) {
+              str = $(this).attr('href');
+              CanClick(str);
+              event.preventDefault();
+            });
+            $("#main table tbody tr td a").click(function() {
+              var name = $(this);
+              Delete(name);
+            });
+          }
+        });
       };
 
       $("#DeleteAll").submit(function(event) {
@@ -127,7 +190,7 @@
         $("input:checkbox:checked").each(function(i) {
           arr[i] = $(this).val();
         });
-        var values = arr.join("/");
+        var values = arr.join(",");
         if (values == "") {
           iziToast.warning({
             title: '提示',
@@ -138,24 +201,29 @@
             pauseOnHover: false,
           });
         } else {
-          $.ajax({
-            type: "POST",
-            url: "/ajax.php",
-            data: "function=DeleteAll&age=" + values + ",notice",
-            cache: false, //不缓存此页面  
-            success: function(data) {
-              if (data == "true") {
-                CanClick("/Admin/notice.php");
-                iziToast.success({
-                  title: '成功',
-                  message: '您所选择的' + arr.length + '条公告已经成功清除',
-                  position: 'bottomRight',
-                  transitionIn: 'bounceInLeft',
-                  zindex: 1100,
-                  pauseOnHover: false,
-                });
+          $('#deleteModal').modal('show');
+          $('#deleteButton').click(function() {
+            $('#deleteButton').unbind("click");
+            $.ajax({
+              type: "POST",
+              url: "/ajax.php",
+              data: "function=DeleteAll&age=" + values + "//,//notice",
+              cache: false, //不缓存此页面  
+              success: function(data) {
+                if (data == "true") {
+                  CanClick("/Admin/notice.php");
+                  iziToast.success({
+                    title: '成功',
+                    message: '您所选择的' + arr.length + '条公告已经成功清除',
+                    position: 'bottomRight',
+                    transitionIn: 'bounceInLeft',
+                    zindex: 1100,
+                    pauseOnHover: false,
+                  });
+                }
               }
-            }
+            });
+            $('#deleteModal').modal('hide');
           });
         }
       })

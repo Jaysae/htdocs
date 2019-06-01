@@ -210,44 +210,6 @@ $(window).scroll(function () {
 //     }
 // };
 
-/*文章评论*/
-$(function () {
-    $("#comment-submit").click(function () {
-        var commentContent = $("#comment-textarea");
-        var commentButton = $("#comment-submit");
-        var promptBox = $('.comment-prompt');
-        var promptText = $('.comment-prompt-text');
-        var articleId = $('.articleId').val();
-        var userId = $('.userId').val();
-        promptBox.fadeIn(400);
-        if (commentContent.val() === '') {
-            promptText.text('请留下您的评论');
-            return false;
-        }
-        commentButton.attr('disabled', true);
-        commentButton.addClass('disabled');
-        promptText.text('正在提交...');
-        $.ajax({
-            type: "POST",
-            url: "/ajax.php",
-            data: "function=Comment&age=" + articleId + "," + userId + "," + commentContent.val(),
-            cache: false, //不缓存此页面  
-            success: function (data) {
-                if (data == "true") {
-                    promptText.text('评论成功!');
-                    commentContent.val(null);
-                    $(".commentList").animate({ opacity: "0" }, 500);
-                    $(".commentList").delay(500).animate({ opacity: "1" }, 500);
-                    commentButton.attr('disabled', false);
-                    commentButton.removeClass('disabled');
-                }
-            }
-        });
-        promptBox.fadeOut(100);
-        return false;
-    });
-});
-
 /*登录*/
 $("#loginModalForm").submit(function (event) {
     event.preventDefault();
@@ -262,7 +224,7 @@ $("#loginModalForm").submit(function (event) {
     $.ajax({
         type: "POST",
         url: "/ajax.php",
-        data: "function=Login&age=" + username + "," + password,
+        data: "function=Login&age=" + username + "//,//" + password,
         cache: false, //不缓存此页面  
         success: function (data) {
             if (data != "true") {
@@ -349,7 +311,7 @@ $("#regModalForm").submit(function (event) {
     $.ajax({
         type: "POST",
         url: "/ajax.php",
-        data: "function=Reg&age=" + username + "," + password,
+        data: "function=Reg&age=" + username + "//,//" + password,
         cache: false, //不缓存此页面  
         success: function (data) {
             if (data != "true") {

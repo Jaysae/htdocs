@@ -73,7 +73,6 @@ function Setting(
     $WebSite_Title = "define('WebSite_Title', '$WebSite_Title');\n";
     $WebSite_Subtitle = "define('WebSite_Subtitle', '$WebSite_Subtitle');\n";
     $WebSite_Url = "define('WebSite_Url', '$WebSite_Url');\n";
-    $WebSite_Keywords = str_replace("/", ",", $WebSite_Keywords);
     $WebSite_Keywords = "define('WebSite_Keywords', '$WebSite_Keywords');\n";
     $WebSite_Description = "define('WebSite_Description', '$WebSite_Description');\n";
     $WebSite_Email = "define('WebSite_Email', '$WebSite_Email');\n";
@@ -122,11 +121,11 @@ function Delete($id, $table)
 {
     $conn = MySQL();
     if ($table == "notice") {
-        if ($conn->query("UPDATE `notice` SET `content`= '',`date`='0000-00-00' WHERE `id` = $id"))
+        if ($conn->query("UPDATE `notice` SET `content`= '',`date`='9999-00-00' WHERE `id` = $id"))
             return "true";
     } else if ($table == "classify") {
         $name =  $conn->query("SELECT name FROM `classify` WHERE id = $id")->fetch_assoc()['name'];
-        if ($conn->query("DELETE FROM $table WHERE `$table`.`id` = $id"))
+        if ($conn->query("UPDATE $table SET `name`= '' WHERE `$table`.`id` = $id"))
             if ($conn->query("DELETE FROM article WHERE classify LIKE '$name'"))
                 return "true";
     } else {
@@ -134,10 +133,21 @@ function Delete($id, $table)
             return "true";
     }
 }
+function Notice($id, $content, $date)
+{
+    $conn = MySQL();
+    if ($conn->query("UPDATE `notice` SET `content`= '$content',`date`='$date' WHERE `id` = $id"))
+        return "true";
+}
+function Category($id, $name)
+{
+    $conn = MySQL();
+    if ($conn->query("UPDATE `classify` SET `name`= '$name' WHERE `id` = $id"))
+        return "true";
+}
 function DeleteAll($id, $table)
 {
     $conn = MySQL();
-    $id = str_replace("/", ",", $id);
     if ($table == "notice") {
         if ($conn->query("UPDATE `notice` SET `content`= '',`date`='0000-00-00' WHERE id IN ($id)"))
             return "true";
@@ -151,9 +161,10 @@ function DeleteAll($id, $table)
 //Ajax可调用方法
 
 
+//Ajax方法和参数解析
 $func = $_REQUEST["function"];
 if (function_exists($func)) {
-    $fs = isset($_REQUEST["age"]) ? explode(",", $_REQUEST["age"]) : array();
+    $fs = isset($_REQUEST["age"]) ? explode("//,//", $_REQUEST["age"]) : array();
     echo call_user_func_array($func, $fs);
 }
 

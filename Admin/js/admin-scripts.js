@@ -134,7 +134,7 @@ $("#loginModalForm").submit(function (event) {
     $.ajax({
         type: "POST",
         url: "/ajax.php",
-        data: "function=Login&age=" + username + "," + password + ",admin",
+        data: "function=Login&age=" + username + "//,//" + password + "//,//admin",
         cache: false, //不缓存此页面  
         success: function (data) {
             if (data != "true") {
@@ -195,7 +195,7 @@ $("#setting").submit(function (event) {
     $.ajax({
         type: "POST",
         url: "/ajax.php",
-        data: "function=Setting&age=" + title + "," + subtitle + "," + Url + "," + Keywords + "," + Description + "," + email + "," + icp + "," + Copyright + "," + LoginOut,
+        data: "function=Setting&age=" + title + "//,//" + subtitle + "//,//" + Url + "//,//" + Keywords + "//,//" + Description + "//,//" + email + "//,//" + icp + "//,//" + Copyright + "//,//" + LoginOut,
         cache: false, //不缓存此页面  
         success: function (data) {
             if (data == "true") {

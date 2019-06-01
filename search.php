@@ -10,10 +10,8 @@
   <?php
   include 'tool.php';
   $keyword = "";
-  if (isset($_POST["keyword"])) {
-    $keyword = $_POST["keyword"];
-  } else if (isset($_GET["keyword"])) {
-    $keyword = $_GET["keyword"];
+  if (isset($_REQUEST["keyword"])) {
+    $keyword = $_REQUEST["keyword"];
   }
   $sql = "SELECT * FROM `article` WHERE upper(title) LIKE upper(\"%"  . $keyword . "%\") OR
 upper(`foreword`) LIKE upper(\"%"  . $keyword . "%\") OR
@@ -30,6 +28,7 @@ upper(`label`) LIKE upper(\"%"  . $keyword . "%\")";
     else
       $page_num = (int)$page_num / $amount;
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
+    if ($page > $page_num) $page = $page_num;
   }
   ?>
   <title><?php echo $keyword == "" ? "Nothing" : $keyword ?> - | <?php echo WebSite_Title ?> | <?php echo WebSite_Subtitle ?> | Powered By <?php echo WebSite_Copyright ?></title>
@@ -71,13 +70,13 @@ upper(`label`) LIKE upper(\"%"  . $keyword . "%\")";
             if ($result->num_rows > 0) {
               while ($row = $result->fetch_assoc()) {
                 ?>
-                <article class="excerpt excerpt-<?php echo $row['id'] ?>"><a class="focus" href="article.php?<?php echo $row['id'] ?>" title=""><img class="thumb" data-original="<?php echo $row['image'] ?>" src="<?php echo $row['image'] ?>" alt=""></a>
+                <article class="excerpt excerpt-<?php echo $row['id'] ?>"><a class="focus" href="article-<?php echo $row['id'] ?>" title=""><img class="thumb" data-original="<?php echo $row['image'] ?>" src="<?php echo $row['image'] ?>" alt=""></a>
                   <header><a class="cat" href="program"><?php echo $row['classify'] ?><i></i></a>
-                    <h2><a href="article.php" class="isArticle"><?php echo $row['title'] ?></a></h2>
+                    <h2><a href="article-<?php echo $row['id'] ?>" class="isArticle"><?php echo $row['title'] ?></a></h2>
                   </header>
                   <p class="meta">
                     <time class="time"><i class="glyphicon glyphicon-time"></i><?php echo $row['date'] ?></time>
-                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 共<?php echo $row['view'] ?>人围观</span> <a class="comment" href="article.php"><i class="glyphicon glyphicon-comment"></i> 0个不明物体</a></p>
+                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 共<?php echo $row['view'] ?>人围观</span> <a class="comment" href="article-<?php echo $row['id'] ?>"><i class="glyphicon glyphicon-comment"></i> 0个不明物体</a></p>
                   <div class="note"><?php echo $row['foreword'] ?></div>
                 </article>
               <?php
@@ -93,14 +92,14 @@ upper(`label`) LIKE upper(\"%"  . $keyword . "%\")";
               for ($i = 0; $i < $page_num; $i++) {
                 ?>
                 <li <?php echo $page == (1 + $i) ? "class=\"active\"" : "" ?>>
-                  <a href="search.php?keyword=<?php echo $keyword ?>&page=<?php echo (1 + $i) ?>">
+                  <a href="search-<?php echo $keyword ?>-<?php echo (1 + $i) ?>">
                     <?php echo (1 + $i) ?>
                   </a>
                 </li>
               <?php
             }
             ?>
-              <li class="next-page"><a href="search.php?keyword=<?php echo $keyword ?>&page=<?php echo ($page + 1) > $page_num ? $page_num + 1 : ($page + 1) ?>">下一页</a></li>
+              <li class="next-page"><a href="search-<?php echo $keyword ?>-<?php echo ($page + 1) > $page_num ? $page_num + 1 : ($page + 1) ?>">下一页</a></li>
               <li><span>共 <?php echo $page_num ?> 页</span></li>
             </ul>
           </nav>

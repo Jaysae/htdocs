@@ -40,13 +40,13 @@
             </span>
             <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="栏目：<?php echo $row_A['classify'] ?>">
               <i class="glyphicon glyphicon-list"></i>
-              <a href="search.php?keyword=<?php echo $row_A['classify'] ?>" title=""><?php echo $row_A['classify'] ?></a>
+              <a href="search-<?php echo $row_A['classify'] ?>" title=""><?php echo $row_A['classify'] ?></a>
             </span>
             <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="查看：<?php echo $row_A['view'] ?>">
               <i class="glyphicon glyphicon-eye-open"></i> 共<?php echo $row_A['view'] ?>人围观
             </span>
-            <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="评论：0">
-              <i class="glyphicon glyphicon-comment"></i> 0个不明物体
+            <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="评论：<?php echo $conn->query("SELECT COUNT(*) FROM comment WHERE article_id = $id")->fetch_assoc()['COUNT(*)'] ?>">
+              <i class="glyphicon glyphicon-comment"></i> <?php echo $conn->query("SELECT COUNT(*) FROM comment WHERE article_id = $id")->fetch_assoc()['COUNT(*)'] ?>个不明物体
             </span>
           </div>
         </header>
@@ -59,7 +59,7 @@
           <p><img data-original="<?php echo $row_A['image'] ?>" src="<?php echo $row_A['image'] ?>" alt="" /></p>
           <div><?php echo $row_A['content'] ?></div>
           <p class="article-copyright hidden-xs">未经允许不得转载：
-            <a href="">异清轩博客</a> » <a href="article.html">php如何判断一个日期的格式是否正确</a>
+            <a href="">异清轩博客</a> » <a href="article-<?php echo $id ?>">php如何判断一个日期的格式是否正确</a>
           </p>
         </article>
         <div class="article-tags">标签：<a href="" rel="tag">PHP</a></div>
@@ -74,7 +74,7 @@
             if ($result->num_rows > 0) {
               while ($row = $result->fetch_assoc()) {
                 ?>
-                <li><a href="article.php?id=<?php echo $row['id'] ?>" class="isArticle"><?php echo $row['title'] ?></a></li>
+                <li><a href="article-<?php echo $row['id'] ?>" class="isArticle"><?php echo $row['title'] ?></a></li>
               <?php
             }
           }
@@ -144,9 +144,10 @@
             else
               $page_num = (int)$page_num / $amount;
             $page = isset($_GET['page']) ? $_GET['page'] : 1;
+            if ($page > $page_num) $page = $page_num;
             $sql = "SELECT comment.id,comment.content,comment.date,user_center.username_t,user_center.avatar,user_center.login_city 
             FROM comment INNER JOIN user_center ON comment.user_id = user_center.id
-            WHERE comment.article_id = '$id_a' ORDER BY comment.date ASC LIMIT " . ($page - 1) * $amount . "," . $amount . "";
+            WHERE comment.article_id = '$id_a' ORDER BY comment.date ASC LIMIT " . ($page - 1) * $amount . "," . $amount;
             $result = $conn->query($sql);
             $i = 1;
             function City($str)
@@ -158,7 +159,7 @@
               $len = strlen($str) - 7;
               return substr($str, 0, $len);
             }
-            if ($result->num_rows > 0) {
+            if ($result && $result->num_rows > 0) {
               while ($row = $result->fetch_assoc()) {
                 ?>
                 <li class="comment-content"><span class="comment-f">#<?php echo ($page - 1) * 5 + $i ?></span>
@@ -184,26 +185,24 @@
               }
             } ?>
           </ol>
-          <div class="quotes">
-            <?php
-            quotes($row_A, $page, $page_num);
-            function quotes($row_A, $page, $page_num)
-            {
+          <?php if ($result && $result->num_rows > 0) { ?>
+            <div class="quotes">
+              <?php
               $echo = $page == 1 ? "<a class='disabled'" : "<a class='canClick'";
-              echo $echo . "href='article.php?id=" . $row_A['id'] . "&page=1'>" . "首页" . "</a>";
+              echo $echo . "href='article-" . $row_A['id'] . "-1'>" . "首页" . "</a>";
               $temp = $page - 1 == 0 ? "1" : $page - 1;
-              echo $echo . "href='article.php?id=" . $row_A['id'] . "&page=" . $temp . "'>" . "上一页" . "</a>";
+              echo $echo . "href='article-" . $row_A['id'] . "-" . $temp . "'>" . "上一页" . "</a>";
               for ($i = 0; $i < $page_num; $i++) { ?>
-                <a <?php echo $page == (1 + $i) ? "class=\"current\"" : "class=\"canClick\"" ?> href="article.php?id=<?php echo $row_A['id'] ?>&page=<?php echo (1 + $i) ?>">
+                <a <?php echo $page == (1 + $i) ? "class=\"current\"" : "class=\"canClick\"" ?> href="article-<?php echo $row_A['id'] ?>-<?php echo (1 + $i) ?>">
                   <?php echo (1 + $i) ?>
                 </a>
               <?php }
             $echo = $page == $page_num ? "<a class='disabled'" : "<a class='canClick'";
             $temp = $page + 1 > $page_num ? $page_num : $page + 1;
-            echo $echo . "href='article.php?id=" . $row_A['id'] . "&page=" . $temp . "'>" . "下一页" . "</a>";
-            echo $echo . "href='article.php?id=" . $row_A['id'] . "&page=" . $page_num . "'>" . "尾页" . "</a>";
-          } ?>
-          </div>
+            echo $echo . "href='article-" . $row_A['id'] . "-" . $temp . "'>" . "下一页" . "</a>";
+            echo $echo . "href='article-" . $row_A['id'] . "-" . $page_num . "'>" . "尾页" . "</a>";  ?>
+            </div>
+          <?php } ?>
         </div>
       </div>
     </div>
@@ -264,6 +263,39 @@
         str = $(this).attr('href');
         CanClick(str);
         event.preventDefault();
+      });
+      $("#comment-submit").click(function() {
+        var commentContent = $("#comment-textarea");
+        var commentButton = $("#comment-submit");
+        var promptBox = $('.comment-prompt');
+        var promptText = $('.comment-prompt-text');
+        var articleId = $('.articleId').val();
+        var userId = $('.userId').val();
+        promptBox.fadeIn(400);
+        if (commentContent.val() === '') {
+          promptText.text('请留下您的评论');
+          return false;
+        }
+        commentButton.attr('disabled', true);
+        commentButton.addClass('disabled');
+        promptText.text('正在提交...');
+        $.ajax({
+          type: "POST",
+          url: "/ajax.php",
+          data: "function=Comment&age=" + articleId + "//,//" + userId + "//,//" + commentContent.val(),
+          cache: false, //不缓存此页面  
+          success: function(data) {
+            if (data == "true") {
+              promptText.text('评论成功!');
+              commentContent.val(null);
+              CanClick("article-<?php echo $row_A['id'] ?>&-<?php echo $page_num ?>");
+              commentButton.attr('disabled', false);
+              commentButton.removeClass('disabled');
+            }
+          }
+        });
+        promptBox.fadeOut(100);
+        return false;
       });
     });
   </script>

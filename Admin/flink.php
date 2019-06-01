@@ -16,6 +16,7 @@
   else
     $page_num = (int)$page_num / $amount;
   $page = isset($_GET['page']) ? $_GET['page'] : 1;
+  if ($page > $page_num) $page = $page_num;
   ?>
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -32,7 +33,7 @@
         <form action="" method="post" id="DeleteAll">
           <h1 class="page-header">操作</h1>
           <ol class="breadcrumb">
-            <li><a href="add-fLink.php">增加友情链接</a></li>
+            <li><a href="addFLink">增加友情链接</a></li>
           </ol>
           <h1 class="page-header">管理 <span class="badge"><?php echo $links_num ?></span></h1>
           <div class="table-responsive">
@@ -76,7 +77,7 @@
               </div>
               <ul class="pagination pagenav quotes">
                 <li <?php echo $page == 1 ? "class=\"disabled\"" : "class=\"canClick\"" ?>>
-                  <a href="/Admin/fLink.php?page=1" aria-label="Previous">
+                  <a href="/Admin/fLink-1" aria-label="Previous">
                     &laquo;
                   </a>
                 </li>
@@ -84,7 +85,7 @@
                 for ($i = 0; $i < $page_num; $i++) {
                   ?>
                   <li <?php echo $page == (1 + $i) ? "class=\"active\"" : "class=\"canClick\"" ?>>
-                    <a href="/Admin/fLink.php?page=<?php echo (1 + $i) ?>">
+                    <a href="/Admin/fLink-<?php echo (1 + $i) ?>">
                       <?php echo (1 + $i) ?>
                     </a>
                   </li>
@@ -92,7 +93,7 @@
               }
               ?>
                 <li <?php echo $page == $page_num ? "class=\"disabled\"" : "class=\"canClick\"" ?>>
-                  <a href="/Admin/fLink.php?page=<?php echo $page_num ?>" aria-label="Next">
+                  <a href="/Admin/fLink-<?php echo $page_num ?>" aria-label="Next">
                     &raquo;
                   </a>
                 </li>
@@ -120,11 +121,13 @@
       function Delete(name) {
         var id = name.attr("rel"); //对应id  
         if (event.srcElement.outerText == "删除") {
-          if (window.confirm("此操作不可逆，是否确认？")) {
+          $('#deleteModal').modal('show');
+          $('#deleteButton').click(function() {
+            $('#deleteButton').unbind("click");
             $.ajax({
               type: "POST",
               url: "/ajax.php",
-              data: "function=Delete&age=" + id + ",links",
+              data: "function=Delete&age=" + id + "//,//links",
               cache: false, //不缓存此页面   
               success: function(data) {
                 if (data == "true") {
@@ -136,20 +139,47 @@
                     zindex: 1100,
                     pauseOnHover: false,
                   });
-                  CanClick("/Admin/fLink.php?page=<?php echo $page ?>");
+                  CanClick("/Admin/fLink-<?php echo $page ?>");
                 }
               }
             });
-          };
+            $('#deleteModal').modal('hide');
+          });
         };
       };
+
+      function CanClick(str) {
+        $.ajax({
+          url: str,
+          context: $('commentList'),
+          success: function(data) {
+            commentList = $(data).find('.commentList').html();
+            quotes = $(data).find('.quotes').html();
+            $(".commentList").html(commentList);
+            $(".quotes").html(quotes);
+            $('.disabled a,.active a').click(function(event) {
+              event.preventDefault();
+            });
+            $('.canClick a').click(function(event) {
+              str = $(this).attr('href');
+              CanClick(str);
+              event.preventDefault();
+            });
+            $("#main table tbody tr td a").click(function() {
+              var name = $(this);
+              Delete(name);
+            });
+          }
+        });
+      };
+
       $("#DeleteAll").submit(function(event) {
         event.preventDefault();
         var arr = new Array();
         $("input:checkbox:checked").each(function(i) {
           arr[i] = $(this).val();
         });
-        var values = arr.join("/");
+        var values = arr.join(",");
         if (values == "") {
           iziToast.warning({
             title: '提示',
@@ -160,28 +190,33 @@
             pauseOnHover: false,
           });
         } else {
-          $.ajax({
-            type: "POST",
-            url: "/ajax.php",
-            data: "function=DeleteAll&age=" + values + ",links",
-            cache: false, //不缓存此页面  
-            success: function(data) {
-              if (data == "true") {
-                if (arr.length == <?php echo $result->num_rows ?>) {
-                  CanClick("/Admin/fLink.php?page=<?php echo $page - 1 ?>");
-                } else {
-                  CanClick("/Admin/fLink.php?page=<?php echo $page ?>");
+          $('#deleteModal').modal('show');
+          $('#deleteButton').click(function() {
+            $('#deleteButton').unbind("click");
+            $.ajax({
+              type: "POST",
+              url: "/ajax.php",
+              data: "function=DeleteAll&age=" + values + "//,//links",
+              cache: false, //不缓存此页面  
+              success: function(data) {
+                if (data == "true") {
+                  if (arr.length == <?php echo $result->num_rows ?>) {
+                    CanClick("/Admin/fLink-<?php echo $page - 1 ?>");
+                  } else {
+                    CanClick("/Admin/fLink-<?php echo $page ?>");
+                  }
+                  iziToast.success({
+                    title: '成功',
+                    message: '您所选择的' + arr.length + '条友情链接已经成功删除',
+                    position: 'bottomRight',
+                    transitionIn: 'bounceInLeft',
+                    zindex: 1100,
+                    pauseOnHover: false,
+                  });
                 }
-                iziToast.success({
-                  title: '成功',
-                  message: '您所选择的' + arr.length + '条友情链接已经成功删除',
-                  position: 'bottomRight',
-                  transitionIn: 'bounceInLeft',
-                  zindex: 1100,
-                  pauseOnHover: false,
-                });
               }
-            }
+            });
+            $('#deleteModal').modal('hide');
           });
         }
       })

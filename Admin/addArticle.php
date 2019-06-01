@@ -18,7 +18,7 @@
       <?php include 'aside.php' ?>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
         <div class="row">
-          <form action="/Article/add" method="post" class="add-article-form">
+          <form action="article" method="post" class="add-article-form" id="articleAdd">
             <div class="col-md-9">
               <h1 class="page-header">撰写新文章</h1>
               <div class="form-group">
@@ -27,13 +27,18 @@
               </div>
               <div class="form-group">
                 <label for="article-content" class="sr-only">内容</label>
-                <script id="article-content" name="content" type="text/plain"></script>
+                <textarea type="text" name="content" id="article-content" placeholder="编辑器正在加载..." style="border: none;background: none"></textarea>
+                <!-- <script id="article-content" name="content" type="text/plain"></script> -->
               </div>
               <div class="add-article-box">
-                <h2 class="add-article-box-title"><span>描述</span></h2>
+                <h2 class="add-article-box-title"><span>概述</span></h2>
                 <div class="add-article-box-content">
-                  <textarea class="form-control" name="describe" autocomplete="off"></textarea>
-                  <span class="prompt-text">描述是可选的手工创建的内容总结，并可以在网页描述中使用</span>
+                  <textarea class="form-control" name="describe" autocomplete="off" style="height: 64px"></textarea>
+                  <span class="prompt-text">概述是可选的手工创建的内容总结，在浏览文章页面显示</span>
+                  <p>
+                    <label><input type="checkbox" name="describe_on" style="margin-top: 2px;margin-right: 4px">自动生成概述</label>
+                    <label style="margin-left: 15px;"><input type="checkbox" name="comment" style="margin-top: 2px;margin-right: 4px">禁止评论</label>
+                  </p>
                 </div>
               </div>
             </div>
@@ -52,8 +57,8 @@
                       ?>
                       <li>
                         <label>
-                          <input name="category" type="radio" value="1" <?php echo $i == 1 ? "checked" : "" ?>>
-                          <?php echo $row['name'] ?> <em class="hidden-md">( 栏目ID: <span><?php echo $row['id'] ?></span> )</em></label>
+                          <input name="category" type="radio" value="<?php echo $row['name'] ?>" <?php echo $i == 1 ? "checked" : "" ?> <?php echo $row['name'] == "" ? "disabled='disabled'" : ""; ?>>
+                          <?php echo $row['name'] == "" ? "<i>NULL</i>" : $row['name'] ?> <em class="hidden-md">( 栏目ID: <span><?php echo $row['id'] ?></span> )</em></label>
                       </li>
                     <?php
                   }
@@ -62,22 +67,21 @@
                 </div>
               </div>
               <div class="add-article-box">
-                <h2 class="add-article-box-title"><span>关键字</span></h2>
-                <div class="add-article-box-content">
-                  <input type="text" class="form-control" placeholder="请输入关键字" name="keywords" autocomplete="off">
-                  <span class="prompt-text">多个标签请用英文逗号,隔开。</span>
-                </div>
-              </div>
-              <div class="add-article-box">
                 <h2 class="add-article-box-title"><span>标签</span></h2>
                 <div class="add-article-box-content">
                   <input type="text" class="form-control" placeholder="输入新标签" name="tags" autocomplete="off">
-                  <span class="prompt-text">多个标签请用英文逗号,隔开</span> </div>
+                  <span class="prompt-text">多个标签请用英文逗号(,)隔开</span> </div>
+              </div>
+              <div class="add-article-box">
+                <h2 class="add-article-box-title"><span>作者</span></h2>
+                <div class="add-article-box-content">
+                  <input type="text" class="form-control" placeholder="输入作者名称" name="author" autocomplete="off" value="<?php echo $username ?>">
+                  <span class="prompt-text">请输入本文作者名称</span> </div>
               </div>
               <div class="add-article-box">
                 <h2 class="add-article-box-title"><span>标题图片</span></h2>
                 <div class="add-article-box-content">
-                  <input type="text" class="form-control" placeholder="点击按钮选择图片" id="pictureUpload" name="titlepic" autocomplete="off">
+                  <input type="text" class="form-control" placeholder="点击按钮选择图片" id="pictureUpload" name="titlePic" autocomplete="off">
                 </div>
                 <div class="add-article-box-footer">
                   <button class="btn btn-default" type="button" ID="upImage">选择</button>
@@ -99,8 +103,32 @@
       </div>
     </div>
   </section>
-  <?php include 'modal.php';
-  include 'UEditor.php'; ?>
+  <?php include 'UEditor.php';
+  include 'modal.php'; ?>
+  <script>
+    $('input[name=time]').val(new Date().Format("yyyy-MM-dd hh:mm:ss"));
+    setInterval(function() {
+      $('input[name=time]').val(new Date().Format("yyyy-MM-dd hh:mm:ss"));
+    }, 5000);
+
+    function textarea() {
+      var text = $("textarea[name=describe]");
+      var str = UE.getEditor('article-content').getContentTxt();
+      if (str.length > 100) {
+        text.text(str.substring(0, 100) + "...");
+      } else {
+        text.text(str.substring(0, 100));
+      }
+    }
+    var Interval;
+    $('input[name=describe_on]').click(function() {
+      if ($(this).prop("checked")) {
+        Interval = setInterval("textarea();", 1000);
+      } else {
+        clearInterval(Interval);
+      }
+    })
+  </script>
 </body>
 
 </html>

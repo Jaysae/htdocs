@@ -16,6 +16,7 @@
     else
         $page_num = (int)$page_num / $amount;
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
+    if ($page > $page_num) $page = $page_num;
     if ($page_num >= 2) $page_num = 2;
     ?>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
@@ -47,7 +48,7 @@
                             <?php
                             $i = 0;
                             while ($row = $result->fetch_assoc()) { ?>
-                                <div class="item <?php echo $i == 0 ? "active" : "" ?>"> <a href="article.php?id=<?php echo $row['id'] ?>" target="_blank"><img src="<?php echo $row['image'] ?>" alt="" class="img-responsive" width="820" height="200"></a>
+                                <div class="item <?php echo $i == 0 ? "active" : "" ?>"> <a href="article-<?php echo $row['id'] ?>" target="_blank"><img src="<?php echo $row['image'] ?>" alt="" class="img-responsive" width="820" height="200"></a>
                                 </div>
                                 <?php $i = 1;
                             } ?>
@@ -70,13 +71,13 @@
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         ?>
-                        <article class="excerpt excerpt-<?php echo $row['id'] ?>"><a class="focus" href="article.php?<?php echo $row['id'] ?>" title=""><img class="thumb" data-original="<?php echo $row['image'] ?>" src="<?php echo $row['image'] ?>" alt=""></a>
+                        <article class="excerpt excerpt-<?php echo $row['id'] ?>"><a class="focus" href="article-<?php echo $row['id'] ?>" title=""><img class="thumb" data-original="<?php echo $row['image'] ?>" src="<?php echo $row['image'] ?>" alt=""></a>
                             <header><a class="cat" href="program"><?php echo $row['classify'] ?><i></i></a>
-                                <h2><a href="article.php?id=<?php echo $row['id'] ?>" class="isArticle"><?php echo $row['title'] ?></a></h2>
+                                <h2><a href="article-<?php echo $row['id'] ?>" class="isArticle"><?php echo $row['title'] ?></a></h2>
                             </header>
                             <p class="meta">
                                 <time class="time"><i class="glyphicon glyphicon-time"></i><?php echo $row['date'] ?></time>
-                                <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 共<?php echo $row['view'] ?>人围观</span> <a class="comment" href="article.php?id=<?php echo $row['id'] ?>"><i class="glyphicon glyphicon-comment"></i> 0个不明物体</a></p>
+                                <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 共<?php echo $row['view'] ?>人围观</span> <a class="comment" href="article-<?php echo $row['id'] ?>"><i class="glyphicon glyphicon-comment"></i> <?php echo $conn->query("SELECT COUNT(*) FROM comment WHERE article_id = " . $row['id'])->fetch_assoc()['COUNT(*)'] ?>个不明物体</a></p>
                             <div class="note"><?php echo $row['foreword'] ?></div>
                         </article>
                     <?php
