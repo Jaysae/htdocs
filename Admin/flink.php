@@ -1,3 +1,4 @@
+<?php include '../config.php' ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -6,24 +7,58 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>友情链接 - 异清轩博客管理系统</title>
-  <?php include '../tool.php';
-  $page_num = $conn->query("SELECT COUNT(*) FROM links")->fetch_assoc()['COUNT(*)'];
-  $links_num = $page_num;
-  $amount = 15;
-  if ($page_num / $amount > (int)($page_num / $amount))
-    $page_num =  (int)($page_num / $amount) + 1;
-  else
-    $page_num = (int)$page_num / $amount;
-  $page = isset($_GET['page']) ? $_GET['page'] : 1;
-  if ($page > $page_num) $page = $page_num;
-  ?>
+  <title>友情链接 - <?php echo WebSite_Title ?>博客管理系统</title>
+  <?php include '../tool.php'; ?>
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body class="user-select">
   <section class="container-fluid">
-    <?php include 'header.php' ?>
+    <?php include 'header.php';
+    if (isset($_POST['name'])) {
+      $id = $_POST['fLinkID'];
+      $title = $_POST['name'];
+      $imgUrl = $_POST['imgUrl'];
+      $url = $_POST['url'];
+      $target = $_POST['target'];
+      $rel = $_POST['rel'];
+      if ($id == 0) {
+        $sql = "INSERT INTO `links`(`link`, `title`, `icon`, `target`, `rel`) VALUES ('$url','$title','$imgUrl','$target','$rel')";
+        $Toast = "New";
+      } else {
+        $sql = "UPDATE `links` SET `link`='$url',`title`='$title',`icon`='$imgUrl',`target`='$target',`rel`='$rel' WHERE id = $id";
+        $Toast = "Edit";
+      }
+      $mes = "友情链接";
+      $conn->query($sql);
+      $_SESSION['tipNum'] = 2;
+      $_SESSION['title'] = $title;
+      $_SESSION['Toast'] = $Toast;
+      $_SESSION['mes'] = $mes;
+      header("location: /admin/fLink");
+    }
+    if (isset($_SESSION['tipNum'])) {
+      $title =  $_SESSION['title'];
+      $Toast = $_SESSION['Toast'];
+      $mes = $_SESSION['mes'];
+      $_SESSION['tipNum'] = $_SESSION['tipNum'] - 1;
+      if ($_SESSION['tipNum'] <= 0) {
+        unset($_SESSION['title']);
+        unset($_SESSION['Toast']);
+        unset($_SESSION['mes']);
+        unset($_SESSION['tipNum']);
+      }
+    }
+    $page_num = $conn->query("SELECT COUNT(*) FROM links")->fetch_assoc()['COUNT(*)'];
+    $links_num = $page_num;
+    $amount = 15;
+    if ($page_num / $amount > (int)($page_num / $amount))
+      $page_num =  (int)($page_num / $amount) + 1;
+    else
+      $page_num = (int)$page_num / $amount;
+    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+    if ($page > $page_num) $page = $page_num;
+    ?>
     <div class="row">
       <?php include 'aside.php';
       $sql = "SELECT * FROM links ORDER BY `links`.`id` ASC LIMIT " . ($page - 1) * $amount . "," . $amount . "";
@@ -33,7 +68,7 @@
         <form action="" method="post" id="DeleteAll">
           <h1 class="page-header">操作</h1>
           <ol class="breadcrumb">
-            <li><a href="addFLink">增加友情链接</a></li>
+            <li><a href="EditFLink">增加友情链接</a></li>
           </ol>
           <h1 class="page-header">管理 <span class="badge"><?php echo $links_num ?></span></h1>
           <div class="table-responsive">
@@ -59,7 +94,7 @@
                     <td><?php echo $row['id'] ?></td>
                     <td><?php echo $row['title'] ?></td>
                     <td><?php echo $row['link'] ?></td>
-                    <td><a href="update-fLink.php?id=<?php echo $row['id'] ?>">修改</a> <a rel="<?php echo $row['id'] ?>">删除</a></td>
+                    <td><a href="EditFLink-<?php echo $row['id'] ?>">修改</a> <a rel="<?php echo $row['id'] ?>">删除</a></td>
                   </tr>
                 <?php
               }

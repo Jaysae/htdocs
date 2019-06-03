@@ -17,6 +17,10 @@
   $result = $conn->query($sql);
   if ($result->num_rows > 0)
     $row_A = $result->fetch_assoc();
+  $commentNum = $conn->query("SELECT COUNT(*) FROM comment WHERE article_id = $id")->fetch_assoc()['COUNT(*)'];
+  $view = $row_A['view'];
+  $view++;
+  $conn->query("UPDATE `article` SET `view` = '$view' WHERE `article`.`id` = $id;");
   ?>
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <title><?php echo $row_A['title'] ?> - | <?php echo WebSite_Title ?> | <?php echo WebSite_Subtitle ?> | Powered By <?php echo WebSite_Copyright ?></title>
@@ -43,10 +47,10 @@
               <a href="search-<?php echo $row_A['classify'] ?>" title=""><?php echo $row_A['classify'] ?></a>
             </span>
             <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="查看：<?php echo $row_A['view'] ?>">
-              <i class="glyphicon glyphicon-eye-open"></i> 共<?php echo $row_A['view'] ?>人围观
+              <i class="glyphicon glyphicon-eye-open"></i> 共<?php echo $view ?>人围观
             </span>
             <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="评论：<?php echo $conn->query("SELECT COUNT(*) FROM comment WHERE article_id = $id")->fetch_assoc()['COUNT(*)'] ?>">
-              <i class="glyphicon glyphicon-comment"></i> <?php echo $conn->query("SELECT COUNT(*) FROM comment WHERE article_id = $id")->fetch_assoc()['COUNT(*)'] ?>个不明物体
+              <i class="glyphicon glyphicon-comment"></i> <?php echo $commentNum  ?>个不明物体
             </span>
           </div>
         </header>
@@ -59,17 +63,17 @@
           <p><img data-original="<?php echo $row_A['image'] ?>" src="<?php echo $row_A['image'] ?>" alt="" /></p>
           <div><?php echo $row_A['content'] ?></div>
           <p class="article-copyright hidden-xs">未经允许不得转载：
-            <a href="">异清轩博客</a> » <a href="article-<?php echo $id ?>">php如何判断一个日期的格式是否正确</a>
+            <a><?php echo WebSite_Title ?>博客</a> » <a href="article-<?php echo $id ?>"><?php echo $row_A['title'] ?></a>
           </p>
         </article>
-        <div class="article-tags">标签：<a href="" rel="tag">PHP</a></div>
+        <div class="article-tags">标签：<a rel="tag"><?php echo $row_A['label'] ?></a></div>
         <div class="relates">
           <div class="title">
             <h3>栏目热门推荐</h3>
           </div>
           <ul>
             <?php
-            $sql = "SELECT * FROM article WHERE classify LIKE '" . $row_A['classify'] . "' ORDER BY article.view DESC LIMIT 0,7";
+            $sql = "SELECT * FROM article WHERE classify LIKE '" . $row_A['classify'] . "' ORDER BY article.view DESC LIMIT 0," . WebSite_category_num;
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
               while ($row = $result->fetch_assoc()) {
@@ -83,11 +87,11 @@
         </div>
         <div class="title" id="comment">
           <h3>评论
-            <?php if ($row_A['comment_off'] == null) { ?>
+            <?php if ($row_A['comment_off'] != "1" && $commentNum == 0) { ?>
               <small>抢沙发</small></h3>
           <?php } ?>
         </div>
-        <div id="respond" <?php if ($row_A['comment_off'] == null && isset($_SESSION['username'])) echo "style='display:none;'" ?>>
+        <div id="respond" <?php if ($row_A['comment_off'] != "1" && isset($_SESSION['username'])) echo "style='display:none;'" ?>>
           <div class="comment-signarea">
             <?php if (!isset($_SESSION['username'])) { ?>
               <h3 class="text-muted">评论前必须登录！</h3>
@@ -96,12 +100,12 @@
                 <a data-toggle="modal" data-target="#regModal" class="btn btn-default register" rel="nofollow">注册</a>
               </p>
             <?php } ?>
-            <?php if ($row_A['comment_off'] != null) { ?>
-              <h3 class="text-muted">当前文章禁止评论</h3>
+            <?php if ($row_A['comment_off'] == "1") { ?>
+              <h3 class="text-muted"><i class="glyphicon glyphicon-lock"></i> 当前文章禁止评论</h3>
             <?php } ?>
           </div>
         </div>
-        <div id="respond" <?php if ($row_A['comment_off'] != null || !isset($_SESSION['username'])) echo "style='display:none;'" ?>>
+        <div id="respond" <?php if ($row_A['comment_off'] == "1" || !isset($_SESSION['username'])) echo "style='display:none;'" ?>>
           <form action="" method="post" id="comment-form">
             <div class="comment">
               <?php
@@ -115,7 +119,7 @@
               ?>
               <div class="comment-title"><img class="avatar" src="<?php if (isset($_SESSION['username'])) echo $row['avatar']; ?>" alt="" /></div>
               <div class="comment-box">
-                <textarea placeholder="您的评论可以一针见血" name="comment" id="comment-textarea" cols="100%" rows="3" tabindex="1" maxlength="300"></textarea>
+                <textarea placeholder="<?php echo ($row_A['comment_off'] != "1" && $commentNum == 0) ? "还没有人评论，快来抢沙发！" : "您的评论可以一针见血" ?>" name="comment" id="comment-textarea" cols="100%" rows="3" tabindex="1" maxlength="300"></textarea>
                 <div class="comment-ctrl">
                   <span class="emotion" style='display:none;'>
                     <img src="images/face/5.png" width="20" height="20" alt="" />表情
@@ -138,7 +142,7 @@
             $id_a = $row_A['id'];
             $sql = "SELECT COUNT(*) FROM comment INNER JOIN user_center ON comment.user_id = user_center.id WHERE comment.article_id = '$id_a' ORDER BY comment.date ASC";
             $page_num = $conn->query($sql)->fetch_assoc()['COUNT(*)'];
-            $amount = 5;
+            $amount = WebSite_show_num;
             if ($page_num / $amount > (int)($page_num / $amount))
               $page_num =  (int)($page_num / $amount) + 1;
             else
@@ -162,7 +166,12 @@
             if ($result && $result->num_rows > 0) {
               while ($row = $result->fetch_assoc()) {
                 ?>
-                <li class="comment-content"><span class="comment-f">#<?php echo ($page - 1) * 5 + $i ?></span>
+                <li class="comment-content">
+                  <span class="comment-f">
+                    <?php
+                    $temp = ($page - 1) * 5 + $i;
+                    echo $temp == 1 ? "<i class='glyphicon glyphicon-flag'></i>" : "#" . $temp ?>
+                  </span>
                   <div class="comment-avatar">
                     <?php if ($row['avatar'] != "") { ?>
                       <img class="avatar" src="<?php echo $row['avatar'] ?>" alt="" />
@@ -210,8 +219,7 @@
       <?php include 'RightMenu.php' ?>
     </aside>
   </section>
-  <?php include 'footer.php';
-  include 'live2d.php' ?>
+  <?php include 'footer.php' ?>
   <script src="js/jquery.qqFace.js"></script>
   <script type="text/javascript">
     function CanClick(str) {
@@ -288,7 +296,7 @@
             if (data == "true") {
               promptText.text('评论成功!');
               commentContent.val(null);
-              CanClick("article-<?php echo $row_A['id'] ?>&-<?php echo $page_num ?>");
+              CanClick("article-<?php echo $row_A['id'] ?>-<?php echo $page_num ?>");
               commentButton.attr('disabled', false);
               commentButton.removeClass('disabled');
             }

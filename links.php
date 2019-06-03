@@ -36,7 +36,7 @@
                     while ($row = $result->fetch_assoc()) {
                         ?>
                         <li>
-                            <a href="<?php echo $row['link'] ?>" title="" target="_blank" rel="nofollow">
+                            <a href="<?php echo $row['link'] ?>" title="" target="<?php echo $row['target'] ?>" rel="<?php echo $row['rel'] ?>">
                                 <img src="<?php echo $row['icon'] ?>" alt="">
                                 <?php echo $row['title'] ?>
                             </a>
@@ -48,8 +48,7 @@
             </ul>
         </div>
     </section>
-    <?php include 'footer.php';
-    include 'live2d.php' ?>
+    <?php include 'footer.php' ?>
 </body>
 <?php
 function InputImage($url)

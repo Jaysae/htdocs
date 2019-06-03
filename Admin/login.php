@@ -3,6 +3,7 @@ session_start();
 if (isset($_SESSION['username'])) {
   header("location: /Admin");
 } ?>
+<?php include '../config.php' ?>
 <!doctype html>
 <html lang="zh-CN">
 

@@ -52,107 +52,38 @@
             </div>
         </div>
     </div>
-    <!--增加用户模态框-->
-    <div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel">
-        <div class="modal-dialog" role="document" style="max-width:450px;">
-            <form action="/User/add" method="post" autocomplete="off" draggable="false">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">增加用户</h4>
-                    </div>
-                    <div class="modal-body">
-                        <table class="table" style="margin-bottom:0px;">
-                            <thead>
-                                <tr> </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td wdith="20%">姓名:</td>
-                                    <td width="80%"><input type="text" value="" class="form-control" name="truename" maxlength="10" autocomplete="off" /></td>
-                                </tr>
-                                <tr>
-                                    <td wdith="20%">用户名:</td>
-                                    <td width="80%"><input type="text" value="" class="form-control" name="username" maxlength="10" autocomplete="off" /></td>
-                                </tr>
-                                <tr>
-                                    <td wdith="20%">电话:</td>
-                                    <td width="80%"><input type="text" value="" class="form-control" name="usertel" maxlength="13" autocomplete="off" /></td>
-                                </tr>
-                                <tr>
-                                    <td wdith="20%">新密码:</td>
-                                    <td width="80%"><input type="password" class="form-control" name="password" maxlength="18" autocomplete="off" /></td>
-                                </tr>
-                                <tr>
-                                    <td wdith="20%">确认密码:</td>
-                                    <td width="80%"><input type="password" class="form-control" name="new_password" maxlength="18" autocomplete="off" /></td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr></tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="submit" class="btn btn-primary">提交</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
     <!--用户信息模态框-->
     <div class="modal fade" id="seeUser" tabindex="-1" role="dialog" aria-labelledby="seeUserModalLabel">
         <div class="modal-dialog" role="document" style="max-width:450px;">
-            <form action="/User/update" method="post" autocomplete="off" draggable="false">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">修改用户</h4>
-                    </div>
-                    <div class="modal-body">
-                        <table class="table" style="margin-bottom:0px;">
-                            <thead>
-                                <tr> </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td wdith="20%">姓名:</td>
-                                    <td width="80%"><input type="text" value="" class="form-control" id="truename" name="truename" maxlength="10" autocomplete="off" /></td>
-                                </tr>
-                                <tr>
-                                    <td wdith="20%">用户名:</td>
-                                    <td width="80%"><input type="text" value="" class="form-control" id="username" name="username" maxlength="10" autocomplete="off" /></td>
-                                </tr>
-                                <tr>
-                                    <td wdith="20%">电话:</td>
-                                    <td width="80%"><input type="text" value="" class="form-control" id="usertel" name="usertel" maxlength="13" autocomplete="off" /></td>
-                                </tr>
-                                <tr>
-                                    <td wdith="20%">旧密码:</td>
-                                    <td width="80%"><input type="password" class="form-control" name="old_password" maxlength="18" autocomplete="off" /></td>
-                                </tr>
-                                <tr>
-                                    <td wdith="20%">新密码:</td>
-                                    <td width="80%"><input type="password" class="form-control" name="password" maxlength="18" autocomplete="off" /></td>
-                                </tr>
-                                <tr>
-                                    <td wdith="20%">确认密码:</td>
-                                    <td width="80%"><input type="password" class="form-control" name="new_password" maxlength="18" autocomplete="off" /></td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr></tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="hidden" name="userid" value="" />
-                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="submit" class="btn btn-primary">提交</button>
-                    </div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">修改用户</h4>
                 </div>
-            </form>
+                <div class="modal-body">
+                    <table class="table" style="margin-bottom:0px;">
+                        <tbody>
+                            <tr>
+                                <td wdith="20%">用户名:</td>
+                                <td width="80%"><input type="text" value="" class="form-control" id="seeUser_name" name="seeUser_name" maxlength="10" autocomplete="off" /></td>
+                            </tr>
+                            <tr>
+                                <td wdith="20%">新密码:</td>
+                                <td width="80%"><input type="password" class="form-control" name="password" maxlength="18" autocomplete="off" /></td>
+                            </tr>
+                            <tr>
+                                <td wdith="20%">确认密码:</td>
+                                <td width="80%"><input type="password" class="form-control" name="new_password" maxlength="18" autocomplete="off" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="user_id" value="" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary" id="SeeUserButton">提交</button>
+                </div>
+            </div>
         </div>
     </div>
     <!--个人信息模态框-->
@@ -165,25 +96,22 @@
                 </div>
                 <div class="modal-body">
                     <table class="table" style="margin-bottom:0px;">
-                        <thead>
-                            <tr> </tr>
-                        </thead>
                         <tbody>
                             <tr>
                                 <td wdith="20%">用户名:</td>
-                                <td width="80%"><input type="text" value="<?php echo $username ?>" class="form-control" name="username" maxlength="10" autocomplete="off" /></td>
+                                <td width="80%"><input type="text" value="<?php echo $username ?>" class="form-control" name="Info_username" maxlength="10" autocomplete="off" /></td>
                             </tr>
                             <tr>
                                 <td wdith="20%">旧密码:</td>
-                                <td width="80%"><input type="password" class="form-control" name="old_password" maxlength="18" autocomplete="off" /></td>
+                                <td width="80%"><input type="password" class="form-control" name="Info_old_password" maxlength="18" autocomplete="off" /></td>
                             </tr>
                             <tr>
                                 <td wdith="20%">新密码:</td>
-                                <td width="80%"><input type="password" class="form-control" name="password" maxlength="18" autocomplete="off" /></td>
+                                <td width="80%"><input type="password" class="form-control" name="Info_password" maxlength="18" autocomplete="off" /></td>
                             </tr>
                             <tr>
                                 <td wdith="20%">确认密码:</td>
-                                <td width="80%"><input type="password" class="form-control" name="new_password" maxlength="18" autocomplete="off" /></td>
+                                <td width="80%"><input type="password" class="form-control" name="Info_new_password" maxlength="18" autocomplete="off" /></td>
                             </tr>
                         </tbody>
                     </table>
@@ -391,7 +319,7 @@
     <!--右键菜单列表-->
     <div id="rightClickMenu">
         <ul class="list-group rightClickMenuList">
-            <li class="list-group-item disabled">欢迎访问异清轩博客</li>
+            <li class="list-group-item disabled">欢迎访问<?php echo WebSite_Title ?>博客</li>
             <li class="list-group-item"><span>IP：</span>172.16.10.129</li>
             <li class="list-group-item"><span>地址：</span>河南省郑州市</li>
             <li class="list-group-item"><span>系统：</span>Windows10 </li>
@@ -399,6 +327,7 @@
         </ul>
     </div>
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap-switch.min.js"></script>
     <script src="js/admin-scripts.js"></script>
     <script src="/js/iziToast.min.js"></script>
     <div class="iziToast-wrapper iziToast-wrapper-bottomLeft"></div>
@@ -449,21 +378,24 @@
                     pauseOnHover: false,
                 });
             }
-            if ("<?php echo $Toast ?>" == "NewTitle") {
+            var mes = "<?php echo $title ?>";
+            if (mes.length > 10) {
+                mes = mes.substring(0, 10) + "...";
+            }
+            mes = mes + " <?php echo $Toast == "New" ? "已成功添加" : "已成功修改" ?>";
+            if ("<?php echo $Toast ?>" == "New" || "<?php echo $Toast ?>" == "Edit") {
+                <?php $title = "";
+                $Toast = "";
+                $mes = ""; ?>
                 $("#Login").autotype();
-                var mes = "<?php echo $title ?>";
-                if (mes.length > 10) {
-                    mes = mes.substring(0, 10) + "...";
-                }
                 iziToast.success({
                     title: '成功',
-                    message: '文章 ' + mes + ' 已成功添加',
+                    message: '<?php echo $mes ?> ' + mes,
                     position: 'bottomRight',
                     transitionIn: 'bounceInLeft',
                     zindex: 1100,
                     pauseOnHover: false,
                 });
-                <?php $title = "" ?>
             }
         });
         $.fn.autotype = function() {
@@ -485,7 +417,43 @@
             }, 100);
         };
         $('#UserInfoButton').click(function() {
-            var btn = $(this);
+            UserInfo();
+        });
+
+        function UserInfo() {
+            var username = $('input[name=Info_username]').val();;
+            var old_password = $('input[name=Info_old_password]').val();;
+            var password = $('input[name=Info_password]').val();;
+            var new_password = $('input[name=Info_new_password]').val();;
+            if (password != new_password) {
+                iziToast.error({
+                    title: '错误',
+                    message: '两次输入的密码不一致',
+                    position: 'topCenter',
+                    transitionIn: 'fadeInDown',
+                    zindex: 1100,
+                    pauseOnHover: false,
+                    onOpening: function() {
+                        $('#regModalUserPwdAgain').focus();
+                    },
+                });
+                return;
+            }
+            if (password == old_password) {
+                iziToast.error({
+                    title: '错误',
+                    message: '新密码和旧密码一致',
+                    position: 'topCenter',
+                    transitionIn: 'fadeInDown',
+                    zindex: 1100,
+                    pauseOnHover: false,
+                    onOpening: function() {
+                        $('#regModalUserPwdAgain').focus();
+                    },
+                });
+                return;
+            }
+            var btn = $('#UserInfoButton');
             btn.attr("disabled", true);
             btn.text("3");
             $('#InfoTips').fadeIn();
@@ -500,19 +468,55 @@
                 btn.attr("disabled", false);
                 btn.unbind("click");
                 btn.click(function() {
-
+                    $.ajax({
+                        type: "POST",
+                        url: "/ajax.php",
+                        data: "function=AdminInfo&age=" + username + "//,//" + old_password + "//,//" + new_password,
+                        cache: false, //不缓存此页面   
+                        success: function(data) {
+                            if (data == "true") {
+                                window.location.href = "/";
+                            } else {
+                                iziToast.error({
+                                    title: '错误',
+                                    message: '您输入的旧密码不符！',
+                                    position: 'topCenter',
+                                    transitionIn: 'fadeInDown',
+                                    timeout: 2000,
+                                    zindex: 1100,
+                                    pauseOnHover: false,
+                                    onOpening: function() {
+                                        $('#loginModalUserName').focus();
+                                    },
+                                });
+                                $('#InfoTips').fadeOut();
+                                $('#UserInfoButton').text("提交");
+                                $('#UserInfoButton').unbind("click");
+                                $('#UserInfoButton').click(function() {
+                                    UserInfo();
+                                });
+                            }
+                        }
+                    });
                 })
             }, 3000);
-        });
+        }
+
         $('#seeUserInfo').on('hidden.bs.modal', function() {
             $('#InfoTips').fadeOut();
             $('#UserInfoButton').text("提交");
             $('#UserInfoButton').unbind("click");
+            $('#UserInfoButton').click(function() {
+                UserInfo();
+            });
         })
         $('#deleteModal').on('hidden.bs.modal', function() {
             $('#deleteButton').unbind("click");
         });
         $('#noticeModal').on('hidden.bs.modal', function() {
             $('#noticeButton').unbind("click");
+        });
+        $('#seeUser').on('hidden.bs.modal', function() {
+            $('#SeeUserButton').unbind("click");
         })
     </script>

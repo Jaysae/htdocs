@@ -1,3 +1,4 @@
+<?php include '../config.php' ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -33,7 +34,7 @@
           </div>
           <div class="col-xs-6 col-sm-3 placeholder">
             <h4>访问量</h4>
-            <span class="text-muted"><?php echo "∞" ?></span>
+            <span class="text-muted"><?php echo $conn->query("SELECT sum(view) FROM article")->fetch_assoc()['sum(view)'] ?></span>
           </div>
         </div>
         <h1 class="page-header">状态</h1>

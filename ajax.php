@@ -1,20 +1,19 @@
 <?php
-function MySQL()
-{
-    $servername = "localhost";
-    $sql_username = "root";
-    $qsl_password = "";
-    $dbname = "blog";
-    $conn = new mysqli($servername, $sql_username, $qsl_password, $dbname);
-    $conn->query("set names utf8");
-    // Check connection
-    if ($conn->connect_error) {
-        die("连接失败: " . $conn->connect_error);
-    }
-    return $conn;
+
+
+//Ajax方法和参数解析
+$func = $_REQUEST["function"];
+if (function_exists($func)) {
+    $fs = isset($_REQUEST["age"]) ? explode("//,//", $_REQUEST["age"]) : array();
+    echo call_user_func_array($func, $fs);
 }
+
+
+//Ajax调用方法
 function Login($name, $password, $admin = 'none')
 {
+    $name = preg_replace('# #', '', $name);
+    $password = preg_replace('# #', '', $password);
     $conn = MySQL();
     $sql = "SELECT * FROM user_center WHERE username_t LIKE '$name'";
     if ($admin == "admin") {
@@ -44,6 +43,7 @@ function Login($name, $password, $admin = 'none')
             $city = getCity($ip);
             $sql = "UPDATE user_center SET login_time = '$time', login_times = '$loginTimes', login_ip = '$ip',login_browse = '$browse_info',login_os = '$os' ,login_city = '$city' WHERE id = $id";
             $result = $conn->query($sql);
+            $result = $conn->query("INSERT INTO `login_log`(`user_id`, `time`) VALUES ('$id','$time')");
             return  "true";
         }
     } else if ($admin == "admin")
@@ -79,16 +79,30 @@ function Setting(
     $WebSite_ICP = "define('WebSite_ICP', '$WebSite_ICP');\n";
     $WebSite_Copyright = "define('WebSite_Copyright', '$WebSite_Copyright');\n";
     $WebSite_LoginOut = "define('WebSite_LoginOut', '$WebSite_LoginOut');\n";
-
     $string = "<?php\n $WebSite_Title $WebSite_Subtitle $WebSite_Url $WebSite_Keywords $WebSite_Description $WebSite_Email $WebSite_ICP $WebSite_Copyright $WebSite_LoginOut";
     file_put_contents('./config.php', $string);
     return  "true";
 }
+function ReadSet($show_num, $page_num, $carousel_num, $hot_num, $category_num, $Live2Ds, $ones)
+{
+    $show_num = "define('WebSite_show_num', '$show_num');\n";
+    $page_num = "define('WebSite_page_num', '$page_num');\n";
+    $carousel_num = "define('WebSite_carousel_num', '$carousel_num');\n";
+    $hot_num = "define('WebSite_hot_num', '$hot_num');\n";
+    $category_num = "define('WebSite_category_num', '$category_num');\n";
+    $Live2Ds = "define('WebSite_Live2Ds', '$Live2Ds');\n";
+    $ones = "define('WebSite_ones', '$ones');\n";
+    $string = "<?php\n $show_num $page_num $carousel_num $hot_num $category_num $Live2Ds $ones";
+    file_put_contents('./config_read.php', $string);
+    return  "true";
+}
 function Reg($name, $password)
 {
+    $name = preg_replace('# #', '', $name);
+    $password = preg_replace('# #', '', $password);
     $conn = MySQL();
     $pw = $password;
-    //$sql = "SELECT * FROM user_center WHERE upper(username_t) LIKE upper('$name')";
+    // $sql = "SELECT * FROM user_center WHERE upper(username_t) LIKE upper('$name')";
     $sql = "SELECT * FROM user_center WHERE username_t LIKE '$name'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0)
@@ -129,6 +143,9 @@ function Delete($id, $table)
             if ($conn->query("DELETE FROM article WHERE classify LIKE '$name'"))
                 return "true";
     } else {
+        if ($table == "user_center") {
+            if ($conn->query("DELETE FROM `comment` WHERE `user_id` = $id"));
+        }
         if ($conn->query("DELETE FROM $table WHERE `$table`.`id` = $id"))
             return "true";
     }
@@ -156,21 +173,36 @@ function DeleteAll($id, $table)
             return "true";
     }
 }
-
-
-//Ajax可调用方法
-
-
-//Ajax方法和参数解析
-$func = $_REQUEST["function"];
-if (function_exists($func)) {
-    $fs = isset($_REQUEST["age"]) ? explode("//,//", $_REQUEST["age"]) : array();
-    echo call_user_func_array($func, $fs);
+function AdminInfo($username, $old_password, $password, $id = 1)
+{
+    $conn = MySQL();
+    $row = $conn->query("SELECT `password_t`,`password_offset` FROM `user_center` WHERE `id` = $id")->fetch_assoc();
+    $password = md5($password . $row['password_offset']);
+    if (md5($old_password . $row['password_offset']) == $row['password_t'] || $id != 1)
+        if ($conn->query("UPDATE user_center SET username_t = '$username', password_t = '$password' WHERE id = $id")) {
+            if ($id == 1) Logout();
+            return "true";
+        }
 }
 
 
-
 //非Ajax调用方法：
+
+//数据库连接
+function MySQL()
+{
+    $servername = "localhost";
+    $sql_username = "root";
+    $qsl_password = "";
+    $dbname = "blog";
+    $conn = new mysqli($servername, $sql_username, $qsl_password, $dbname);
+    $conn->query("set names utf8");
+    // Check connection
+    if ($conn->connect_error) {
+        die("连接失败: " . $conn->connect_error);
+    }
+    return $conn;
+}
 
 //获取访问者ip地址
 function getIp()

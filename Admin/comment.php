@@ -1,3 +1,4 @@
+<?php include '../config.php' ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -6,7 +7,7 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>评论 - 异清轩博客管理系统</title>
+  <title>评论 - <?php echo WebSite_Title ?>博客管理系统</title>
   <?php include '../tool.php';
   $page_num = $conn->query("SELECT COUNT(*) FROM comment")->fetch_assoc()['COUNT(*)'];
   $comment_num = $page_num;
@@ -37,7 +38,7 @@
               <thead>
                 <tr>
                   <th><span class="glyphicon glyphicon-th-large"></span> <span class="visible-lg">选择</span></th>
-                  <th><span class="glyphicon glyphicon-paperclip"></span> <span class="visible-lg">文章ID</span></th>
+                  <th><span class="glyphicon glyphicon-paperclip"></span> <span class="visible-lg">文章标题</span></th>
                   <th class="hidden-sm"><span class="glyphicon glyphicon-comment"></span> <span class="visible-lg">评论内容</span></th>
                   <th><span class="glyphicon glyphicon-user"></span> <span class="visible-lg">用户</span></th>
                   <th><span class="glyphicon glyphicon-time"></span> <span class="visible-lg">日期</span></th>
@@ -47,10 +48,15 @@
               <tbody class="commentList">
                 <?php
                 while ($row = $result->fetch_assoc()) {
+                  $str = $conn->query("SELECT `title` FROM `article` WHERE id=" . $row['article_id'])->fetch_assoc()['title'];
                   ?>
                   <tr>
                     <td><input type="checkbox" class="input-control" name="checkbox[]" value="<?php echo $row['id'] ?>" /></td>
-                    <td><a href="/article-<?php echo $row['article_id'] ?>">ID：<?php echo $row['article_id'] ?></a></td>
+                    <td>
+                      <a href="/article-<?php echo $row['article_id'] ?>" title="<?php echo $str ?>">
+                        <?php echo substr($str, 0, 12) . "..." ?>
+                      </a>
+                    </td>
                     <td class="article-title"><?php echo $row['content'] ?></td>
                     <td><?php echo $conn->query("SELECT `username_t` FROM `user_center` WHERE `id` = 1")->fetch_assoc()['username_t'] ?></td>
                     <td><?php echo $row['date'] ?></td>

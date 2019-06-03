@@ -1322,9 +1322,6 @@ color:#FFF;
 }
 .widget-tabs .tab-content .centre div {
 	float: left;
-	width: 190px;
-	height: 120px;
-	margin-left:15px; 
 }
 .widget-tabs .tab-content .centre div a{
 	max-width: 280px;

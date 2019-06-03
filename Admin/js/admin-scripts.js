@@ -9,13 +9,6 @@
     $('a').attr('draggable', 'false');
 })();
 
-//设置Cookie
-function setCookie(name, value, time) {
-    var strsec = getsec(time);
-    var exp = new Date();
-    exp.setTime(exp.getTime() + strsec * 1);
-    document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
-}
 function getsec(str) {
     var str1 = str.substring(1, str.length) * 1;
     var str2 = str.substring(0, 1);
@@ -25,16 +18,6 @@ function getsec(str) {
         return str1 * 60 * 60 * 1000;
     } else if (str2 == "d") {
         return str1 * 24 * 60 * 60 * 1000;
-    }
-}
-
-//获取Cookie
-function getCookie(name) {
-    var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-    if (arr = document.cookie.match(reg)) {
-        return unescape(arr[2]);
-    } else {
-        return null;
     }
 }
 
@@ -123,8 +106,8 @@ $('[data-toggle="tooltip"]').tooltip();
 /*登录*/
 $("#loginModalForm").submit(function (event) {
     event.preventDefault();
-    var username = $("#userName").val();
-    var password = $("#userPwd").val();
+    var username = $("#userName").val().replace(/\s/g, "");
+    var password = $("#userPwd").val().replace(/\s/g, "");
     var isThis = $(this);
     isThis.find('.comment-prompt').show();
     isThis.find('.comment-prompt-text').hide();
@@ -180,7 +163,7 @@ $("#logoutButton").click(function () {
     });
 })
 
-/*设置*/
+/*站点设置*/
 $("#setting").submit(function (event) {
     event.preventDefault();
     var title = $("input[name=title]").val();
@@ -217,6 +200,36 @@ $("#setting").submit(function (event) {
                         pauseOnHover: false,
                     });
                 }, 500);
+            }
+        }
+    });
+})
+
+/*阅读设置*/
+$("#read_set").submit(function (event) {
+    event.preventDefault();
+    var show_num = $("input[name=show_num]").val();
+    var page_num = $("input[name=page_num]").val();
+    var carousel_num = $("input[name=carousel_num]").val();
+    var hot_num = $("input[name=hot_num]").val();
+    var category_num = $("input[name=category_num]").val();
+    var Live2Ds = $("input[name=Live2Ds]").val();
+    var ones = $("input[name=ones]").val();
+    $.ajax({
+        type: "POST",
+        url: "/ajax.php",
+        data: "function=ReadSet&age=" + show_num + "//,//" + page_num + "//,//" + carousel_num + "//,//" + hot_num + "//,//" + category_num + "//,//" + Live2Ds + "//,//" + ones,
+        cache: false, //不缓存此页面  
+        success: function (data) {
+            if (data == "true") {
+                iziToast.success({
+                    title: '更新成功',
+                    message: '已成功更新配置文件!',
+                    position: 'bottomRight',
+                    transitionIn: 'bounceInLeft',
+                    zindex: 1100,
+                    pauseOnHover: false,
+                });
             }
         }
     });

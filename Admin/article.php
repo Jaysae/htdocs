@@ -1,3 +1,4 @@
+<?php include '../config.php' ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -6,54 +7,80 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>文章 - 异清轩博客管理系统</title>
-  <?php include '../tool.php';
-  if (isset($_POST['title'])) {
-    $title = $_POST['title'];
-    $content = $_POST['content'];
-    $describe = $_POST['describe'];
-    $category = $_POST['category'];
-    $tags = $_POST['tags'];
-    $author = $_POST['author'];
-    $titlePic = $_POST['titlePic'];
-    $time = $_POST['time'];
-    if (isset($_POST['comment'])) {
-      $comment = 1;
-    } else {
-      $comment = "";
-    }
-    $sql = "INSERT INTO article (`title`, `foreword`, `date`, `author`, `classify`, `content`, `view`, `image`, `label`, `comment_off`) 
-    VALUES ('$title','$describe','$time','$author','$category','$content',1,'$titlePic','$tags','$comment')";
-    $conn->query($sql);
-    $Toast = "NewTitle";
-  }
-
-  $page_num = $conn->query("SELECT COUNT(*) FROM article")->fetch_assoc()['COUNT(*)'];
-  $article_num = $page_num;
-  $amount = 15;
-  if ($page_num / $amount > (int)($page_num / $amount))
-    $page_num =  (int)($page_num / $amount) + 1;
-  else
-    $page_num = (int)$page_num / $amount;
-  $page = isset($_GET['page']) ? $_GET['page'] : 1;
-  if ($page > $page_num) $page = $page_num;
-  ?>
+  <title>文章 - <?php echo WebSite_Title ?>博客管理系统</title>
+  <?php include '../tool.php' ?>
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body class="user-select">
   <section class="container-fluid">
-    <?php include 'header.php' ?>
+    <?php include 'header.php';
+    if (isset($_POST['title'])) {
+      $id = $_POST['articleID'];
+      $title = $_POST['title'];
+      $content = $_POST['content'];
+      $describe = $_POST['describe'];
+      $category = $_POST['category'];
+      $tags = $_POST['tags'];
+      $author = $_POST['author'];
+      $titlePic = $_POST['titlePic'];
+      if ($titlePic == null) {
+        $titlePic = "images/banner/banner_01.jpg";
+      }
+      $time = $_POST['time'];
+      if (isset($_POST['comment'])) {
+        $comment = 1;
+      } else {
+        $comment = "";
+      }
+      if ($id == 0) {
+        $sql = "INSERT INTO article (`title`, `foreword`, `date`, `author`, `classify`, `content`, `view`, `image`, `label`, `comment_off`) 
+      VALUES ('$title','$describe','$time','$author','$category','$content',1,'$titlePic','$tags','$comment')";
+        $Toast = "New";
+      } else {
+        $sql = "UPDATE `article` SET `title`='$title',`foreword`='$describe',`author`='$author',`classify`='$category',`content`='$content',`image`='$titlePic',`label`='$tags',`comment_off`='$comment' WHERE id = $id";
+        $Toast = "Edit";
+      }
+      $mes = "文章";
+      $conn->query($sql);
+      $_SESSION['tipNum'] = 2;
+      $_SESSION['title'] = $title;
+      $_SESSION['Toast'] = $Toast;
+      $_SESSION['mes'] = $mes;
+      header("location: /admin/article");
+    }
+    if (isset($_SESSION['tipNum'])) {
+      $title =  $_SESSION['title'];
+      $Toast = $_SESSION['Toast'];
+      $mes = $_SESSION['mes'];
+      $_SESSION['tipNum'] = $_SESSION['tipNum'] - 1;
+      if ($_SESSION['tipNum'] <= 0) {
+        unset($_SESSION['title']);
+        unset($_SESSION['Toast']);
+        unset($_SESSION['mes']);
+        unset($_SESSION['tipNum']);
+      }
+    }
+    $page_num = $conn->query("SELECT COUNT(*) FROM article")->fetch_assoc()['COUNT(*)'];
+    $article_num = $page_num;
+    $amount = 15;
+    if ($page_num / $amount > (int)($page_num / $amount))
+      $page_num =  (int)($page_num / $amount) + 1;
+    else
+      $page_num = (int)$page_num / $amount;
+    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+    if ($page > $page_num || $Toast == "NewTitle") $page = $page_num;
+    ?>
     <div class="row">
       <?php include 'aside.php';
-      $sql = "SELECT * FROM article LIMIT " . ($page - 1) * $amount . "," . $amount . "";
+      $sql = "SELECT * FROM article ORDER BY id ASC LIMIT " . ($page - 1) * $amount . "," . $amount . "";
       $result = $conn->query($sql);
       ?>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
         <form action="" method="post" id="DeleteAll">
           <h1 class="page-header">操作</h1>
           <ol class="breadcrumb">
-            <li><a href="addArticle">增加文章</a></li>
+            <li><a href="EditArticle">增加文章</a></li>
           </ol>
           <h1 class="page-header">管理 <span class="badge"><?php echo $article_num ?></span></h1>
           <div class="table-responsive">
@@ -83,7 +110,7 @@
                       <?php echo $row['comment_off'] == "1" ? "(评论关闭)" : "" ?>
                     </td>
                     <td><?php echo $row['date'] ?></td>
-                    <td><a href="update-article.php?id=<?php echo $row['id'] ?>">修改</a> <a rel="<?php echo $row['id'] ?>">删除</a></td>
+                    <td><a href="EditArticle-<?php echo $row['id'] ?>">修改</a> <a rel="<?php echo $row['id'] ?>">删除</a></td>
                   </tr>
                 <?php
               }
@@ -101,7 +128,7 @@
               </div>
               <ul class="pagination pagenav quotes">
                 <li <?php echo $page == 1 ? "class=\"disabled\"" : "class=\"canClick\"" ?>>
-                  <a href="/Admin/article.php?page=1" aria-label="Previous">
+                  <a href="/Admin/article-1" aria-label="Previous">
                     &laquo;
                   </a>
                 </li>
@@ -109,7 +136,7 @@
                 for ($i = 0; $i < $page_num; $i++) {
                   ?>
                   <li <?php echo $page == (1 + $i) ? "class=\"active\"" : "class=\"canClick\"" ?>>
-                    <a href="/Admin/article.php?page=<?php echo (1 + $i) ?>">
+                    <a href="/Admin/article-<?php echo (1 + $i) ?>">
                       <?php echo (1 + $i) ?>
                     </a>
                   </li>
@@ -117,7 +144,7 @@
               }
               ?>
                 <li <?php echo $page == $page_num ? "class=\"disabled\"" : "class=\"canClick\"" ?>>
-                  <a href="/Admin/article.php?page=<?php echo $page_num ?>" aria-label="Next">
+                  <a href="/Admin/article-<?php echo $page_num ?>" aria-label="Next">
                     &raquo;
                   </a>
                 </li>

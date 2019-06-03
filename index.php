@@ -10,7 +10,7 @@
     <title><?php echo WebSite_Title ?> - <?php echo WebSite_Subtitle ?> | Powered By <?php echo WebSite_Copyright ?></title>
     <?php include 'tool.php';
     $page_num = $conn->query("SELECT * FROM article")->num_rows;
-    $amount = 5;
+    $amount = WebSite_show_num;
     if ($page_num / $amount > (int)($page_num / $amount))
         $page_num =  (int)($page_num / $amount) + 1;
     else
@@ -32,7 +32,7 @@
                     <p>在这里可以看到前端技术，后端程序，网站内容管理系统等文章，还有我的程序人生！</p>
                 </div>
                 <?php
-                $s = 5;
+                $s = WebSite_carousel_num;
                 $sql = "SELECT * FROM article LIMIT 0,$s";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
@@ -114,8 +114,7 @@
             });
         });
     </script>
-    <?php include 'footer.php';
-    include 'live2d.php' ?>
+    <?php include 'footer.php' ?>
 </body>
 
 </html>

@@ -577,3 +577,25 @@ input[type=checkbox], input[type=radio] {
 .article-title{
 	width: 964px;
 }
+.plinks{
+	width: 190px;
+	margin-bottom: 13px;
+}
+.plinks a{
+	display: block;
+    padding: 0 10px;
+    height: 38px;
+    line-height: 38px;
+    overflow: hidden;
+    border: 1px solid #EAEAEA;
+    margin: 10px 10px 3px 8px;
+    color: #555;
+}
+.plinks a:hover {
+	border-color: #3399CC;
+	color: #3399CC;
+	-webkit-transform: scale(1.05);
+	transform: scale(1.05);
+	-webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+	transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+}

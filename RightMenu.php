@@ -32,11 +32,15 @@
                 $id_C = $row['id'];
                 ?>
                 <div role="tabpanel" class="tab-pane centre" id="centre">
-                    <?php if ($row['avatar'] != "") { ?>
-                        <img src="<?php echo $row['avatar'] ?>" class="img-circle">
-                    <?php } else { ?>
-                        <svg data-jdenticon-value="<?php echo $row['username'] ?>" width="120" height="120"></svg>
-                    <?php } ?>
+                    <div id="crop-avatar" class="col-md-6">
+                        <div class="avatar-view">
+                            <?php if ($row['avatar'] != "") { ?>
+                                <img src="<?php echo $row['avatar'] ?>" class="img-circle">
+                            <?php } else { ?>
+                                <svg data-jdenticon-value="<?php echo $row['username_t'] ?>"></svg>
+                            <?php } ?>
+                        </div>
+                    </div>
                     <div>
                         <a href="#"><span>用户名</span>：<i class="glyphicon glyphicon-user"></i>
                             <?php echo $username ?></a>
@@ -81,18 +85,20 @@
             </span> </div>
     </form>
 </div>
-<div class="widget widget_sentence">
-    <h3>「ONE · 一个」</h3>
-    <div class="widget-sentence-content">
-        <h4 id="Today">2019年</h4>
-        <p id="ONE_word"></p>
+<?php if (WebSite_ones == "1") { ?>
+    <div class="widget widget_sentence">
+        <h3>「ONE · 一个」</h3>
+        <div class="widget-sentence-content">
+            <h4 id="Today">2019年</h4>
+            <p id="ONE_word"></p>
+        </div>
     </div>
-</div>
+<?php } ?>
 <div class="widget widget_hot">
     <h3>热门文章</h3>
     <ul>
         <?php
-        $sql = "SELECT * FROM article ORDER BY article.view DESC LIMIT 0,5";
+        $sql = "SELECT * FROM article ORDER BY article.view DESC LIMIT 0," . WebSite_hot_num;
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -113,29 +119,31 @@
 </div>
 <script type="text/javascript">
     $(function() {
-        var date = new Date;
-        var year = date.getFullYear() + "年";
-        var month = date.getMonth() + 1;
-        month = (month < 10 ? "0" + month : month);
-        var Week = ['日', '一', '二', '三', '四', '五', '六'];
-        $("#Today").text((year + month + "月" + date.getDate() + "日 星期" + Week[date.getDay()]));
-        $("#Today").autotype();
-        $.ajax({
-            type: "POST",
-            url: 'https://api.hibai.cn/api/index/index',
-            dataType: 'json',
-            data: {
-                "TransCode": "030111",
-                "OpenId": "123456789",
-                "Body": ""
-            },
-            success: function(result) {
-                $("#ONE_word").html(result.Body.word);
-                $("#ONE_word").attr("title", result.Body.word_from);
-                $("#ONE_word").autotype();
-                return false;
-            }
-        });
+        if ("<?php echo WebSite_ones ?>" == "1") {
+            var date = new Date;
+            var year = date.getFullYear() + "年";
+            var month = date.getMonth() + 1;
+            month = (month < 10 ? "0" + month : month);
+            var Week = ['日', '一', '二', '三', '四', '五', '六'];
+            $("#Today").text((year + month + "月" + date.getDate() + "日 星期" + Week[date.getDay()]));
+            $("#Today").autotype();
+            $.ajax({
+                type: "POST",
+                url: 'https://api.hibai.cn/api/index/index',
+                dataType: 'json',
+                data: {
+                    "TransCode": "030111",
+                    "OpenId": "123456789",
+                    "Body": ""
+                },
+                success: function(result) {
+                    $("#ONE_word").html(result.Body.word);
+                    $("#ONE_word").attr("title", result.Body.word_from);
+                    $("#ONE_word").autotype();
+                    return false;
+                }
+            });
+        }
     });
 
     $.fn.autotype = function() {

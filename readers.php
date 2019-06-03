@@ -66,8 +66,7 @@
       </div>
     </div>
   </section>
-  <?php include 'footer.php';
-  include 'live2d.php' ?>
+  <?php include 'footer.php' ?>
 </body>
 
 </html>

@@ -1,3 +1,4 @@
+<?php include '../config.php' ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -6,7 +7,7 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>栏目 - 异清轩博客管理系统</title>
+  <title>栏目 - <?php echo WebSite_Title ?>博客管理系统</title>
   <?php include '../tool.php';
   $page_num = $conn->query("SELECT COUNT(*) FROM classify")->fetch_assoc()['COUNT(*)'];
   $classify_num = $page_num;
@@ -64,16 +65,6 @@
             </table>
             <span class="prompt-text"><strong>注：</strong>删除一个栏目也会删除栏目下的文章和子栏目,请谨慎删除！（栏目最大数量为5）</span>
           </div>
-          <!-- <div class="col-md-5">
-            <h1 class="page-header">添加</h1>
-            <form action="" method="post" autocomplete="off">
-              <div class="form-group">
-                <label for="category-name">栏目名称</label>
-                <input type="text" id="category-name" name="name" class="form-control" placeholder="在此处输入栏目名称" required autocomplete="off" maxlength="8" oninvalid="setCustomValidity('请输入栏目名称')" oninput="setCustomValidity('')">
-                <span class=" prompt-text">这将是它在站点上显示的名字。</span> </div>
-              <button class="btn btn-primary" type="submit" name="submit">添加新栏目</button>
-            </form>
-          </div> -->
         </div>
       </div>
     </div>
@@ -87,7 +78,7 @@
       });
 
       function Delete(name) {
-        var id = name.attr("rel"); //对应id  
+        var id = name.attr("rel");
         if (event.srcElement.outerText == "删除") {
           $('#deleteModal').modal('show');
           $('#deleteButton').click(function() {
@@ -96,7 +87,7 @@
               type: "POST",
               url: "/ajax.php",
               data: "function=Delete&age=" + id + "//,//classify",
-              cache: false, //不缓存此页面   
+              cache: false,
               success: function(data) {
                 if (data == "true") {
                   CanClick("/Admin/category");
@@ -130,7 +121,7 @@
               type: "POST",
               url: "/ajax.php",
               data: "function=Category&age=" + id + "//,//" + str,
-              cache: false, //不缓存此页面   
+              cache: false,
               success: function(data) {
                 if (data == "true") {
                   CanClick("/Admin/category");

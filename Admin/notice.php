@@ -1,3 +1,4 @@
+<?php include '../config.php' ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -6,7 +7,7 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>公告 - 异清轩博客管理系统</title>
+  <title>公告 - <?php echo WebSite_Title ?>博客管理系统</title>
   <?php include '../tool.php';
   $notice_num = $conn->query("SELECT COUNT(*) FROM notice")->fetch_assoc()['COUNT(*)'];
   ?>

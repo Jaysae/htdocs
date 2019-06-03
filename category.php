@@ -43,7 +43,7 @@
           <h3><?php echo $name; ?></h3>
         </div>
         <?php
-        $sql = "SELECT * FROM article where classify LIKE '" . $name . "' LIMIT " . ($page - 1) * $amount . "," . $amount . "";
+        $sql = "SELECT * FROM article where classify LIKE '" . $name . "' ORDER BY `article`.`date` DESC LIMIT " . ($page - 1) * $amount . "," . $amount . "";
         $result = $conn->query($sql);
         if ($result && $result->num_rows > 0) {
           while ($row = $result->fetch_assoc()) {
@@ -91,8 +91,7 @@
   <script type="text/javascript">
     var page_num = <?php echo $page_num ?>;
   </script>
-  <?php include 'footer.php';
-  include 'live2d.php' ?>
+  <?php include 'footer.php' ?>
 </body>
 
 </html>

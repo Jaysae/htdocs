@@ -213,8 +213,8 @@ $(window).scroll(function () {
 /*登录*/
 $("#loginModalForm").submit(function (event) {
     event.preventDefault();
-    var username = $("#loginModalUserName").val();
-    var password = $("#loginModalUserPwd").val();
+    var username = $("#loginModalUserName").val().replace(/\s/g, "");;
+    var password = $("#loginModalUserPwd").val().replace(/\s/g, "");
     var isThis = $(this);
     isThis.find('.comment-prompt').show();
     isThis.find('button[type=button]').hide();
@@ -255,9 +255,9 @@ $("#loginModalForm").submit(function (event) {
 /*注册*/
 $("#regModalForm").submit(function (event) {
     event.preventDefault();
-    var username = $("#regModalUserName").val();
-    var password = $("#regModalUserPwd").val();
-    var password_a = $("#regModalUserPwdAgain").val();
+    var username = $("#regModalUserName").val().replace(/\s/g, "");
+    var password = $("#regModalUserPwd").val().replace(/\s/g, "");
+    var password_a = $("#regModalUserPwdAgain").val().replace(/\s/g, "");
     if (password == username) {
         iziToast.error({
             title: '什么？！',

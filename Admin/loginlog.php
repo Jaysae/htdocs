@@ -1,3 +1,4 @@
+<?php include '../config.php' ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -6,14 +7,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>登录记录 - 异清轩博客管理系统</title>
+  <title>登录记录 - <?php echo WebSite_Title ?>博客管理系统</title>
   <?php include '../tool.php'; ?>
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body class="user-select">
   <section class="container-fluid">
-    <?php include 'header.php' ?>
+    <?php include 'header.php';
+    $sql = "SELECT * FROM login_log ORDER BY `login_log`.`time` DESC";
+    $result = $conn->query($sql); ?>
     <div class="row">
       <?php include 'aside.php' ?>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
@@ -27,7 +30,7 @@
           <table class="table table-striped table-hover">
             <thead>
               <tr>
-                <th><span class="glyphicon glyphicon-th-large"></span> <span class="visible-lg">ID</span></th>
+                <th><span class="glyphicon glyphicon-th-large"></span> <span class="visible-lg">日志ID</span></th>
                 <th><span class="glyphicon glyphicon-user"></span> <span class="visible-lg">用户</span></th>
                 <th><span class="glyphicon glyphicon-time"></span> <span class="visible-lg">时间</span></th>
                 <th><span class="glyphicon glyphicon-adjust"></span> <span class="visible-lg">IP</span></th>
@@ -35,69 +38,19 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td class="article-title">admin</td>
-                <td>2016-1-11 15:09:11</td>
-                <td>192.168.1.1:1245</td>
-                <td><a rel="1">删除</a></td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td class="article-title">admin</td>
-                <td>2016-1-11 15:09:11</td>
-                <td>192.168.1.1:1245</td>
-                <td><a rel="2">删除</a></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td class="article-title">admin</td>
-                <td>2016-1-11 15:09:11</td>
-                <td>192.168.1.1:1245</td>
-                <td><a rel="3">删除</a></td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td class="article-title">admin</td>
-                <td>2016-1-11 15:09:11</td>
-                <td>192.168.1.1:1245</td>
-                <td><a rel="4">删除</a></td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td class="article-title">admin</td>
-                <td>2016-1-11 15:09:11</td>
-                <td>192.168.1.1:1245</td>
-                <td><a rel="5">删除</a></td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td class="article-title">admin</td>
-                <td>2016-1-11 15:09:11</td>
-                <td>192.168.1.1:1245</td>
-                <td><a rel="6">删除</a></td>
-              </tr>
-              <tr>
-                <td>7</td>
-                <td class="article-title">admin</td>
-                <td>2016-1-11 15:09:11</td>
-                <td>192.168.1.1:1245</td>
-                <td><a rel="7">删除</a></td>
-              </tr>
-              <tr>
-                <td>8</td>
-                <td class="article-title">admin</td>
-                <td>2016-1-11 15:09:11</td>
-                <td>192.168.1.1:1245</td>
-                <td><a rel="8">删除</a></td>
-              </tr>
-              <tr>
-                <td>9</td>
-                <td class="article-title">admin</td>
-                <td>2016-1-11 15:09:11</td>
-                <td>192.168.1.1:1245</td>
-                <td><a rel="9">删除</a></td>
-              </tr>
+              <?php while ($row = $result->fetch_assoc()) {
+                $row_U = $conn->query("SELECT username_t,login_ip FROM user_center WHERE `id` = " . $row['user_id'])->fetch_assoc();
+                ?>
+                <tr>
+                  <td><?php echo $row['id'] ?></td>
+                  <td class="article-title">
+                    <?php echo  $row_U['username_t'] ?>
+                  </td>
+                  <td><?php echo $row['time'] ?></td>
+                  <td><?php echo $row_U['login_ip'] ?></td>
+                  <td><a rel="1">删除</a></td>
+                </tr>
+              <?php } ?>
             </tbody>
           </table>
         </div>

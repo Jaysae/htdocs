@@ -146,6 +146,52 @@
     </div>
   </div>
 </div>
+<!--头像上传模态框 -->
+<div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+  <div class="modal-dialog modal-lg" style="max-width: 960px">
+    <div class="modal-content">
+      <form class="avatar-form" action="test.php" enctype="multipart/form-data" method="post">
+        <div class="modal-header">
+          <button class="close" data-dismiss="modal" type="button">&times;</button>
+          <h4 class="modal-title" id="avatar-modal-label">修改头像</h4>
+        </div>
+        <div class="modal-body">
+          <div class="avatar-body">
+            <div class="avatar-upload">
+              <input class="avatar-src" name="avatar_src" type="hidden">
+              <input class="avatar-data" name="avatar_data" type="hidden">
+              <label for="avatarInput">图片上传</label>
+              <input class="avatar-input" id="avatarInput" name="avatar_file" type="file"></div>
+            <div class="row">
+              <div class="col-md-9">
+                <div class="avatar-wrapper"></div>
+              </div>
+              <div class="col-md-3">
+                <div class="avatar-preview preview-lg"></div>
+                <div class="avatar-preview preview-md"></div>
+                <div class="avatar-preview preview-sm"></div>
+              </div>
+            </div>
+            <div class="row avatar-btns">
+              <div class="col-md-9">
+                <div class="btn-group">
+                  <button class="btn" data-method="rotate" data-option="-90" type="button" title="Rotate -90 degrees"><i class="fa fa-undo"></i> 向左旋转</button>
+                </div>
+                <div class="btn-group">
+                  <button class="btn" data-method="rotate" data-option="90" type="button" title="Rotate 90 degrees"><i class="fa fa-repeat"></i> 向右旋转</button>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <button class="btn btn-success btn-block avatar-save" type="submit"><i class="fa fa-save"></i>
+                  保存修改</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 <!--右键菜单列表-->
 <div id="rightClickMenu">
   <ul class="list-group rightClickMenuList">
@@ -160,6 +206,9 @@
 <script src="/js/jquery.ias.js"></script>
 <script src="/js/iziToast.min.js"></script>
 <script src="/js/scripts.js"></script>
+<script src="/js/jdenticon-2.1.1.js"></script>
+<script src="/js/cropper.min.js"></script>
+<script src="/js/avatar.js"></script>
 <div class="iziToast-wrapper iziToast-wrapper-bottomLeft"></div>
 <div class="iziToast-wrapper iziToast-wrapper-bottomRight"></div>
 <div class="iziToast-wrapper iziToast-wrapper-topLeft"></div>
@@ -206,3 +255,7 @@ function showLogoutToast()
     }
   });
 </script>
+<?php
+if (WebSite_Live2Ds == "1")
+  include 'live2d.php';
+?>
