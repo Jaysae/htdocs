@@ -15,10 +15,8 @@
 <body class="user-select">
   <section class="container-fluid">
     <?php include 'header.php';
-    $sql = "SELECT * FROM user_center ORDER BY `user_center`.`id` ASC";
-    $result = $conn->query($sql);
-    $page_num = $result->num_rows;
-    $article_num = $page_num;
+    $page_num = $conn->query("SELECT COUNT(*) FROM user_center")->fetch_assoc()['COUNT(*)'];
+    $user_num = $page_num;
     $amount = 15;
     if ($page_num / $amount > (int)($page_num / $amount))
       $page_num =  (int)($page_num / $amount) + 1;
@@ -26,6 +24,8 @@
       $page_num = (int)$page_num / $amount;
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
     if ($page > $page_num || $Toast == "NewTitle") $page = $page_num;
+    $sql = "SELECT * FROM user_center ORDER BY `user_center`.`id` ASC LIMIT " . ($page - 1) * $amount . "," . $amount;
+    $result = $conn->query($sql);
     ?>
     <div class="row">
       <?php include 'aside.php' ?>
@@ -34,7 +34,7 @@
         <ol class="breadcrumb">
           <li><a data-toggle="modal" data-target="#addUser">增加用户</a></li>
         </ol>
-        <h1 class="page-header">管理 <span class="badge">2</span></h1>
+        <h1 class="page-header">管理 <span class="badge"><?php echo $user_num ?></span></h1>
         <div class="table-responsive">
           <table class="table table-striped table-hover">
             <thead>
@@ -48,7 +48,7 @@
               </tr>
             </thead>
             <tbody class="commentList">
-              <?php while ($row = $result->fetch_assoc()) { ?>
+              <?php while ($result && $row = $result->fetch_assoc()) { ?>
                 <tr>
                   <td><?php echo $row['id'] ?></td>
                   <td rel="<?php echo $row['id'] ?>"><?php echo $row['username_t'] ?></td>

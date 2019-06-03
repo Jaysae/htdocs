@@ -1421,9 +1421,12 @@ color:#FFF;
 	margin-left: -135px;
 	border: none;
 	margin-bottom: 0;
+	overflow: hidden;
+	width: 122px;
 }
 .widget_hot .thumbnail img {
-	width: 122px;
+	max-width:1024px;
+	overflow: hidden;
 	height: 86px;
 }
 .widget_hot .text {

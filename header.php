@@ -25,23 +25,25 @@ function Active($var, $id)
                     <li><a href="tags">标签云</a></li>
                     <li><a href="readers" rel="nofollow">读者墙</a></li>
                     <li><a href="links" rel="nofollow">友情链接</a></li>
-                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" rel="nofollow">关注本站 <span class="caret"></span></a>
-                        <ul class="dropdown-menu header-topbar-dropdown-menu">
-                            <li><a data-toggle="modal" data-target="#WeChat" rel="nofollow"><i class="fa fa-weixin"></i> 微信</a></li>
-                            <li><a data-toggle="modal" data-target="#areDeveloping" rel="nofollow"><i class="fa fa-weibo"></i> 微博</a></li>
-                            <li><a data-toggle="modal" data-target="#areDeveloping" rel="nofollow"><i class="fa fa-rss"></i> RSS</a></li>
-                        </ul>
-                    </li>
+                    <?php
+                    if (isset($username)) { ?>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" rel="nofollow">操作 <span class="caret"></span></a>
+                            <ul class="dropdown-menu header-topbar-dropdown-menu">
+                                <li><a data-toggle="modal" data-target="#WeChat" rel="nofollow"><i class="fa fa-weixin"></i> 关注本站</a></li>
+                                <li><a data-toggle="modal" data-target="#logoutModal" class="logout" rel="nofollow"><i class="glyphicon glyphicon-log-out"></i> 注销登录</a></li>
+                                <li><a data-toggle="modal" data-target="#seeUserInfo" class="logout" rel="nofollow"><i class="glyphicon glyphicon-asterisk"></i> 修改密码</a></li>
+                            </ul>
+                        </li>
+                    <?php } ?>
                 </ul>
                 <?php
                 if (isset($username)) { ?>
                     <a href="#">Hi,<?php echo $username ?></a>&nbsp;&nbsp;
-                    <a data-toggle="modal" data-target="#logoutModal" class="logout" rel="nofollow">注销</a>&nbsp;&nbsp;
                 <?php } else { ?>
                     <a data-toggle="modal" data-target="#loginModal" class="login" rel="nofollow">Hi,请登录</a>&nbsp;&nbsp;
                     <a data-toggle="modal" data-target="#regModal" class="register" rel="nofollow">我要注册</a>&nbsp;&nbsp;
+                    <a data-toggle="modal" data-target="#LostPasswordModal" class="register" rel="nofollow">找回密码</a>
                 <?php } ?>
-                <!-- <a href="" rel="nofollow">找回密码</a> -->
             </div>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar" aria-expanded="false"> <span class="sr-only"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>

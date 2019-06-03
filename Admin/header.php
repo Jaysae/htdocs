@@ -8,9 +8,11 @@
         $sql = "SELECT * FROM user_center WHERE username_t LIKE '$username'";
         $row_U = $conn->query($sql)->fetch_assoc();
         $uid = $row_U['id'];
-    } else {
+        if ($uid != "1")
+            header("location: /");
+    } else
         header("location: /admin/login");
-    } ?>
+    ?>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">

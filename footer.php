@@ -10,7 +10,7 @@
   </div>
   <div id="gotop"><a class="gotop"></a></div>
 </footer>
-<!--微信二维码模态框-->
+<!--二维码模态框-->
 <div class="modal fade user-select" id="WeChat" tabindex="-1" role="dialog" aria-labelledby="WeChatModalLabel">
   <div class="modal-dialog" role="document" style="margin-top:120px;max-width:280px;">
     <div class="modal-content">
@@ -18,7 +18,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="WeChatModalLabel" style="cursor:default;">扫一扫</h4>
       </div>
-      <div class="modal-body" style="text-align:center;cursor:pointer"> <img src="/images/weixin.png" alt="" width="200px" height="200" /> </div>
+      <div class="modal-body" style="text-align:center;cursor:pointer"> <img src="/images/QR Code.png" alt="" width="200px" height="200" /> </div>
     </div>
   </div>
 </div>
@@ -192,6 +192,45 @@
     </div>
   </div>
 </div>
+<!--个人信息模态框-->
+<div class="modal fade" id="seeUserInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document" style="max-width: 450px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">个人信息</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table" style="margin-bottom:0px;">
+          <tbody>
+            <tr>
+              <td wdith="20%">用户名:</td>
+              <td width="80%"><input type="text" value="<?php echo $username ?>" class="form-control" name="Info_username" maxlength="10" autocomplete="off" disabled="disabled" /></td>
+            </tr>
+            <tr>
+              <td wdith="20%">旧密码:</td>
+              <td width="80%"><input type="password" class="form-control" name="Info_old_password" maxlength="18" autocomplete="off" /></td>
+            </tr>
+            <tr>
+              <td wdith="20%">新密码:</td>
+              <td width="80%"><input type="password" class="form-control" name="Info_password" maxlength="18" autocomplete="off" /></td>
+            </tr>
+            <tr>
+              <td wdith="20%">确认密码:</td>
+              <td width="80%"><input type="password" class="form-control" name="Info_new_password" maxlength="18" autocomplete="off" /></td>
+            </tr>
+          </tbody>
+        </table>
+        <div id="InfoTips" style="text-align: right;display: none"> <i class=" fa fa-spin fa-circle-o-notch"></i> 警告：提交成功后，您将会被强制退出！</div>
+      </div>
+      <div class="modal-footer">
+        <input type="hidden" name="user_id" value="<?php echo $uid ?>" />
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="submit" class="btn btn-primary" id="UserInfoButton">提交</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!--右键菜单列表-->
 <div id="rightClickMenu">
   <ul class="list-group rightClickMenuList">
@@ -254,6 +293,101 @@ function showLogoutToast()
       });
     }
   });
+
+  $('#UserInfoButton').click(function() {
+    UserInfo();
+  });
+
+  function UserInfo() {
+    var username = $('input[name=Info_username]').val();;
+    var old_password = $('input[name=Info_old_password]').val();;
+    var password = $('input[name=Info_password]').val();;
+    var new_password = $('input[name=Info_new_password]').val();;
+    if (password != new_password) {
+      iziToast.error({
+        title: '错误',
+        message: '两次输入的密码不一致',
+        position: 'topCenter',
+        transitionIn: 'fadeInDown',
+        zindex: 1100,
+        pauseOnHover: false,
+        onOpening: function() {
+          $('#regModalUserPwdAgain').focus();
+        },
+      });
+      return;
+    }
+    if (password == old_password) {
+      iziToast.error({
+        title: '错误',
+        message: '新密码和旧密码一致',
+        position: 'topCenter',
+        transitionIn: 'fadeInDown',
+        zindex: 1100,
+        pauseOnHover: false,
+        onOpening: function() {
+          $('#regModalUserPwdAgain').focus();
+        },
+      });
+      return;
+    }
+    var btn = $('#UserInfoButton');
+    btn.attr("disabled", true);
+    btn.text("3");
+    $('#InfoTips').fadeIn();
+    setTimeout(function() {
+      btn.text("2");
+    }, 1000);
+    setTimeout(function() {
+      btn.text("1");
+    }, 2000);
+    setTimeout(function() {
+      btn.text("再次确认");
+      btn.attr("disabled", false);
+      btn.unbind("click");
+      btn.click(function() {
+        $.ajax({
+          type: "POST",
+          url: "/ajax.php",
+          data: "function=AdminInfo&age=" + username + "//,//" + old_password + "//,//" + new_password + "//,//<?php if (isset($uid)) echo $uid ?>//,//1",
+          cache: false, //不缓存此页面   
+          success: function(data) {
+            if (data == "true") {
+              window.location.href = "/";
+            } else {
+              iziToast.error({
+                title: '错误',
+                message: '您输入的旧密码不符！',
+                position: 'topCenter',
+                transitionIn: 'fadeInDown',
+                timeout: 2000,
+                zindex: 1100,
+                pauseOnHover: false,
+                onOpening: function() {
+                  $('#loginModalUserName').focus();
+                },
+              });
+              $('#InfoTips').fadeOut();
+              $('#UserInfoButton').text("提交");
+              $('#UserInfoButton').unbind("click");
+              $('#UserInfoButton').click(function() {
+                UserInfo();
+              });
+            }
+          }
+        });
+      })
+    }, 3000);
+  }
+
+  $('#seeUserInfo').on('hidden.bs.modal', function() {
+    $('#InfoTips').fadeOut();
+    $('#UserInfoButton').text("提交");
+    $('#UserInfoButton').unbind("click");
+    $('#UserInfoButton').click(function() {
+      UserInfo();
+    });
+  })
 </script>
 <?php
 if (WebSite_Live2Ds == "1")

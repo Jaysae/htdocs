@@ -119,8 +119,7 @@
       </div>
     </div>
   </section>
-  <?php include 'modal.php';
-  include '../live2d.php' ?>
+  <?php include 'modal.php' ?>
 </body>
 
 </html>

@@ -15,17 +15,26 @@
 <body class="user-select">
   <section class="container-fluid">
     <?php include 'header.php';
-    $sql = "SELECT * FROM login_log ORDER BY `login_log`.`time` DESC";
-    $result = $conn->query($sql); ?>
+    $page_num = $conn->query("SELECT COUNT(*) FROM login_log")->fetch_assoc()['COUNT(*)'];
+    $log_num = $page_num;
+    $amount = 15;
+    if ($page_num / $amount > (int)($page_num / $amount))
+      $page_num =  (int)($page_num / $amount) + 1;
+    else
+      $page_num = (int)$page_num / $amount;
+    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+    if ($page > $page_num || $Toast == "NewTitle") $page = $page_num;
+    $sql = "SELECT * FROM login_log ORDER BY `login_log`.`time` DESC LIMIT " . ($page - 1) * $amount . "," . $amount;
+    $result = $conn->query($sql);
+    ?>
     <div class="row">
       <?php include 'aside.php' ?>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
-        <h1 class="page-header">操作</h1>
+        <!-- <h1 class="page-header">操作</h1>
         <ol class="breadcrumb">
-          <li><a href="/Loginlog/delete/action/all">清除所有登录记录</a></li>
-          <li><a href="/Loginlog/delete/action/current">清除本人登录记录</a></li>
-        </ol>
-        <h1 class="page-header">管理 <span class="badge">9</span></h1>
+          <li><a>清除所有登录记录</a></li>
+        </ol> -->
+        <h1 class="page-header">管理 <span class="badge"><?php echo $log_num ?></span></h1>
         <div class="table-responsive">
           <table class="table table-striped table-hover">
             <thead>
@@ -38,7 +47,7 @@
               </tr>
             </thead>
             <tbody>
-              <?php while ($row = $result->fetch_assoc()) {
+              <?php while ($result && $row = $result->fetch_assoc()) {
                 $row_U = $conn->query("SELECT username_t,login_ip FROM user_center WHERE `id` = " . $row['user_id'])->fetch_assoc();
                 ?>
                 <tr>
@@ -56,10 +65,28 @@
         </div>
         <footer class="message_footer">
           <nav>
-            <ul class="pagination pagenav">
-              <li class="disabled"><a aria-label="Previous"> <span aria-hidden="true">&laquo;</span> </a> </li>
-              <li class="active"><a>1</a></li>
-              <li class="disabled"><a aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a> </li>
+            <ul class="pagination pagenav quotes">
+              <li <?php echo $page == 1 ? "class=\"disabled\"" : "class=\"canClick\"" ?>>
+                <a href="/Admin/loginLog-1" aria-label="Previous">
+                  &laquo;
+                </a>
+              </li>
+              <?php
+              for ($i = 0; $i < $page_num; $i++) {
+                ?>
+                <li <?php echo $page == (1 + $i) ? "class=\"active\"" : "class=\"canClick\"" ?>>
+                  <a href="/Admin/loginLog-<?php echo (1 + $i) ?>">
+                    <?php echo (1 + $i) ?>
+                  </a>
+                </li>
+              <?php
+            }
+            ?>
+              <li <?php echo $page == $page_num ? "class=\"disabled\"" : "class=\"canClick\"" ?>>
+                <a href="/Admin/loginLog-<?php echo $page_num ?>" aria-label="Next">
+                  &raquo;
+                </a>
+              </li>
             </ul>
           </nav>
         </footer>
@@ -67,28 +94,6 @@
     </div>
   </section>
   <?php include 'modal.php' ?>
-  <script>
-    //是否确认删除
-    $(function() {
-      $("#main table tbody tr td a").click(function() {
-        var name = $(this);
-        var id = name.attr("rel"); //对应id  
-        if (event.srcElement.outerText === "删除") {
-          if (window.confirm("此操作不可逆，是否确认？")) {
-            $.ajax({
-              type: "POST",
-              url: "/Loginlog/delete/action/one",
-              data: "id=" + id,
-              cache: false, //不缓存此页面   
-              success: function(data) {
-                window.location.reload();
-              }
-            });
-          };
-        };
-      });
-    });
-  </script>
 </body>
 
 </html>

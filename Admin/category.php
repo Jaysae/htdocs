@@ -46,7 +46,7 @@
               </thead>
               <tbody class="commentList">
                 <?php
-                while ($row = $result->fetch_assoc()) {
+                while ($result && $row = $result->fetch_assoc()) {
                   ?>
                   <tr>
                     <td><?php echo $row['id'] ?></td>

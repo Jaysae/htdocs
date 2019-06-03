@@ -69,11 +69,11 @@
     else
       $page_num = (int)$page_num / $amount;
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
-    if ($page > $page_num || $Toast == "NewTitle") $page = $page_num;
+    if ($page > $page_num || $Toast == "New") $page = $page_num;
     ?>
     <div class="row">
       <?php include 'aside.php';
-      $sql = "SELECT * FROM article ORDER BY id ASC LIMIT " . ($page - 1) * $amount . "," . $amount . "";
+      $sql = "SELECT * FROM article ORDER BY id ASC LIMIT " . ($page - 1) * $amount . "," . $amount;
       $result = $conn->query($sql);
       ?>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
@@ -98,7 +98,7 @@
               </thead>
               <tbody class="commentList">
                 <?php
-                while ($row = $result->fetch_assoc()) {
+                while ($result && $row = $result->fetch_assoc()) {
                   ?>
                   <tr>
                     <td><input type="checkbox" class="input-control" name="checkbox[]" value="<?php echo $row['id'] ?>" /></td>
@@ -250,7 +250,7 @@
               success: function(data) {
                 if (data == "true") {
                   if (arr.length == <?php echo $result->num_rows ?>) {
-                    CanClick("/Admin/article.php?page=<?php echo $page - 1 ?>");
+                    CanClick("/Admin/article.php?page=<?php echo $page - 1 == 0 ? "1" : $page - 1 ?>");
                   } else {
                     CanClick("/Admin/article.php?page=<?php echo $page ?>");
                   }

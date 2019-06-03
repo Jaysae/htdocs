@@ -58,6 +58,7 @@
       $page_num = (int)$page_num / $amount;
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
     if ($page > $page_num) $page = $page_num;
+    if ($page > $page_num || $Toast == "New") $page = $page_num;
     ?>
     <div class="row">
       <?php include 'aside.php';
@@ -84,7 +85,7 @@
               </thead>
               <tbody class="commentList">
                 <?php
-                while ($row = $result->fetch_assoc()) {
+                while ($result && $row = $result->fetch_assoc()) {
                   ?>
                   <tr>
                     <td>
@@ -236,7 +237,7 @@
               success: function(data) {
                 if (data == "true") {
                   if (arr.length == <?php echo $result->num_rows ?>) {
-                    CanClick("/Admin/fLink-<?php echo $page - 1 ?>");
+                    CanClick("/Admin/fLink-<?php echo $page - 1 == 0 ? "1" : $page - 1 ?>");
                   } else {
                     CanClick("/Admin/fLink-<?php echo $page ?>");
                   }

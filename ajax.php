@@ -173,14 +173,14 @@ function DeleteAll($id, $table)
             return "true";
     }
 }
-function AdminInfo($username, $old_password, $password, $id = 1)
+function AdminInfo($username, $old_password, $password, $id = 1, $user = 0)
 {
     $conn = MySQL();
     $row = $conn->query("SELECT `password_t`,`password_offset` FROM `user_center` WHERE `id` = $id")->fetch_assoc();
     $password = md5($password . $row['password_offset']);
-    if (md5($old_password . $row['password_offset']) == $row['password_t'] || $id != 1)
+    if (md5($old_password . $row['password_offset']) == $row['password_t'] || ($id != 1 && $user = 0))
         if ($conn->query("UPDATE user_center SET username_t = '$username', password_t = '$password' WHERE id = $id")) {
-            if ($id == 1) Logout();
+            if ($id == 1 || $user != 0) Logout();
             return "true";
         }
 }

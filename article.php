@@ -60,7 +60,7 @@
             <br>
             <span>------导读</span>
           </p>
-          <p><img data-original="<?php echo $row_A['image'] ?>" src="<?php echo $row_A['image'] ?>" alt="" /></p>
+          <p class="title_pic"><img data-original="<?php echo $row_A['image'] ?>" src="<?php echo $row_A['image'] ?>" alt="" /></p>
           <div><?php echo $row_A['content'] ?></div>
           <p class="article-copyright hidden-xs">未经允许不得转载：
             <a><?php echo WebSite_Title ?>博客</a> » <a href="article-<?php echo $id ?>"><?php echo $row_A['title'] ?></a>
@@ -117,7 +117,15 @@
                 $row = $result->fetch_assoc();
               }
               ?>
-              <div class="comment-title"><img class="avatar" src="<?php if (isset($_SESSION['username'])) echo $row['avatar']; ?>" alt="" /></div>
+              <div class="comment-title">
+                <?php if (isset($_SESSION['username'])) { ?>
+                  <?php if ($row['avatar'] != "") { ?>
+                    <img class="avatar" src="<?php echo $row['avatar'];  ?>" alt="" />
+                  <?php } else { ?>
+                    <svg data-jdenticon-value="<?php echo $row['username_t'] ?>"></svg>
+                  <?php }
+              } ?>
+              </div>
               <div class="comment-box">
                 <textarea placeholder="<?php echo ($row_A['comment_off'] != "1" && $commentNum == 0) ? "还没有人评论，快来抢沙发！" : "您的评论可以一针见血" ?>" name="comment" id="comment-textarea" cols="100%" rows="3" tabindex="1" maxlength="300"></textarea>
                 <div class="comment-ctrl">
@@ -153,6 +161,10 @@
             FROM comment INNER JOIN user_center ON comment.user_id = user_center.id
             WHERE comment.article_id = '$id_a' ORDER BY comment.date ASC LIMIT " . ($page - 1) * $amount . "," . $amount;
             $result = $conn->query($sql);
+            if ($result) {
+              $temp = $result->num_rows;
+              echo "<input type=hidden value='$temp' name='num_temp'> ";
+            }
             $i = 1;
             function City($str)
             {
@@ -229,12 +241,13 @@
         success: function(data) {
           commentList = $(data).find('.commentList').html();
           quotes = $(data).find('.quotes').html();
+          temp = $(data).find('input[name=num_temp]').val();
           $(".commentList,.quotes").animate({
             opacity: "0"
           }, 100);
           $(".commentList").animate({
-            height: "375px"
-          }, 100);
+            height: temp * 75 + "px"
+          }, 300);
           setTimeout(function() {
             $(".commentList").html(commentList);
             $(".quotes").html(quotes);
@@ -247,13 +260,9 @@
               CanClick(str);
               event.preventDefault();
             });
-            temp = $(".comment-content").length * 75;
-            $(".commentList").animate({
-              height: (temp + "px")
-            }, 200);
             $(".commentList,.quotes").animate({
               opacity: "1"
-            }, 500);
+            }, 200);
           }, 500);
         }
       });
@@ -296,7 +305,7 @@
             if (data == "true") {
               promptText.text('评论成功!');
               commentContent.val(null);
-              CanClick("article-<?php echo $row_A['id'] ?>-<?php echo $page_num ?>");
+              CanClick("article-<?php echo $row_A['id'] ?>-9999");
               commentButton.attr('disabled', false);
               commentButton.removeClass('disabled');
             }

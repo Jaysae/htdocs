@@ -47,7 +47,7 @@
               </thead>
               <tbody class="commentList">
                 <?php
-                while ($row = $result->fetch_assoc()) {
+                while ($result && $row = $result->fetch_assoc()) {
                   $str = $conn->query("SELECT `title` FROM `article` WHERE id=" . $row['article_id'])->fetch_assoc()['title'];
                   ?>
                   <tr>
@@ -201,7 +201,7 @@
               success: function(data) {
                 if (data == "true") {
                   if (arr.length == <?php echo $result->num_rows ?>) {
-                    CanClick("/Admin/comment-<?php echo $page - 1 ?>");
+                    CanClick("/Admin/comment-<?php echo $page - 1 == 0 ? "1" : $page - 1 ?>");
                   } else {
                     CanClick("/Admin/comment-<?php echo $page ?>");
                   }
