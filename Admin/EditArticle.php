@@ -7,7 +7,6 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>写文章 - <?php echo WebSite_Title ?>博客管理系统</title>
   <?php include '../tool.php';
   if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -20,6 +19,7 @@
     }
   }
   ?>
+  <title><?php echo isset($id) ? "更新" : "写"; ?>文章 - <?php echo WebSite_Title ?>博客管理系统</title>
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
@@ -39,7 +39,9 @@
               </div>
               <div class="form-group">
                 <label for="article-content" class="sr-only">内容</label>
-                <textarea type="text" name="content" id="article-content" placeholder="编辑器正在加载..." style="border: none;background: none"></textarea>
+                <textarea type="text" name="content" id="article-content" placeholder="编辑器正在加载..." style="border: none;background: none">
+                <?php echo isset($id) ? $rowA['content'] : "" ?>
+              </textarea>
               </div>
               <div class="add-article-box">
                 <h2 class="add-article-box-title"><span>概述</span></h2>
@@ -112,7 +114,7 @@
                   <p><input type="hidden" value="<?php echo isset($id) ? $id : 0; ?>" name="articleID"></p>
                 </div>
                 <div class="add-article-box-footer">
-                  <button class="btn btn-primary" type="submit" name="submit">发布</button>
+                  <button class="btn btn-primary" type="submit" name="submit"><?php echo isset($id) ? "更新" : "发布"; ?></button>
                 </div>
               </div>
             </div>
@@ -130,11 +132,6 @@
       setInterval(function() {
         $('input[name=time]').val(new Date().Format("yyyy-MM-dd hh:mm:ss"));
       }, 5000);
-    } else {
-      editor = UE.getEditor('article-content');
-      editor.ready(function() {
-        editor.setContent('<?php echo isset($id) ? $rowA['content'] : "" ?>');
-      });
     }
 
     function textarea() {

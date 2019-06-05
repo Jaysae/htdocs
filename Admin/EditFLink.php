@@ -7,7 +7,6 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>增加友情链接 - <?php echo WebSite_Title ?>博客管理系统</title>
   <?php include '../tool.php';
   if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -19,6 +18,7 @@
       unset($id);
     }
   } ?>
+  <title><?php echo isset($id) ? "更新" : "增加"; ?>友情链接 - <?php echo WebSite_Title ?>博客管理系统</title>
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
