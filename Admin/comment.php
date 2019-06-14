@@ -54,7 +54,7 @@
                     <td><input type="checkbox" class="input-control" name="checkbox[]" value="<?php echo $row['id'] ?>" /></td>
                     <td>
                       <a href="/article-<?php echo $row['article_id'] ?>" title="<?php echo $str ?>">
-                        <?php echo substr($str, 0, 12) . "..." ?>
+                        <?php echo mb_substr($str, 0, 4, 'utf-8') . "..." ?>
                       </a>
                     </td>
                     <td class="article-title"><?php echo $row['content'] ?></td>

@@ -169,10 +169,10 @@
             function City($str)
             {
               if (substr($str, 0, 1) == "X") {
-                $len = strlen($str) - 12;
-                return substr($str, 0, $len);
+                $len = strlen($str);
+                return mb_substr($str, 0, 8, 'utf-8');
               }
-              $len = strlen($str) - 7;
+              $len = strlen($str);
               return substr($str, 0, $len);
             }
             if ($result && $result->num_rows > 0) {
