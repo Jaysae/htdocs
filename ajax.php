@@ -146,6 +146,9 @@ function Delete($id, $table)
         if ($table == "user_center") {
             if ($conn->query("DELETE FROM `comment` WHERE `user_id` = $id"));
         }
+        if ($table == "article") {
+            if ($conn->query("DELETE FROM `comment` WHERE `article_id` = $id"));
+        }
         if ($conn->query("DELETE FROM $table WHERE `$table`.`id` = $id"))
             return "true";
     }

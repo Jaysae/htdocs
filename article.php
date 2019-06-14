@@ -232,7 +232,6 @@
     </aside>
   </section>
   <?php include 'footer.php' ?>
-  <script src="js/jquery.qqFace.js"></script>
   <script type="text/javascript">
     function CanClick(str) {
       $.ajax({
@@ -268,11 +267,6 @@
       });
     }
     $(function() {
-      $('.emotion').qqFace({
-        id: 'facebox',
-        assign: 'comment-textarea',
-        path: '/images/arclist/' //表情存放的路径
-      });
       $('.disabled,.current').click(function(event) {
         event.preventDefault();
       });
