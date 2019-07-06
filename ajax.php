@@ -187,6 +187,15 @@ function AdminInfo($username, $old_password, $password, $id = 1, $user = 0)
             return "true";
         }
 }
+function AddChat($chatContent, $userId)
+{
+    $conn = MySQL();
+    date_default_timezone_set("Etc/GMT-8");
+    $time = date("Y-m-d H:i:s");
+    $sql = "INSERT INTO chat (content, date, user_id) VALUES ('$chatContent','$time','$userId')";
+    $conn->query($sql);
+    return  "true";
+}
 
 
 //非Ajax调用方法：

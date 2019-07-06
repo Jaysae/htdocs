@@ -74,6 +74,32 @@
     </div>
   </div>
 </div>
+
+
+
+<!--聊天室模态框-->
+<div class="modal fade user-select" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="chatModalLabel">
+  <div class="modal-dialog" role="document" style="max-width: 1280px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="chatModalLabel" style="cursor:default;">聊天室</h4>
+      </div>
+      <div class="modal-body chatBody">
+
+      </div>
+      <div class="modal-footer">
+        <textarea type="text" placeholder="请输入内容" class="form-control" name="chatContent" autocomplete="off" maxlength="36" style="margin-bottom: 10px;resize: none;"></textarea>
+        <input type="hidden" value="<?php echo $uid ?>" />
+        <button type="submit" class="btn btn-primary" id="chatButton">发表</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
 <!--登录模态框-->
 <div class="modal fade user-select" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
   <div class="modal-dialog" role="document">
@@ -272,6 +298,69 @@ function showLogoutToast()
 ?>
 <script type="text/javascript">
   $(function() {
+
+
+
+    function chat() {
+      $.ajax({
+        type: "POST",
+        url: "/chat",
+        cache: false,
+        success: function(data) {
+          $('.chatBody').html(data);
+          jdenticon();
+        }
+      });
+    }
+    setInterval(function() {
+      chat();
+    }, 2000);
+
+
+    $('#chatButton').click(function() {
+      var chatContent = $('textarea[name=chatContent]').val();
+      var userId = $('input[name=user_id]').val();
+      if (chatContent != "") {
+        $('textarea[name=chatContent]').val('');
+        $.ajax({
+          type: "POST",
+          url: "/ajax.php",
+          data: "function=AddChat&age=" + chatContent + "//,//" + userId,
+          cache: false,
+          success: function(data) {
+            if (data == "true") {
+              chat();
+              iziToast.success({
+                title: '成功',
+                message: '内容已成功发送~',
+                position: 'topCenter',
+                transitionIn: 'fadeInDown',
+                zindex: 1100,
+                pauseOnHover: false,
+              });
+            }
+          }
+        });
+      } else {
+        iziToast.error({
+          title: '错误',
+          message: '请输入内容',
+          position: 'topCenter',
+          transitionIn: 'fadeInDown',
+          timeout: 2000,
+          zindex: 1100,
+          pauseOnHover: false,
+          onOpening: function() {
+            $('textarea[name=chatContent]').focus();
+          },
+        });
+      }
+    });
+
+
+
+
+
     if (<?php echo showLoginToast() ?>) {
       iziToast.success({
         title: '<?php echo isset($_SESSION['username']) ? $_SESSION['username'] : "" ?>',

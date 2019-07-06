@@ -14,6 +14,7 @@ body, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, form, button, input, texta
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
 	display: block;
 }
+.clearFloat {clear: both;height: 0;line-height: 0px;}
 html, body {
 	color: #444;
 	background-color: #f6f6f6;
@@ -1168,6 +1169,7 @@ color:#FFF;
 	border-radius: 50%;
 	width: 36px;
 	height: 36px;
+	overflow: hidden;
 }
 .comment-main {
 	margin-left: 46px;
@@ -2248,4 +2250,11 @@ color:#FFF;
 .modal-open { 
 	overflow: inherit ;
 	padding-right: 0px !important;
+}
+.chatInfo{
+	height: 75px;
+	border-bottom: 1px solid #e5e5e5;
+}
+.chatInfo-noBorder{
+	border-bottom: none;
 }

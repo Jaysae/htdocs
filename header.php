@@ -66,7 +66,15 @@ function Active($var, $id)
                             <?php }
                     }
                 }
-                if (isset($uid) && $uid == 1) { ?><li><a href="/Admin">管理系统</a></li><?php } ?>
+                if (isset($uid)) {
+                    if ($uid == 1) {
+                        ?><li><a href="/Admin">管理系统</a></li>
+                        <?php }
+                    ?><li class="active">
+                            <a data-cont="聊天室" data-toggle="modal" data-target="#chatModal" rel="nofollow">聊天室</a>
+                        </li>
+                    <?php } ?>
+
                 </ul>
                 <form class="navbar-form visible-xs" action="/Search" method="post">
                     <div class="input-group">
