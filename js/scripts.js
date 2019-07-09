@@ -128,7 +128,7 @@ jQuery.ias({
     loader: '<div class="pagination-loading"><img src="/images/loading.gif" /></div>',
     triggerPageThreshold: 5,
     beforePageChange: function (scrollOffset, nextPageUrl) {
-        var pageNum = nextPageUrl.substr(-1, 1);
+        var pageNum = nextPageUrl.substr(-5, 5).replace(/[^0-9]/ig, "");
         if (pageNum > page_num) {
             $(".ias_end").show();
             return false;
