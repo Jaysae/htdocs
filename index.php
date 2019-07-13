@@ -11,10 +11,10 @@
     <?php include 'tool.php';
     $page_num = $conn->query("SELECT * FROM article")->num_rows;
     $amount = WebSite_show_num;
-    if ($page_num / $amount > (int)($page_num / $amount))
-        $page_num =  (int)($page_num / $amount) + 1;
+    if ($page_num / $amount > (int) ($page_num / $amount))
+        $page_num =  (int) ($page_num / $amount) + 1;
     else
-        $page_num = (int)$page_num / $amount;
+        $page_num = (int) $page_num / $amount;
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
     if ($page > $page_num) $page = $page_num;
     if ($page_num >= 2) $page_num = 2;
@@ -81,9 +81,9 @@
                             <div class="note"><?php echo $row['foreword'] ?></div>
                         </article>
                     <?php
+                    }
                 }
-            }
-            ?>
+                ?>
                 <div class="ias_end" style="display:none"><a>已是最后一页</a></div>
                 <nav class="pagination" style="display: none;">
                     <ul>
