@@ -47,10 +47,14 @@
           $result = $conn->query($sql);
           $num  = $result->num_rows;
           ?>
-          <li><a href="search-<?php echo $value ?>" title="<?php echo $value ?>"><?php echo $value ?> <span class="badge"><?php echo $num ?></span></a></li>
+          <li>
+            <a href="search-<?php echo $value ?>" title="<?php echo $value ?>">
+              <?php echo $value ?> <span class="badge"><?php echo $num ?></span>
+            </a>
+          </li>
         <?php
-      }
-      ?>
+        }
+        ?>
       </ul>
     </div>
   </section>

@@ -57,7 +57,7 @@
             <?php } else { ?>
               <svg class="avatar" data-jdenticon-value="<?php echo $row['username_t'] ?>" width="36" height="36"></svg>
             <?php } ?>
-            <strong><?php echo $row['username_t'] ?></strong>http://www.ylsat.com/
+            <strong><?php echo $row['username_t'] ?></strong>http://www.scmanga.cn/
           </a>
           <?php
           if ($i >= 4) $i = 4;
