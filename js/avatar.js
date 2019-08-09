@@ -227,10 +227,9 @@
     },
 
     ajaxUpload: function () {
-      var url = this.$avatarForm.attr('action'),
+      var url = "avatar.php",
         data = new FormData(this.$avatarForm[0]),
         _this = this;
-      url = "avatar.php";
       $.ajax(url, {
         headers: { 'X-XSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
         type: 'post',

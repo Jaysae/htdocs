@@ -23,10 +23,10 @@ upper(`label`) LIKE upper(\"%"  . $keyword . "%\")";
   $num = $page_num;
   if ($num != 0 && $keyword != "") {
     $amount = 5;
-    if ($page_num / $amount > (int)($page_num / $amount))
-      $page_num =  (int)($page_num / $amount) + 1;
+    if ($page_num / $amount > (int) ($page_num / $amount))
+      $page_num =  (int) ($page_num / $amount) + 1;
     else
-      $page_num = (int)$page_num / $amount;
+      $page_num = (int) $page_num / $amount;
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
     if ($page > $page_num) $page = $page_num;
   }
@@ -52,7 +52,7 @@ upper(`label`) LIKE upper(\"%"  . $keyword . "%\")";
           <div class="more">
             <?php
             $str = "<a id=\"tips\">Null</a>";
-            echo $keyword == "" ? str_replace('Null', '您未输入搜索内容！', $str) : ($num == 0 ? str_replace('Null', '抱歉，没有您想搜索的内容！', $str) : "")
+            echo $keyword == "" ? str_replace('Null', '您未输入搜索内容！', $str) : ($num == 0 ? str_replace('Null', '抱歉，没有您想搜索的内容！', $str) : str_replace('Null', "一共搜索到了" . $num . "篇文章", $str))
             ?></div>
         </form>
       </div>
@@ -80,10 +80,10 @@ upper(`label`) LIKE upper(\"%"  . $keyword . "%\")";
                   <div class="note"><?php echo $row['foreword'] ?></div>
                 </article>
               <?php
+              }
             }
           }
-        }
-        ?>
+          ?>
           <div class="ias_end" style="display:none"><a>已是最后一页</a></div>
           <nav class="pagination" style="display: none;">
             <ul>
@@ -97,8 +97,8 @@ upper(`label`) LIKE upper(\"%"  . $keyword . "%\")";
                   </a>
                 </li>
               <?php
-            }
-            ?>
+              }
+              ?>
               <li class="next-page"><a href="search-<?php echo $keyword ?>-<?php echo ($page + 1) > $page_num ? $page_num + 1 : ($page + 1) ?>">下一页</a></li>
               <li><span>共 <?php echo $page_num ?> 页</span></li>
             </ul>

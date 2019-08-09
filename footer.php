@@ -298,9 +298,6 @@ function showLogoutToast()
 ?>
 <script type="text/javascript">
   $(function() {
-
-
-
     function chat() {
       $.ajax({
         type: "POST",
@@ -315,8 +312,6 @@ function showLogoutToast()
     setInterval(function() {
       chat();
     }, 2000);
-
-
     $('#chatButton').click(function() {
       var chatContent = $('textarea[name=chatContent]').val();
       var userId = $('input[name=user_id]').val();
@@ -356,11 +351,6 @@ function showLogoutToast()
         });
       }
     });
-
-
-
-
-
     if (<?php echo showLoginToast() ?>) {
       iziToast.success({
         title: '<?php echo isset($_SESSION['username']) ? $_SESSION['username'] : "" ?>',

@@ -34,7 +34,7 @@ function Login($name, $password, $admin = 'none')
             }
             $_SESSION['login_time'] = $row['login_time'];
             $_SESSION['login_ip'] = $row['login_ip'];
-            $loginTimes = (int)$row['login_times'] + 1;
+            $loginTimes = (int) $row['login_times'] + 1;
             date_default_timezone_set("Etc/GMT-8");
             $time = date("Y-m-d H:i:s");
             $ip = getIp();
@@ -236,8 +236,8 @@ function getCity($ip) //获取地区
     $ip = json_decode(file_get_contents($url), true);
     $region = $ip['data']['region'];
     $city = $ip['data']['city'];
-    $isp = $ip['data']['isp'];
-    return  $region == $city ? $city . "市 " . $isp : $region . "省 " . $city . "市 " . $isp;
+    return $region != "" && $region != null ? ($region != "XX" ? ($region == $city ? $city . "市 " : $region . "省 " . $city . "市 ") : "内网IP") : "五湖四海";
+    return  $region == $city ? $city . "市 " : $region . "省 " . $city . "市 ";
 }
 //获取系统
 function get_login_os()

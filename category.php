@@ -21,10 +21,10 @@
   }
   $page_num = $conn->query($sql)->num_rows;
   $amount = 5;
-  if ($page_num / $amount > (int)($page_num / $amount))
-    $page_num =  (int)($page_num / $amount) + 1;
+  if ($page_num / $amount > (int) ($page_num / $amount))
+    $page_num =  (int) ($page_num / $amount) + 1;
   else
-    $page_num = (int)$page_num / $amount;
+    $page_num = (int) $page_num / $amount;
   $page = isset($_GET['page']) ? $_GET['page'] : 1;
   if ($page > $page_num) $page = $page_num;
   ?>
@@ -57,31 +57,28 @@
                 <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 共<?php echo $row['view'] ?>人围观</span> <a class="comment" href="article-<?php echo $row['id'] ?>"><i class="glyphicon glyphicon-comment"></i> 0个不明物体</a></p>
               <div class="note"><?php echo $row['foreword'] ?></div>
             </article>
-          <?php
-        }
-      } else {
-        echo "唔...这个页面没有内容呢！";
-      }
-      ?>
-        <div class="ias_end" style="display:none"><a>已是最后一页</a></div>
-        <nav class="pagination" style="display: none;">
-          <ul>
-            <li class="prev-page"></li>
-            <?php
-            for ($i = 0; $i < $page_num; $i++) {
+          <?php } ?>
+          <div class="ias_end" style="display:none"><a>已是最后一页</a></div>
+          <nav class="pagination" style="display: none;">
+            <ul>
+              <li class="prev-page"></li>
+              <?php
+              for ($i = 0; $i < $page_num; $i++) {
+                ?>
+                <li <?php echo $page == (1 + $i) ? "class=\"active\"" : "" ?>>
+                  <a href="category-<?php echo $id ?>-<?php echo (1 + $i) ?>">
+                    <?php echo (1 + $i) ?>
+                  </a>
+                </li>
+              <?php
+              }
               ?>
-              <li <?php echo $page == (1 + $i) ? "class=\"active\"" : "" ?>>
-                <a href="category-<?php echo $id ?>-<?php echo (1 + $i) ?>">
-                  <?php echo (1 + $i) ?>
-                </a>
-              </li>
-            <?php
-          }
-          ?>
-            <li class="next-page"><a href="category-<?php echo $id ?>-<?php echo ($page + 1) > $page_num ? $page_num + 1 : ($page + 1) ?>">下一页</a></li>
-            <li><span>共 <?php echo $page_num ?> 页</span></li>
-          </ul>
-        </nav>
+              <li class="next-page"><a href="category-<?php echo $id ?>-<?php echo ($page + 1) > $page_num ? $page_num + 1 : ($page + 1) ?>">下一页</a></li>
+              <li><span>共 <?php echo $page_num ?> 页</span></li>
+            </ul>
+          </nav>
+        <?php } else echo "该栏目下一篇文章都没有呢"; ?>
+
       </div>
     </div>
     <aside class="sidebar">
