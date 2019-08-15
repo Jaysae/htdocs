@@ -1,0 +1,11 @@
+# Visual Studio缓存目录
+.vs/
+
+# vscode缓存目录
+.vscode/
+
+# 头像上传缓存目录
+tmp/
+
+# 工作区文件
+*.code-workspace
