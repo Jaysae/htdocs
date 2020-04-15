@@ -40,18 +40,18 @@
                     <div id="focusslide" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
                             <?php for ($i = 0; $i < $s; $i++) {
-                                ?>
+                                    ?>
                                 <li data-target="#focusslide" data-slide-to="<?php echo $i ?>" <?php echo $i == 0 ? "class='active'" : "" ?>></li>
                             <?php } ?>
                         </ol>
                         <div class="carousel-inner" role="listbox">
                             <?php
-                            $i = 0;
-                            while ($row = $result->fetch_assoc()) { ?>
+                                $i = 0;
+                                while ($row = $result->fetch_assoc()) { ?>
                                 <div class="item <?php echo $i == 0 ? "active" : "" ?>"> <a href="article-<?php echo $row['id'] ?>" target="_blank"><img src="<?php echo $row['image'] ?>" alt="" class="img-responsive" width="820" height="200"></a>
                                 </div>
-                                <?php $i = 1;
-                            } ?>
+                            <?php $i = 1;
+                                } ?>
                         </div>
                         <a class="left carousel-control" href="#focusslide" role="button" data-slide="prev" rel="nofollow"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">上一个</span> </a> <a class="right carousel-control" href="#focusslide" role="button" data-slide="next" rel="nofollow"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">下一个</span> </a>
                     </div>
@@ -80,7 +80,7 @@
                                 <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 共<?php echo $row['view'] ?>人围观</span> <a class="comment" href="article-<?php echo $row['id'] ?>"><i class="glyphicon glyphicon-comment"></i> <?php echo $conn->query("SELECT COUNT(*) FROM comment WHERE article_id = " . $row['id'])->fetch_assoc()['COUNT(*)'] ?>个不明物体</a></p>
                             <div class="note"><?php echo $row['foreword'] ?></div>
                         </article>
-                    <?php
+                <?php
                     }
                 }
                 ?>

@@ -232,6 +232,7 @@ function getIp()
 }
 function getCity($ip) //获取地区
 {
+    return "未知城市";
     $url = "http://ip.taobao.com/service/getIpInfo.php?ip=" . $ip; //淘宝借口需要填写ip
     $ip = json_decode(file_get_contents($url), true);
     $region = $ip['data']['region'];

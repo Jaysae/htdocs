@@ -58,19 +58,19 @@ function Active($var, $id)
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             if ($row['name'] != "") {
-                                ?>
+                    ?>
                                 <li <?php Active("category.php?id=" . $row['id'], true);
                                     if (isset($page)) Active("category.php?id=" . $row['id'] . "&page=" . $page, true); ?>>
                                     <a href="category-<?php echo $row['id']; ?>"><?php echo $row['name']; ?></a>
                                 </li>
                             <?php }
+                        }
                     }
-                }
-                if (isset($uid)) {
-                    if ($uid == 1) {
-                        ?><li><a href="/Admin">管理系统</a></li>
+                    if (isset($uid)) {
+                        if ($uid == 1) {
+                            ?><li><a href="/Admin">管理系统</a></li>
                         <?php }
-                    ?><li class="active">
+                        ?><li class="active">
                             <a data-cont="聊天室" data-toggle="modal" data-target="#chatModal" rel="nofollow">聊天室</a>
                         </li>
                     <?php } ?>

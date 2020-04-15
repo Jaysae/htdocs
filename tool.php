@@ -24,7 +24,7 @@
 $servername = "localhost";
 $sql_username = "root";
 $qsl_password = "";
-$dbname = "blog";
+$dbname = "BLOG";
 
 // 创建连接
 $conn = new mysqli($servername, $sql_username, $qsl_password, $dbname);

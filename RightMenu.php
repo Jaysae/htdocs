@@ -17,9 +17,9 @@
                                 <li>
                                     <time datetime="<?php echo $row['date'] ?>" title="该公告于 <?php echo $row['date'] ?> 发布。"><?php echo substr($row['date'], 6) ?></time>
                                     <a data-toggle="modal" data-target="#noticePopups" rel="nofollow" title="<?php echo $row['content'] ?>" class="<?php echo $row['date'] ?>"><?php echo $row['content'] ?></a></li>
-                            <?php }
-                    }
-                } ?>
+                    <?php }
+                        }
+                    } ?>
                 </ul>
             </div>
             <?php
@@ -53,7 +53,7 @@
                         <a href="#"><span>等级</span>：<i class="glyphicon glyphicon-<?php echo $id_C == "1" ? "king" : "pawn" ?>"></i>
                             </i> <?php echo $id_C == "1" ? "管理员" : "普通读者" ?></a>
                         <?php if (isset($glyphicon)) {
-                            ?>
+                                ?>
                             <i class="glyphicon glyphicon-king"></i>管理员
                             <i class="glyphicon glyphicon-queen"></i>金牌读者
                             <i class="glyphicon glyphicon-bishop"></i>银牌读者
@@ -111,10 +111,10 @@
                         <span class="muted"><i class="glyphicon glyphicon-eye-open"></i> <?php echo $row['view'] ?></span>
                     </a>
                 </li>
-            <?php
+        <?php
+            }
         }
-    }
-    ?>
+        ?>
     </ul>
 </div>
 <script type="text/javascript">
